@@ -15,6 +15,6 @@ public class RideSharingApplication {
 
   @RequestMapping("/")
   public String greeting(){
-    return "Hello world!";
+    return "RideSharing is running!";
   }
 }
