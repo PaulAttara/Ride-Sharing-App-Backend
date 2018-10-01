@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.yattasolutions.uml.diagrams.classifier:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.yattasolutions.diagrams="http://ns.yatta-solutions.com/umllab/diagrams/1.1.0" xmlns:com.yattasolutions.uml.diagrams.classifier="http://ns.yatta-solutions.com/umllab/diagrams/classifier/1.1.0" xmi:id="_PcyR4MWmEeioHYpNRCzcsQ">
+  <modelElement href="RideSharing-backend.uml#_Pm-vsMWmEeioHYpNRCzcsQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_RhZ1AcWmEeioHYpNRCzcsQ" sourceAnchor="2.0,35.0" targetAnchor="97.0,28.0" enclosingItem="_Q1FhkMWmEeioHYpNRCzcsQ" containedItem="_RhacEMWmEeioHYpNRCzcsQ">
+    <bendpoints xmi:id="_Qw_yIMWuEeioHYpNRCzcsQ" sourceX="-32" targetX="35" targetY="43"/>
+    <bendpoints xmi:id="_Qw_yIcWuEeioHYpNRCzcsQ" sourceX="-32" sourceY="-43" targetX="35"/>
+  </edges>
+  <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_cu_DkMWtEeioHYpNRCzcsQ" sourceAnchor="77.0,0.0" targetAnchor="94.0,28.0" enclosingItem="_RhacEMWmEeioHYpNRCzcsQ" containedItem="_aqYukcWtEeioHYpNRCzcsQ">
+    <bendpoints xmi:id="_Qw_yIsWuEeioHYpNRCzcsQ" sourceY="-132" targetX="287"/>
+  </edges>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:PackageVisual" xmi:id="_Q1FhkMWmEeioHYpNRCzcsQ" containments="_RhZ1AcWmEeioHYpNRCzcsQ" name="ridesharing" nestedPackages="_RhacEMWmEeioHYpNRCzcsQ">
+    <modelElement href="RideSharing-backend.uml#_Pm-vsMWmEeioHYpNRCzcsQ"/>
+    <visualProperties xmi:id="_Q1FhkcWmEeioHYpNRCzcsQ" position="11.0,30.0" size="-1.0,-1.0"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:PackageVisual" xmi:id="_RhacEMWmEeioHYpNRCzcsQ" containment="_RhZ1AcWmEeioHYpNRCzcsQ" containments="_cu_DkMWtEeioHYpNRCzcsQ" classes="_aqYukcWtEeioHYpNRCzcsQ" name="model" nestingPackage="_Q1FhkMWmEeioHYpNRCzcsQ">
+    <modelElement href="RideSharing-backend.uml#_RhZ1AMWmEeioHYpNRCzcsQ"/>
+    <visualProperties xmi:id="_RhacEcWmEeioHYpNRCzcsQ" position="173.0,66.0" size="-1.0,-1.0"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_aqYukcWtEeioHYpNRCzcsQ" containment="_cu_DkMWtEeioHYpNRCzcsQ" name="Participant" package="_RhacEMWmEeioHYpNRCzcsQ">
+    <modelElement href="RideSharing-backend.uml#_aqXgcMWtEeioHYpNRCzcsQ"/>
+    <visualProperties xmi:id="_aqYuksWtEeioHYpNRCzcsQ" position="477.0,226.0" size="154.0,67.0"/>
+    <visibility xmi:id="_aqYuk8WtEeioHYpNRCzcsQ" label="+"/>
+    <attributes xmi:id="_iQu04MWtEeioHYpNRCzcsQ" name="name">
+      <modelElement href="RideSharing-backend.uml#_iQuN0MWtEeioHYpNRCzcsQ"/>
+      <stereotypes xmi:id="_LEzrYMWuEeioHYpNRCzcsQ" name="PrimaryKey">
+        <modelElement href="RideSharing-backend.uml#_LETVEMWuEeioHYpNRCzcsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_iQu04cWtEeioHYpNRCzcsQ" label="+"/>
+      <cardinality xmi:id="_iQu04sWtEeioHYpNRCzcsQ" label="1" max="1" min="1"/>
+      <type xmi:id="_iQu048WtEeioHYpNRCzcsQ" name="String">
+        <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </type>
+    </attributes>
+  </nodes>
+</com.yattasolutions.uml.diagrams.classifier:ClassDiagram>
