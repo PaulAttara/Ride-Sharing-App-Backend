@@ -4,7 +4,7 @@
     <eAnnotations xmi:id="_Ph4NQMWmEeioHYpNRCzcsQ" source="http://ns.yatta.de/umllab">
       <contents xmi:type="ecore:EAnnotation" xmi:id="_Ph4NQcWmEeioHYpNRCzcsQ" source="codegen">
         <details xmi:id="_Ph40UMWmEeioHYpNRCzcsQ" key="codegenDirectory" value="/RideSharing-backend/src/main/java"/>
-        <details xmi:id="_PpWuQMWmEeioHYpNRCzcsQ" key="AssociatedSourceCode" value="/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/RideSharingApplication.java;1528040890/1;/RideSharing-backend/src/test/java/ca/mcgill/ecse321/ridesharing/RideSharingApplicationTests.java;1970769919/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Participant.java;3244072646/1;"/>
+        <details xmi:id="_PpWuQMWmEeioHYpNRCzcsQ" key="AssociatedSourceCode" value="/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/RideSharingApplication.java;1528040890/1;/RideSharing-backend/src/test/java/ca/mcgill/ecse321/ridesharing/RideSharingApplicationTests.java;1970769919/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Participant.java;3374650707/1;"/>
       </contents>
       <contents xmi:type="ecore:EAnnotation" xmi:id="_apmBMMWpEeioHYpNRCzcsQ" source="dangling-refs">
         <contents xmi:type="uml:Property" xmi:id="_186v0MWmEeioHYpNRCzcsQ" name="registrationManager"/>
@@ -296,4 +296,38 @@ return this.participant;
   <Persistency:PrimaryKey xmi:id="_LETVEMWuEeioHYpNRCzcsQ" base_Property="_iQuN0MWtEeioHYpNRCzcsQ"/>
   <UMLLabProfile:Reference xmi:id="_LEx2MMWuEeioHYpNRCzcsQ" base_Element="_LEWYYMWuEeioHYpNRCzcsQ"/>
   <UMLLabProfile:Reference xmi:id="_Oo6EQMWuEeioHYpNRCzcsQ" base_Element="_Oo1y0MWuEeioHYpNRCzcsQ"/>
+  <UMLLabProfile:Annotations xmi:id="_9JCh0MWyEeioHYpNRCzcsQ" base_Element="_iQuN0MWtEeioHYpNRCzcsQ">
+    <annotations xmi:id="_9JDI4MWyEeioHYpNRCzcsQ" name="Id"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_9JDv8MWyEeioHYpNRCzcsQ" base_Element="_iQuN0MWtEeioHYpNRCzcsQ">
+    <associatedElement xmi:type="uml:Operation" xmi:id="_9JEXAMWyEeioHYpNRCzcsQ" name="getName" method="_9JIBYMWyEeioHYpNRCzcsQ">
+      <ownedParameter xmi:id="_9JFlIMWyEeioHYpNRCzcsQ" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedParameter>
+    </associatedElement>
+    <associatedElement xmi:type="uml:Operation" xmi:id="_9JGMMMWyEeioHYpNRCzcsQ" name="setName" method="_9JIocMWyEeioHYpNRCzcsQ">
+      <ownedParameter xmi:id="_9JGMMcWyEeioHYpNRCzcsQ" name="value">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedParameter>
+    </associatedElement>
+  </UMLLabProfile:LegacyStyledElement>
+  <UMLLabProfile:Annotations xmi:id="_9JE-EMWyEeioHYpNRCzcsQ" base_Element="_9JEXAMWyEeioHYpNRCzcsQ">
+    <annotations xmi:id="_9JE-EcWyEeioHYpNRCzcsQ" name="Id"/>
+  </UMLLabProfile:Annotations>
+  <uml:OpaqueBehavior xmi:id="_9JIBYMWyEeioHYpNRCzcsQ" name="getName" specification="_9JEXAMWyEeioHYpNRCzcsQ">
+    <ownedParameter xmi:id="_9JIBYcWyEeioHYpNRCzcsQ" direction="return">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedParameter>
+    <language>java</language>
+    <body>return this.name;
+    </body>
+  </uml:OpaqueBehavior>
+  <uml:OpaqueBehavior xmi:id="_9JIocMWyEeioHYpNRCzcsQ" name="setName" specification="_9JGMMMWyEeioHYpNRCzcsQ">
+    <ownedParameter xmi:id="_9JIoccWyEeioHYpNRCzcsQ" name="value">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedParameter>
+    <language>java</language>
+    <body>this.name = value;
+ </body>
+  </uml:OpaqueBehavior>
 </xmi:XMI>

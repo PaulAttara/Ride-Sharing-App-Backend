@@ -10,6 +10,7 @@ public class Participant{
    public void setName(String value) {
 this.name = value;
     }
+   @Id
 public String getName() {
 return this.name;
        }
