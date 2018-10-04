@@ -12,6 +12,7 @@ public class Driver extends Role{
 
 
 @ManyToMany(mappedBy="driver")
+@Id
 public Set<Route> getRoute() {
    return this.route;
 }

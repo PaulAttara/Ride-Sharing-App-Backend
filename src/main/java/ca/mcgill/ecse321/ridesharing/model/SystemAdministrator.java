@@ -13,6 +13,7 @@ public class SystemAdministrator{
 
 
 @OneToMany(mappedBy="systemAdministrator", cascade={CascadeType.ALL})
+@Id
 public Set<Request> getRequest() {
    return this.request;
 }
@@ -25,6 +26,7 @@ public void setRequest(Set<Request> requests) {
 
 
 @OneToMany(mappedBy="systemAdministrator", cascade={CascadeType.ALL})
+@Id
 public Set<Car> getCar() {
    return this.car;
 }
@@ -37,6 +39,7 @@ public void setCar(Set<Car> cars) {
 
 
 @OneToMany(mappedBy="systemAdministrator", cascade={CascadeType.ALL})
+@Id
 public Set<Route> getRoute() {
    return this.route;
 }
@@ -49,6 +52,7 @@ public void setRoute(Set<Route> routes) {
 
 
 @OneToMany(mappedBy="systemAdministrator", cascade={CascadeType.ALL})
+@Id
 public Set<Location> getLocation() {
    return this.location;
 }
@@ -61,6 +65,7 @@ public void setLocation(Set<Location> locations) {
 
 
 @OneToMany(mappedBy="systemAdministrator", cascade={CascadeType.ALL})
+@Id
 public Set<User> getUser() {
    return this.user;
 }
@@ -73,6 +78,7 @@ public void setUser(Set<User> users) {
 
 
 @OneToMany(mappedBy="systemAdministrator", cascade={CascadeType.ALL})
+@Id
 public Set<Role> getRole() {
    return this.role;
 }

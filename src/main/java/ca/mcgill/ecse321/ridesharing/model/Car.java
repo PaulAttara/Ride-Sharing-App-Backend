@@ -29,6 +29,7 @@ public void setSystemAdministrator(SystemAdministrator value) {
 private Set<Driver> driver;
 
 @ManyToMany
+@Id
 public Set<Driver> getDriver() {
    return this.driver;
 }

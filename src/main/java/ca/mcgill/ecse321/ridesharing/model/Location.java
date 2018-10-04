@@ -13,6 +13,7 @@ public class Location{
 
 
 @ManyToMany
+@Id
 public Set<Request> getRequest() {
    return this.request;
 }
@@ -25,6 +26,7 @@ public void setRequest(Set<Request> requests) {
 
 
 @ManyToMany
+@Id
 public Set<Request> getRequest1() {
    return this.request1;
 }
@@ -37,6 +39,7 @@ public void setRequest1(Set<Request> request1s) {
 
 
 @ManyToOne(optional=false)
+@Id
 public SystemAdministrator getSystemAdministrator() {
    return this.systemAdministrator;
 }
@@ -49,6 +52,7 @@ public void setSystemAdministrator(SystemAdministrator systemAdministrator) {
 
 
 @ManyToMany(mappedBy="location")
+@Id
 public Set<Route> getRoute() {
    return this.route;
 }

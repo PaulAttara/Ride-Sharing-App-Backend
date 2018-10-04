@@ -12,6 +12,7 @@ public class Passenger extends Role{
 
 
 @ManyToMany(mappedBy="passenger")
+@Id
 public Set<Request> getRequest() {
    return this.request;
 }

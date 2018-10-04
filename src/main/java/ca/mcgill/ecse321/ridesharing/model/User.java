@@ -14,7 +14,7 @@ public class User{
 	public void setName(String value) {
 		this.name = value;
 	}
-	
+	@Id
 	public String getName() {
 		return this.name;
 	}
@@ -22,6 +22,7 @@ public class User{
 	
 	
 	@OneToMany(mappedBy="user")
+	@Id
 	public Set<Role> getRole() {
 		return this.role;
 	}
@@ -34,6 +35,7 @@ public class User{
 
 	
 	@ManyToOne(optional=false)
+	@Id
 	public SystemAdministrator getSystemAdministrator() {
 		return this.systemAdministrator;
 	}
