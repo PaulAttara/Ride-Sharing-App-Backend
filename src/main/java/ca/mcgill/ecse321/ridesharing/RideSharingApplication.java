@@ -5,7 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class RideSharingApplication {
-
+	
+	//test comment
 	public static void main(String[] args) {
 		SpringApplication.run(RideSharingApplication.class, args);
 	}
