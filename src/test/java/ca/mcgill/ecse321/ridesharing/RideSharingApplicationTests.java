@@ -1,3 +1,5 @@
+/*package ca.mcgill.ecse321.ridesharing;
+
 package ca.mcgill.ecse321.ridesharing;
 
 import org.junit.Test;
@@ -11,6 +13,7 @@ public class RideSharingApplicationTests {
 
 	@Test
 	public void contextLoads() {
+
 	}
 
-}
+}*/
