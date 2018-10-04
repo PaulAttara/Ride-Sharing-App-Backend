@@ -18,6 +18,7 @@ public class Route{
  */
 private SystemAdministrator systemAdministrator;
 
+@Id
 public SystemAdministrator getSystemAdministrator() {
    return this.systemAdministrator;
 }
@@ -31,6 +32,7 @@ public void setSystemAdministrator(SystemAdministrator value) {
 
 
 @ManyToMany
+@Id
 public Set<Driver> getDriver() {
    return this.driver;
 }
@@ -47,6 +49,7 @@ public void setDriver(Set<Driver> drivers) {
  */
 private Set<Location> location;
 
+@Id
 public Set<Location> getLocation() {
    if (this.location == null) {
 this.location = new HashSet<Location>();

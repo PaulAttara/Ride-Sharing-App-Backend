@@ -10,6 +10,7 @@ public abstract class Role{
 
 
 @ManyToOne(optional=false)
+@Id
 public User getUser() {
    return this.user;
 }
@@ -22,6 +23,7 @@ public void setUser(User user) {
 
 
 @ManyToOne(optional=false)
+@Id
 public SystemAdministrator getSystemAdministrator() {
    return this.systemAdministrator;
 }

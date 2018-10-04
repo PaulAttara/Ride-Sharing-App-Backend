@@ -12,6 +12,7 @@ public class Request{
 
 
 @ManyToOne(optional=false)
+@Id
 public SystemAdministrator getSystemAdministrator() {
    return this.systemAdministrator;
 }
@@ -25,7 +26,7 @@ public void setSystemAdministrator(SystemAdministrator systemAdministrator) {
 public void setStatus(Status value) {
 this.status = value;
     }
-
+@Id
 public Status getStatus() {
 return this.status;
     }
@@ -33,6 +34,7 @@ return this.status;
 
 
 @ManyToMany(mappedBy="request")
+@Id
 public Set<Location> getPickUp() {
    return this.pickUp;
 }
@@ -45,6 +47,7 @@ public void setPickUp(Set<Location> pickUps) {
 
 
 @ManyToMany(mappedBy="request1")
+@Id
 public Set<Location> getDropOff() {
    return this.dropOff;
 }
@@ -57,6 +60,7 @@ public void setDropOff(Set<Location> dropOffs) {
 
 
 @ManyToMany
+@Id
 public Set<Passenger> getPassenger() {
    return this.passenger;
 }
@@ -71,7 +75,7 @@ public void setRating(Rating value) {
 this.rating = value;
     }
 
-
+@Id
 public Rating getRating() {
 return this.rating;
        }
