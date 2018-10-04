@@ -8,10 +8,15 @@
       </contents>
       <contents xsi:type="UMLLabProfile:Annotations" xmi:id="_nr50AMflEeioHYpNRCzcsQ">
         <base_Element xsi:type="uml:Property" href="RideSharing-backend.uml#_jSzNIMfiEeioHYpNRCzcsQ"/>
+        <annotations xmi:id="_xLR2gMf7EeioHYpNRCzcsQ" name="Id"/>
       </contents>
       <contents xsi:type="UMLLabProfile:Annotations" xmi:id="_PqsXYMfdEeioHYpNRCzcsQ">
         <base_Element xsi:type="uml:Property" href="RideSharing-backend.uml#_1-kuMsd-EeiaZ-jG0wuTCA"/>
         <annotations xmi:id="_PqsXYcfdEeioHYpNRCzcsQ" name="Id"/>
+      </contents>
+      <contents xsi:type="UMLLabProfile:Annotations" xmi:id="_9CWRUMfeEeioHYpNRCzcsQ">
+        <base_Element xsi:type="uml:Property" href="RideSharing-backend.uml#_2fKSwMd-EeiaZ-jG0wuTCA"/>
+        <annotations xmi:id="_9CWRUcfeEeioHYpNRCzcsQ" name="Id"/>
       </contents>
     </contents>
   </eAnnotations>
@@ -505,6 +510,9 @@
     <stereotypes xmi:id="_lxgj4MflEeioHYpNRCzcsQ" name="Annotations">
       <modelElement href="RideSharing-backend.uml#_lv5aUMflEeioHYpNRCzcsQ"/>
     </stereotypes>
+    <stereotypes xmi:id="_qiEb8Mf9EeioHYpNRCzcsQ" name="Patch">
+      <modelElement href="RideSharing-backend.uml#_qiDN0Mf9EeioHYpNRCzcsQ"/>
+    </stereotypes>
     <visibility xmi:id="_o68f0sd-EeiaZ-jG0wuTCA" label="+"/>
     <attributes xmi:id="_jSzNIcfiEeioHYpNRCzcsQ" name="one">
       <modelElement href="RideSharing-backend.uml#_jSzNIMfiEeioHYpNRCzcsQ"/>
@@ -515,6 +523,35 @@
         <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </type>
     </attributes>
+    <operations xmi:id="_pVvywMf9EeioHYpNRCzcsQ" name="getCancelled">
+      <modelElement href="RideSharing-backend.uml#_pVsvcMf9EeioHYpNRCzcsQ"/>
+      <stereotypes xmi:id="_pVvywcf9EeioHYpNRCzcsQ" name="Annotations">
+        <modelElement href="RideSharing-backend.uml#_pVtWgMf9EeioHYpNRCzcsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pVvywsf9EeioHYpNRCzcsQ" label="+"/>
+      <cardinality xmi:id="_pVvyw8f9EeioHYpNRCzcsQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_pVvyxMf9EeioHYpNRCzcsQ">
+        <modelElement href="RideSharing-backend.uml#_pVukocf9EeioHYpNRCzcsQ"/>
+        <type xmi:id="_pVvyxcf9EeioHYpNRCzcsQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_pWD70Mf9EeioHYpNRCzcsQ" name="setOne">
+      <modelElement href="RideSharing-backend.uml#_pVt9kMf9EeioHYpNRCzcsQ"/>
+      <stereotypes xmi:id="_pWD70cf9EeioHYpNRCzcsQ" name="StyledElement">
+        <modelElement href="RideSharing-backend.uml#_pVukoMf9EeioHYpNRCzcsQ"/>
+      </stereotypes>
+      <visibility xmi:id="_pWD70sf9EeioHYpNRCzcsQ" label="+"/>
+      <cardinality xmi:id="_pWD708f9EeioHYpNRCzcsQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_pWD71Mf9EeioHYpNRCzcsQ" name="value">
+        <modelElement href="RideSharing-backend.uml#_pVt9kcf9EeioHYpNRCzcsQ"/>
+        <cardinality xmi:id="_pWD71cf9EeioHYpNRCzcsQ" label="1" max="1" min="1"/>
+        <type xmi:id="_pWD71sf9EeioHYpNRCzcsQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </parameters>
+    </operations>
     <literals xmi:id="_lv7PgMflEeioHYpNRCzcsQ" name="ONE">
       <modelElement href="RideSharing-backend.uml#_lv5aUsflEeioHYpNRCzcsQ"/>
     </literals>
@@ -568,9 +605,7 @@
     </attributes>
     <attributes xmi:id="_2fMvAMd-EeiaZ-jG0wuTCA" name="driver">
       <modelElement href="RideSharing-backend.uml#_2fKSwMd-EeiaZ-jG0wuTCA"/>
-      <stereotypes xmi:id="_9CYGgMfeEeioHYpNRCzcsQ" name="Annotations">
-        <modelElement href="RideSharing-backend.uml#_9CWRUMfeEeioHYpNRCzcsQ"/>
-      </stereotypes>
+      <stereotypes xmi:id="_9CYGgMfeEeioHYpNRCzcsQ" modelElement="_9CWRUMfeEeioHYpNRCzcsQ" name="Annotations"/>
       <stereotypes xmi:id="_SVrcUMfwEeioHYpNRCzcsQ" name="LegacyStyledElement">
         <modelElement href="RideSharing-backend.uml#_SVLGAMfwEeioHYpNRCzcsQ"/>
       </stereotypes>
