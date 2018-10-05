@@ -12,7 +12,7 @@ public enum Status{
       this.cancelled = value;
    }
    
-   
+   @Id
    public String getCancelled() {
       return this.cancelled;
    }
