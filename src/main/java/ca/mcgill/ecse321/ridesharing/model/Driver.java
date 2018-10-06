@@ -25,7 +25,6 @@ public void setRoute(Set<Route> routes) {
 
 
 @ManyToMany(mappedBy="driver")
-@Id
 public Set<Car> getCar() {
    return this.car;
 }
