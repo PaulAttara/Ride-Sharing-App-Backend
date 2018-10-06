@@ -7,4 +7,13 @@ import javax.persistence.Id;
 public enum Rating{
 	ONE;
     public String one;
+    
+    public void setOne(String value) {
+        this.one = value;
+     }
+     
+     @Id
+     public String getCancelled() {
+        return this.one;
+     }
    }
