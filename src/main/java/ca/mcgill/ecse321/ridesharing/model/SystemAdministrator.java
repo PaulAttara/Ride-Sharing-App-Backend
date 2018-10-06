@@ -73,4 +73,20 @@ public void setRole(Set<Role> roles) {
    this.role = roles;
 }
 
-}
+private String adminUsername;
+
+public void setAdminUsername(String value) {
+this.adminUsername = value;
+    }
+public String getAdminUsername() {
+return this.adminUsername;
+    }
+private String password;
+
+public void setPassword(String value) {
+this.password = value;
+    }
+public String getPassword() {
+return this.password;
+       }
+   }
