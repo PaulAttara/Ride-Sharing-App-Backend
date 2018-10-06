@@ -4,4 +4,5 @@ import javax.persistence.Entity;
 
 @Entity
 public enum Status{
-}
+	Pending, Accepted, Confirmed, EnRoute, Ended
+	}

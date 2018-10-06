@@ -51,4 +51,20 @@ public void setRoute(Set<Route> routes) {
    this.route = routes;
 }
 
-}
+private double lattitude;
+
+public void setLattitude(double value) {
+this.lattitude = value;
+    }
+public double getLattitude() {
+return this.lattitude;
+    }
+private double longitude;
+
+public void setLongitude(double value) {
+this.longitude = value;
+    }
+public double getLongitude() {
+return this.longitude;
+       }
+   }

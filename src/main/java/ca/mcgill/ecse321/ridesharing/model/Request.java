@@ -48,23 +48,26 @@ public void setDropOff(Set<Location> dropOffs) {
    this.dropOff = dropOffs;
 }
 
-private Set<Passenger> passenger;
+private Passenger passenger;
 
-@ManyToMany
-public Set<Passenger> getPassenger() {
+@ManyToOne(optional=false)
+public Passenger getPassenger() {
    return this.passenger;
 }
 
-public void setPassenger(Set<Passenger> passengers) {
-   this.passenger = passengers;
+public void setPassenger(Passenger passenger) {
+   this.passenger = passenger;
 }
 
-private Rating rating;
+private Route route;
 
-public void setRating(Rating value) {
-this.rating = value;
-    }
-public Rating getRating() {
-return this.rating;
-       }
-   }
+@ManyToOne(optional=false)
+public Route getRoute() {
+   return this.route;
+}
+
+public void setRoute(Route route) {
+   this.route = route;
+}
+
+}

@@ -27,4 +27,28 @@ public void setSystemAdministrator(SystemAdministrator systemAdministrator) {
    this.systemAdministrator = systemAdministrator;
 }
 
-}
+private int numOfPastTrips;
+
+public void setNumOfPastTrips(int value) {
+this.numOfPastTrips = value;
+    }
+public int getNumOfPastTrips() {
+return this.numOfPastTrips;
+    }
+private int numOfPastDrives;
+
+public void setNumOfPastDrives(int value) {
+this.numOfPastDrives = value;
+    }
+public int getNumOfPastDrives() {
+return this.numOfPastDrives;
+    }
+private double avgRating;
+
+public void setAvgRating(double value) {
+this.avgRating = value;
+    }
+public double getAvgRating() {
+return this.avgRating;
+       }
+   }

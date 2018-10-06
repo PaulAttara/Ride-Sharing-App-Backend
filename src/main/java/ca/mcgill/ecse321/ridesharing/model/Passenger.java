@@ -2,13 +2,13 @@ package ca.mcgill.ecse321.ridesharing.model;
 
 import javax.persistence.Entity;
 import java.util.Set;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Passenger extends Role{
 private Set<Request> request;
 
-@ManyToMany(mappedBy="passenger")
+@OneToMany(mappedBy="passenger")
 public Set<Request> getRequest() {
    return this.request;
 }
