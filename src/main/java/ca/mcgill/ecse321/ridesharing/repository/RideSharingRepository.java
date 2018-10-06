@@ -13,6 +13,7 @@ public class RideSharingRepository {
 
 	@Autowired
 	EntityManager entityManager;
+	
 
 	@Transactional
 	public User createUser(String name) {
