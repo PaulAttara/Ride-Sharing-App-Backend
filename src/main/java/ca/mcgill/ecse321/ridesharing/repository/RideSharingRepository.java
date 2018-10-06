@@ -16,9 +16,9 @@ public class RideSharingRepository {
 	
 
 	@Transactional
-	public User createUser(String name) {
+	public User createUser(String userName) {
 		User participant = new User();
-		participant.setName(name);
+		participant.setUserName(userName);
 		entityManager.persist(participant);
 		return participant;
 	}
@@ -29,4 +29,4 @@ public class RideSharingRepository {
 		return participant;
 	}
 
-}
+} 
