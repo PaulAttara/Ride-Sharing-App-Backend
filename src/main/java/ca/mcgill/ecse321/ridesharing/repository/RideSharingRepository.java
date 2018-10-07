@@ -15,6 +15,7 @@ import ca.mcgill.ecse321.ridesharing.model.Request;
 import ca.mcgill.ecse321.ridesharing.model.Role;
 import ca.mcgill.ecse321.ridesharing.model.Route;
 import ca.mcgill.ecse321.ridesharing.model.Status;
+import ca.mcgill.ecse321.ridesharing.model.SystemAdministrator;
 import ca.mcgill.ecse321.ridesharing.model.User;
 
 @Repository
@@ -26,7 +27,7 @@ public class RideSharingRepository {
 	@Transactional
 	public User createUser(String firstName, String lastName, String userName, String password, String city, String phoneNumber, String address) {
 		
-		User existingUser = entityManager.find(User.class, userName);
+		User existingUser = getUser(userName);
 		if(existingUser == null) {
 			User userAccount = new User();
 			userAccount.setUserName(userName);
@@ -69,12 +70,14 @@ public class RideSharingRepository {
 	//Returns true if user is found
 	//False if user login is invalid
 	public boolean loginAdmin(String userName, String password) {
-		
-		User user = entityManager.find(User.class, userName);
-		if (user != null && user.getPassword().equals(password)) {
+		if (userName.equals("adminUsername") && password.equals("adminPassword") ) {
 			return true;
 		}
-		return false;
+		else 
+		{
+			return false;
+		}
+
 	}
 
 	// this method updates the seats available in a route depending on the status of
