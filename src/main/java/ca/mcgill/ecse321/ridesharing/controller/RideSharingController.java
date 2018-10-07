@@ -44,31 +44,33 @@ public class RideSharingController {
 // this gives the driver the chance to rate the passenger
 // this also increments the num of past trips for the passenger and updates his rating
 // this also updates the status of the specific request of the passenger to ended
-public void passengerDroppedOff (Route aRoute, double rating, Role aRole) {
-	if (aRole instanceof Passenger) {
+public void passengerDroppedOff (Route aRoute, double rating, Passenger aPassenger) {
+	
 		Set <Request> requests = aRoute.getRequest();
 		for(Request r: requests) {
 			
 			Passenger p =r.getPassenger();
-			if (p ==aRole) {
+			if (p ==aPassenger) {
 				r.setStatus(Status.Ended);
-				double currentRating=aRole.getAvgRating();
-				double numPastTrips=(double)aRole.getNumOfPastTrips();
+				double currentRating=aPassenger.getAvgRating();
+				double numPastTrips=(double)aPassenger.getNumOfPastTrips();
 			
 				currentRating= ((rating+currentRating*(numPastTrips))/(numPastTrips+1));
-				aRole.setNumOfPastTrips((int)numPastTrips+1);
-				aRole.setAvgRating(currentRating);
+				aPassenger.setNumOfPastTrips((int)numPastTrips+1);
+				aPassenger.setAvgRating(currentRating);
 			}
-		}
+		
 		
 	}
 }
 //A passenger will call this when he's dropped off and status of request is ended
 //the route only has one driver so it is not necessary to take in a role
 // this updates the drivers rating and the number of trips
+// this should only be called when the passengerDroppedOff method has been called
+// the status MUST BE = ENDED
 public void passengerRatesDriver (double rating, Route aRoute) {
-	Driver driver = aRoute.getDriver();
 	
+		Driver driver = aRoute.getDriver();
 		// update rating and past trips
 		double currentRating=driver.getAvgRating();
 		double numPastTrips=(double)driver.getNumOfPastTrips();
