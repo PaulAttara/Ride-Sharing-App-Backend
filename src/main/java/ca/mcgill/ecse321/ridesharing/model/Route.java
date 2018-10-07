@@ -11,6 +11,22 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Route implements Serializable{
+private Status status;
+   
+   public void setStatus(Status value) {
+this.status = value;
+    }
+public Status getStatus() {
+return this.status;
+    }
+private double price;
+
+public void setPrice(double value) {
+this.price = value;
+    }
+public double getPrice() {
+return this.price;
+    }
 	private SystemAdministrator systemAdministrator;
 
 	@ManyToOne(optional = false)

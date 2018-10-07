@@ -19,7 +19,10 @@ public class RideSharingRepository {
 	public User createUser(String userName) {
 		User participant = new User();
 		participant.setUserName(userName);
+		entityManager.getTransaction().begin();
 		entityManager.persist(participant);
+		entityManager.getTransaction().commit();
+
 		return participant;
 	}
 
