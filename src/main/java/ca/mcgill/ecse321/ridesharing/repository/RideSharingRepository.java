@@ -22,20 +22,31 @@ public class RideSharingRepository {
 	EntityManager entityManager;
 
 	@Transactional
-	public User createUser(String userName) {
-		User participant = new User();
-		participant.setUserName(userName);
-		entityManager.getTransaction().begin();
-		entityManager.persist(participant);
-		entityManager.getTransaction().commit();
-
-		return participant;
+	public User createUser(String firstName, String lastName, String userName, String password, String city, String phoneNumber, String address) {
+		
+		User existingUser = entityManager.find(User.class, userName);
+		if(existingUser == null) {
+			User userAccount = new User();
+			userAccount.setUserName(userName);
+			userAccount.setAddress(address);
+			userAccount.setCity(city);
+			userAccount.setFirstName(firstName);
+			userAccount.setLastName(lastName);
+			userAccount.setPassword(password);
+			userAccount.setPhoneNumber(phoneNumber);
+			entityManager.persist(userAccount);
+			return userAccount;
+		}
+		else {
+			return null;
+		}
+			
 	}
 
 	@Transactional
-	public User getUser(String name) {
-		User participant = entityManager.find(User.class, name);
-		return participant;
+	public User getUser(String userName) {
+		User userAccount = entityManager.find(User.class, userName);
+		return userAccount;
 
 	}
 
@@ -103,5 +114,6 @@ public class RideSharingRepository {
 		driver.setAvgRating(currentRating);
 
 	}
+	
 
 }
