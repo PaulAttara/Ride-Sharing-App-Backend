@@ -22,17 +22,6 @@ public class Route implements Serializable{
 		this.systemAdministrator = systemAdministrator;
 	}
 
-	private Set<Driver> driver;
-
-	@ManyToMany
-	public Set<Driver> getDriver() {
-		return this.driver;
-	}
-
-	public void setDriver(Set<Driver> drivers) {
-		this.driver = drivers;
-	}
-
 	private Set<Location> location;
 
 	@ManyToMany
@@ -96,15 +85,15 @@ public class Route implements Serializable{
 		this.request = requests;
 	}
 
-	private Driver driver1;
+	private Driver driver;
 
 	@ManyToOne(optional = false)
-	public Driver getDriver1() {
-		return this.driver1;
+	public Driver getDriver() {
+		return this.driver;
 	}
 
-	public void setDriver1(Driver driver1) {
-		this.driver1 = driver1;
+	public void setDriver(Driver driver1) {
+		this.driver = driver1;
 	}
 
 }

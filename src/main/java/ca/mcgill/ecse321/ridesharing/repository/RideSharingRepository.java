@@ -23,10 +23,12 @@ public class RideSharingRepository {
 		return participant;
 	}
 
-	@Transactional
+	/*@Transactional
 	public User getUser(String name) {
 		User participant = entityManager.find(User.class, name);
 		return participant;
+		
 	}
+	*/
 
 } 

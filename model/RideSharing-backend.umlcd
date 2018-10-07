@@ -248,27 +248,6 @@
     </targetRole>
   </edges>
   <edges xsi:type="com.yattasolutions.diagrams:ContainmentVisual" xmi:id="_o6-VAMd-EeiaZ-jG0wuTCA"/>
-  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_1-mjYMd-EeiaZ-jG0wuTCA" sourceAnchor="82.0,0.0" targetAnchor="56.0,0.0" target="_zpG6YMd4EeiaZ-jG0wuTCA" source="_jzlMIMd4EeiaZ-jG0wuTCA">
-    <modelElement href="RideSharing-backend.uml#_1-kHIMd-EeiaZ-jG0wuTCA"/>
-    <visualProperties xmi:id="_1-mjYcd-EeiaZ-jG0wuTCA"/>
-    <bendpoints xmi:id="_HbgIoMmvEeiPdPciJTia0g" sourceY="-265" targetX="611" targetY="-300"/>
-    <bendpoints xmi:id="_HbgIocmvEeiPdPciJTia0g" sourceX="-611" sourceY="-265" targetY="-300"/>
-    <nameVisual xmi:id="_1-mjYsd-EeiaZ-jG0wuTCA" text="">
-      <visualProperties xmi:id="_2CzG4Md-EeiaZ-jG0wuTCA" position="-33.0,-17.0"/>
-    </nameVisual>
-    <sourceRole xmi:id="_1-mjY8d-EeiaZ-jG0wuTCA" aggregationKind="NONE" name="driver" navigable="true">
-      <modelElement href="RideSharing-backend.uml#_1-kHIcd-EeiaZ-jG0wuTCA"/>
-      <visualProperties xmi:id="_2Cyf2Md-EeiaZ-jG0wuTCA" position="-47.0,-74.0"/>
-      <visibility xmi:id="_1-mjZMd-EeiaZ-jG0wuTCA" label="+"/>
-      <cardinality xmi:id="_1-mjZcd-EeiaZ-jG0wuTCA" label="*" max="-1"/>
-    </sourceRole>
-    <targetRole xmi:id="_1-mjZsd-EeiaZ-jG0wuTCA" aggregationKind="NONE" name="route" navigable="true">
-      <modelElement href="RideSharing-backend.uml#_1-kuMsd-EeiaZ-jG0wuTCA"/>
-      <visualProperties xmi:id="_2CzG4cd-EeiaZ-jG0wuTCA" position="-44.0,-74.99999999999997"/>
-      <visibility xmi:id="_1-mjZ8d-EeiaZ-jG0wuTCA" label="+"/>
-      <cardinality xmi:id="_1-mjaMd-EeiaZ-jG0wuTCA" label="*" max="-1"/>
-    </targetRole>
-  </edges>
   <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_2fMH8Md-EeiaZ-jG0wuTCA" sourceAnchor="106.0,44.0" targetAnchor="0.0,15.0" target="_PIytMMd6EeiaZ-jG0wuTCA" source="_jzlMIMd4EeiaZ-jG0wuTCA">
     <modelElement href="RideSharing-backend.uml#_2fJrsMd-EeiaZ-jG0wuTCA"/>
     <visualProperties xmi:id="_2fMH8cd-EeiaZ-jG0wuTCA"/>
@@ -377,13 +356,13 @@
     <nameVisual xmi:id="_1FGAwsmoEeiPdPciJTia0g" text="">
       <visualProperties xmi:id="_1JVAgcmoEeiPdPciJTia0g" position="-402.0,-17.0"/>
     </nameVisual>
-    <sourceRole xmi:id="_1FGAw8moEeiPdPciJTia0g" aggregationKind="NONE" name="driver1" navigable="true">
+    <sourceRole xmi:id="_1FGAw8moEeiPdPciJTia0g" aggregationKind="NONE" name="driver" navigable="true">
       <modelElement href="RideSharing-backend.uml#_1FDkgcmoEeiPdPciJTia0g"/>
       <visualProperties xmi:id="_1JVAgMmoEeiPdPciJTia0g" position="99.0,-31.0"/>
       <visibility xmi:id="_1FGAxMmoEeiPdPciJTia0g" label="+"/>
       <cardinality xmi:id="_1FGAxcmoEeiPdPciJTia0g" label="1" max="1" min="1"/>
     </sourceRole>
-    <targetRole xmi:id="_1FGAxsmoEeiPdPciJTia0g" aggregationKind="NONE" name="route1" navigable="true">
+    <targetRole xmi:id="_1FGAxsmoEeiPdPciJTia0g" aggregationKind="NONE" name="route" navigable="true">
       <modelElement href="RideSharing-backend.uml#_1FELkMmoEeiPdPciJTia0g"/>
       <visualProperties xmi:id="_1JVAgsmoEeiPdPciJTia0g" position="-56.0,-119.00000000000006"/>
       <visibility xmi:id="_1FGAx8moEeiPdPciJTia0g" label="+"/>
@@ -580,7 +559,7 @@
       </type>
     </attributes>
   </nodes>
-  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_zpG6YMd4EeiaZ-jG0wuTCA" containment="_zpGTUMd4EeiaZ-jG0wuTCA" name="Route" associationsIn="_30FJMMd8EeiaZ-jG0wuTCA _1-mjYMd-EeiaZ-jG0wuTCA _8ci3MMd-EeiaZ-jG0wuTCA _IKKCkMmoEeiPdPciJTia0g _dGiV4MmoEeiPdPciJTia0g _1FGAwMmoEeiPdPciJTia0g">
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_zpG6YMd4EeiaZ-jG0wuTCA" containment="_zpGTUMd4EeiaZ-jG0wuTCA" name="Route" associationsIn="_30FJMMd8EeiaZ-jG0wuTCA _8ci3MMd-EeiaZ-jG0wuTCA _IKKCkMmoEeiPdPciJTia0g _dGiV4MmoEeiPdPciJTia0g _1FGAwMmoEeiPdPciJTia0g">
     <modelElement href="RideSharing-backend.uml#_zpFFMMd4EeiaZ-jG0wuTCA"/>
     <visualProperties xmi:id="_zpG6Ycd4EeiaZ-jG0wuTCA" position="113.0,287.0" size="112.0,-1.0"/>
     <visibility xmi:id="_zpG6Ysd4EeiaZ-jG0wuTCA" label="+"/>
@@ -590,14 +569,6 @@
       <cardinality xmi:id="_30GXUsd8EeiaZ-jG0wuTCA" label="1" max="1" min="1"/>
       <type xmi:id="_30GXU8d8EeiaZ-jG0wuTCA" name="SystemAdministrator">
         <modelElement href="RideSharing-backend.uml#_6zF_YMd5EeiaZ-jG0wuTCA"/>
-      </type>
-    </attributes>
-    <attributes xmi:id="_1-nxgMd-EeiaZ-jG0wuTCA" name="driver">
-      <modelElement href="RideSharing-backend.uml#_1-kHIcd-EeiaZ-jG0wuTCA"/>
-      <visibility xmi:id="_1-nxgcd-EeiaZ-jG0wuTCA" label="+"/>
-      <cardinality xmi:id="_1-nxgsd-EeiaZ-jG0wuTCA" label="*" max="-1"/>
-      <type xmi:id="_1-nxg8d-EeiaZ-jG0wuTCA" name="Driver">
-        <modelElement href="RideSharing-backend.uml#_jzjW8Md4EeiaZ-jG0wuTCA"/>
       </type>
     </attributes>
     <attributes xmi:id="_8cjeQMd-EeiaZ-jG0wuTCA" name="location">
@@ -657,7 +628,7 @@
         <modelElement href="RideSharing-backend.uml#_KEPOMMd6EeiaZ-jG0wuTCA"/>
       </type>
     </attributes>
-    <attributes xmi:id="_1FGAycmoEeiPdPciJTia0g" name="driver1">
+    <attributes xmi:id="_1FGAycmoEeiPdPciJTia0g" name="driver">
       <modelElement href="RideSharing-backend.uml#_1FDkgcmoEeiPdPciJTia0g"/>
       <visibility xmi:id="_1FGAysmoEeiPdPciJTia0g" label="+"/>
       <cardinality xmi:id="_1FGAy8moEeiPdPciJTia0g" label="1" max="1" min="1"/>
@@ -742,9 +713,6 @@
       <visualProperties xmi:id="_FVv9EMmvEeiPdPciJTia0g"/>
       <stereotypes xmi:id="_wEs_EMpjEeiK-PBQrWtYiQ" name="PrimaryKey">
         <modelElement href="RideSharing-backend.uml#_wC4aIMpjEeiK-PBQrWtYiQ"/>
-      </stereotypes>
-      <stereotypes xmi:id="_VkcS0MprEeiK-PBQrWtYiQ" name="StyledElement">
-        <modelElement href="RideSharing-backend.uml#_VkPegMprEeiK-PBQrWtYiQ"/>
       </stereotypes>
       <visibility xmi:id="_1O59scmgEeiwZJdaAEAQ-w" label="+"/>
       <cardinality xmi:id="_1O59ssmgEeiwZJdaAEAQ-w" label="1" max="1" min="1"/>
@@ -925,18 +893,10 @@
       <modelElement href="RideSharing-backend.uml#_VUin4MpmEeiK-PBQrWtYiQ"/>
     </literals>
   </nodes>
-  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_jzlMIMd4EeiaZ-jG0wuTCA" containment="_jzj-AMd4EeiaZ-jG0wuTCA" name="Driver" associationsOut="_1-mjYMd-EeiaZ-jG0wuTCA _2fMH8Md-EeiaZ-jG0wuTCA _1FGAwMmoEeiPdPciJTia0g" generalizations="_TrJTgMd5EeiaZ-jG0wuTCA">
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_jzlMIMd4EeiaZ-jG0wuTCA" containment="_jzj-AMd4EeiaZ-jG0wuTCA" name="Driver" associationsOut="_2fMH8Md-EeiaZ-jG0wuTCA _1FGAwMmoEeiPdPciJTia0g" generalizations="_TrJTgMd5EeiaZ-jG0wuTCA">
     <modelElement href="RideSharing-backend.uml#_jzjW8Md4EeiaZ-jG0wuTCA"/>
     <visualProperties xmi:id="_jzlMIcd4EeiaZ-jG0wuTCA" position="698.0,252.0" size="106.0,78.0"/>
     <visibility xmi:id="_jzlMIsd4EeiaZ-jG0wuTCA" label="+"/>
-    <attributes xmi:id="_1-qNwMd-EeiaZ-jG0wuTCA" name="route">
-      <modelElement href="RideSharing-backend.uml#_1-kuMsd-EeiaZ-jG0wuTCA"/>
-      <visibility xmi:id="_1-qNwcd-EeiaZ-jG0wuTCA" label="+"/>
-      <cardinality xmi:id="_1-qNwsd-EeiaZ-jG0wuTCA" label="*" max="-1"/>
-      <type xmi:id="_1-qNw8d-EeiaZ-jG0wuTCA" name="Route">
-        <modelElement href="RideSharing-backend.uml#_zpFFMMd4EeiaZ-jG0wuTCA"/>
-      </type>
-    </attributes>
     <attributes xmi:id="_2fN9IMd-EeiaZ-jG0wuTCA" name="car">
       <modelElement href="RideSharing-backend.uml#_2fKSw8d-EeiaZ-jG0wuTCA"/>
       <visibility xmi:id="_2fN9Icd-EeiaZ-jG0wuTCA" label="+"/>
@@ -945,7 +905,7 @@
         <modelElement href="RideSharing-backend.uml#_PIw4AMd6EeiaZ-jG0wuTCA"/>
       </type>
     </attributes>
-    <attributes xmi:id="_1FGn0MmoEeiPdPciJTia0g" name="route1">
+    <attributes xmi:id="_1FGn0MmoEeiPdPciJTia0g" name="route">
       <modelElement href="RideSharing-backend.uml#_1FELkMmoEeiPdPciJTia0g"/>
       <visibility xmi:id="_1FGn0cmoEeiPdPciJTia0g" label="+"/>
       <cardinality xmi:id="_1FGn0smoEeiPdPciJTia0g" label="*" max="-1"/>

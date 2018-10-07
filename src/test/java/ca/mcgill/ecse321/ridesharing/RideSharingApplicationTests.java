@@ -1,4 +1,4 @@
-/*package ca.mcgill.ecse321.ridesharing;
+package ca.mcgill.ecse321.ridesharing;
 
 
 @RunWith(SpringRunner.class)
@@ -8,4 +8,4 @@ public class RideSharingApplicationTests{
 public void contextLoads ()
 {
 }
-}*/
+}

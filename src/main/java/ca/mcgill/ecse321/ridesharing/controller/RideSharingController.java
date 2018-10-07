@@ -25,7 +25,7 @@ public class RideSharingController {
 		return "Hello world!";
 	}
 	// this method updates the seats available in a route depending on the status of the route
-public void updateSeatsAvail (Route aRoute) {
+	public void updateSeatsAvail (Route aRoute) {
 	int seatsAvail= aRoute.getSeatsAvailable();
 	Set <Request> requests = aRoute.getRequest();
 	for(Request r: requests) {
@@ -66,18 +66,19 @@ public void passengerDroppedOff (Route aRoute, double rating, Role aRole) {
 
 
 	@PostMapping("/participants/{name}")
-	public String createParticipant(@PathVariable("name") String userName) {
+	public String createUser(@PathVariable("name") String userName) {
 		User user = repository.createUser(userName);
 		return user.getUserName();
 	}
 
-	@GetMapping("/participants/{name}")
-	public String queryParticipant(@PathVariable("name") String userName) {
+	/*@GetMapping("/participants/{name}")
+	public String queryUser(@PathVariable("name") String userName) {
 		User user = repository.getUser(userName);
 		if(user == null) {
 			return "NOT FOUND";
 		}
 		return user.getUserName();
 	}
+	*/
 
 }
