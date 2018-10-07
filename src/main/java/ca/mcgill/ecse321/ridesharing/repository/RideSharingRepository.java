@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.ridesharing.repository;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ca.mcgill.ecse321.ridesharing.model.Driver;
 import ca.mcgill.ecse321.ridesharing.model.Passenger;
 import ca.mcgill.ecse321.ridesharing.model.Request;
+import ca.mcgill.ecse321.ridesharing.model.Role;
 import ca.mcgill.ecse321.ridesharing.model.Route;
 import ca.mcgill.ecse321.ridesharing.model.Status;
 import ca.mcgill.ecse321.ridesharing.model.User;
@@ -34,7 +36,20 @@ public class RideSharingRepository {
 			userAccount.setLastName(lastName);
 			userAccount.setPassword(password);
 			userAccount.setPhoneNumber(phoneNumber);
+			
+			Driver driverRole = new Driver();
+			driverRole.setUser(userAccount);
+			
+			
+			Passenger passengerRole = new Passenger();
+			passengerRole.setUser(userAccount);
+			Set<Role> roles = new HashSet<Role>();
+			roles.add(driverRole);
+			roles.add(passengerRole);
+			userAccount.setRole(roles);
+			
 			entityManager.persist(userAccount);
+			
 			return userAccount;
 		}
 		else {
@@ -48,6 +63,18 @@ public class RideSharingRepository {
 		User userAccount = entityManager.find(User.class, userName);
 		return userAccount;
 
+	}
+	
+	@Transactional
+	//Returns true if user is found
+	//False if user login is invalid
+	public boolean loginAdmin(String userName, String password) {
+		
+		User user = entityManager.find(User.class, userName);
+		if (user != null && user.getPassword().equals(password)) {
+			return true;
+		}
+		return false;
 	}
 
 	// this method updates the seats available in a route depending on the status of

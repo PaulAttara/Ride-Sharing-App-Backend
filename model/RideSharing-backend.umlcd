@@ -708,7 +708,7 @@
         <modelElement href="RideSharing-backend.uml#_Fv2dUMd5EeiaZ-jG0wuTCA"/>
       </type>
     </attributes>
-    <attributes xmi:id="_K4DvEMmvEeiPdPciJTia0g" name="adminUsername">
+    <attributes xmi:id="_K4DvEMmvEeiPdPciJTia0g" defaultValue="&quot;adminUsername&quot;" name="adminUsername">
       <modelElement href="RideSharing-backend.uml#_K4Cg8MmvEeiPdPciJTia0g"/>
       <stereotypes xmi:id="_p41yYMpmEeiK-PBQrWtYiQ" name="PrimaryKey">
         <modelElement href="RideSharing-backend.uml#_p4SYwMpmEeiK-PBQrWtYiQ"/>
@@ -719,7 +719,7 @@
         <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </type>
     </attributes>
-    <attributes xmi:id="_NOaiccmvEeiPdPciJTia0g" name="password">
+    <attributes xmi:id="_NOaiccmvEeiPdPciJTia0g" defaultValue="&quot;adminPassword&quot;" name="password">
       <modelElement href="RideSharing-backend.uml#_NOaicMmvEeiPdPciJTia0g"/>
       <stereotypes xmi:id="_p42ZcMpmEeiK-PBQrWtYiQ" name="PrimaryKey">
         <modelElement href="RideSharing-backend.uml#_p4WDIMpmEeiK-PBQrWtYiQ"/>
