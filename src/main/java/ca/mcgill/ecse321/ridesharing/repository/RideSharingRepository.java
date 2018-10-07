@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.ridesharing.repository;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
@@ -12,8 +13,10 @@ import ca.mcgill.ecse321.ridesharing.model.Car;
 import ca.mcgill.ecse321.ridesharing.model.Driver;
 import ca.mcgill.ecse321.ridesharing.model.Passenger;
 import ca.mcgill.ecse321.ridesharing.model.Request;
+import ca.mcgill.ecse321.ridesharing.model.Role;
 import ca.mcgill.ecse321.ridesharing.model.Route;
 import ca.mcgill.ecse321.ridesharing.model.Status;
+import ca.mcgill.ecse321.ridesharing.model.SystemAdministrator;
 import ca.mcgill.ecse321.ridesharing.model.User;
 
 @Repository
@@ -25,7 +28,7 @@ public class RideSharingRepository {
 	@Transactional
 	public User createUser(String firstName, String lastName, String userName, String password, String city, String phoneNumber, String address) {
 		
-		User existingUser = entityManager.find(User.class, userName);
+		User existingUser = getUser(userName);
 		if(existingUser == null) {
 			User userAccount = new User();
 			userAccount.setUserName(userName);
@@ -35,7 +38,20 @@ public class RideSharingRepository {
 			userAccount.setLastName(lastName);
 			userAccount.setPassword(password);
 			userAccount.setPhoneNumber(phoneNumber);
+			
+			Driver driverRole = new Driver();
+			driverRole.setUser(userAccount);
+			
+			
+			Passenger passengerRole = new Passenger();
+			passengerRole.setUser(userAccount);
+			Set<Role> roles = new HashSet<Role>();
+			roles.add(driverRole);
+			roles.add(passengerRole);
+			userAccount.setRole(roles);
+			
 			entityManager.persist(userAccount);
+			
 			return userAccount;
 		}
 		else {
@@ -65,6 +81,20 @@ public class RideSharingRepository {
 	public User getUser(String userName) {
 		User userAccount = entityManager.find(User.class, userName);
 		return userAccount;
+
+	}
+	
+	@Transactional
+	//Returns true if user is found
+	//False if user login is invalid
+	public boolean loginAdmin(String userName, String password) {
+		if (userName.equals("adminUsername") && password.equals("adminPassword") ) {
+			return true;
+		}
+		else 
+		{
+			return false;
+		}
 
 	}
 
