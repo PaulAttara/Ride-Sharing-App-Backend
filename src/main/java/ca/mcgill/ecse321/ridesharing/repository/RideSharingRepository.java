@@ -115,8 +115,7 @@ public class RideSharingRepository {
 
 	}
 	
-<<<<<<< HEAD
-=======
+
 	@Transactional
 	//Returns true if user is found
 	//False if user login is invalid
@@ -127,6 +126,5 @@ public class RideSharingRepository {
 		}
 		return false;
 	}
->>>>>>> 701906d4fc3b96cff1383953172072f4e1f00d92
 
 }
