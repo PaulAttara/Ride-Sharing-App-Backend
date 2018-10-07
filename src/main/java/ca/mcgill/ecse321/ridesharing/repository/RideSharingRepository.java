@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import ca.mcgill.ecse321.ridesharing.model.Car;
 import ca.mcgill.ecse321.ridesharing.model.Driver;
 import ca.mcgill.ecse321.ridesharing.model.Passenger;
 import ca.mcgill.ecse321.ridesharing.model.Request;
@@ -43,6 +44,23 @@ public class RideSharingRepository {
 			
 	}
 
+	public Car createCar(String brand, String model, String licensePlate, Driver driver) {
+		Car existingCar = entityManager.find(Car.class, licensePlate);
+		if(existingCar == null) {
+			Car addedCar = new Car();
+			addedCar.setBrand(brand);
+			addedCar.setModel(model);
+			addedCar.setLicensePlate(licensePlate);
+			addedCar.setDriver(driver);
+			entityManager.persist(addedCar);
+			return addedCar;
+		}
+		else {
+			return null;
+		}
+	}
+
+	
 	@Transactional
 	public User getUser(String userName) {
 		User userAccount = entityManager.find(User.class, userName);
