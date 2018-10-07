@@ -9,12 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import ca.mcgill.ecse321.ridesharing.model.Car;
 import ca.mcgill.ecse321.ridesharing.model.Driver;
 import ca.mcgill.ecse321.ridesharing.model.Passenger;
 import ca.mcgill.ecse321.ridesharing.model.Request;
 import ca.mcgill.ecse321.ridesharing.model.Role;
 import ca.mcgill.ecse321.ridesharing.model.Route;
 import ca.mcgill.ecse321.ridesharing.model.Status;
+import ca.mcgill.ecse321.ridesharing.model.SystemAdministrator;
 import ca.mcgill.ecse321.ridesharing.model.User;
 
 @Repository
@@ -26,7 +28,7 @@ public class RideSharingRepository {
 	@Transactional
 	public User createUser(String firstName, String lastName, String userName, String password, String city, String phoneNumber, String address) {
 		
-		User existingUser = entityManager.find(User.class, userName);
+		User existingUser = getUser(userName);
 		if(existingUser == null) {
 			User userAccount = new User();
 			userAccount.setUserName(userName);
@@ -58,6 +60,23 @@ public class RideSharingRepository {
 			
 	}
 
+	public Car createCar(String brand, String model, String licensePlate, Driver driver) {
+		Car existingCar = entityManager.find(Car.class, licensePlate);
+		if(existingCar == null) {
+			Car addedCar = new Car();
+			addedCar.setBrand(brand);
+			addedCar.setModel(model);
+			addedCar.setLicensePlate(licensePlate);
+			addedCar.setDriver(driver);
+			entityManager.persist(addedCar);
+			return addedCar;
+		}
+		else {
+			return null;
+		}
+	}
+
+	
 	@Transactional
 	public User getUser(String userName) {
 		User userAccount = entityManager.find(User.class, userName);
@@ -69,12 +88,14 @@ public class RideSharingRepository {
 	//Returns true if user is found
 	//False if user login is invalid
 	public boolean loginAdmin(String userName, String password) {
-		
-		User user = entityManager.find(User.class, userName);
-		if (user != null && user.getPassword().equals(password)) {
+		if (userName.equals("adminUsername") && password.equals("adminPassword") ) {
 			return true;
 		}
-		return false;
+		else 
+		{
+			return false;
+		}
+
 	}
 
 	// this method updates the seats available in a route depending on the status of

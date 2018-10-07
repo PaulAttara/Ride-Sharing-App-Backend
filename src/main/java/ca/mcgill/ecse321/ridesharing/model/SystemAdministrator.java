@@ -76,7 +76,7 @@ public class SystemAdministrator implements Serializable{
 		this.role = roles;
 	}
 
-	private String adminUsername ="adminUsername";
+	private String adminUsername;
 
 	public void setAdminUsername(String value) {
 		this.adminUsername = value;
@@ -87,7 +87,7 @@ public class SystemAdministrator implements Serializable{
 		return this.adminUsername;
 	}
 
-	private String password = "adminPassword";
+	private String password;
 
 	public void setPassword(String value) {
 		this.password = value;

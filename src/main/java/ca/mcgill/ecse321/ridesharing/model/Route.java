@@ -5,6 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Set;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -59,13 +60,13 @@ return this.price;
 		return this.seatsAvailable;
 	}
 
-	private String date;
+	private Date date;
 
-	public void setDate(String value) {
-		this.date = value;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	@Id
-	public String getDate() {
+	public Date getDate() {
 		return this.date;
 	}
 
