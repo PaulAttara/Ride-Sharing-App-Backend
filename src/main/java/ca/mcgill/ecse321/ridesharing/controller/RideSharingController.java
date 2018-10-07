@@ -40,6 +40,30 @@ public void updateSeatsAvail (Route aRoute) {
 	}
 	aRoute.setSeatsAvailable(seatsAvail);
 }
+// this method should be called when a passenger is dropped off
+// this gives the driver the chance to rate the passenger
+// this also increments the num of past trips for the passenger and updates his rating
+// this also updates the status of the specific request of the passenger to ended
+public void passengerDroppedOff (Route aRoute, double rating, Role aRole) {
+	if (aRole instanceof Passenger) {
+		Set <Request> requests = aRoute.getRequest();
+		for(Request r: requests) {
+			
+			Passenger p =r.getPassenger();
+			if (p ==aRole) {
+				r.setStatus(Status.Ended);
+				double currentRating=aRole.getAvgRating();
+				double numPastTrips=(double)aRole.getNumOfPastTrips();
+			
+				currentRating= ((rating+currentRating*(numPastTrips))/(numPastTrips+1));
+				aRole.setNumOfPastTrips((int)numPastTrips+1);
+				aRole.setAvgRating(currentRating);
+			}
+		}
+		
+	}
+}
+
 
 //	@PostMapping("/participants/{name}")
 //	public String createParticipant(@PathVariable("name") String userName) {
