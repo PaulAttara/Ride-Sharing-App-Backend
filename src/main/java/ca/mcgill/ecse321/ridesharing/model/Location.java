@@ -1,12 +1,15 @@
 package ca.mcgill.ecse321.ridesharing.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+
+import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Location{
+public class Location implements Serializable{
 private Set<Request> request;
 
 @ManyToMany
@@ -56,6 +59,7 @@ private double lattitude;
 public void setLattitude(double value) {
 this.lattitude = value;
     }
+@Id
 public double getLattitude() {
 return this.lattitude;
     }
@@ -64,6 +68,7 @@ private double longitude;
 public void setLongitude(double value) {
 this.longitude = value;
     }
+@Id
 public double getLongitude() {
 return this.longitude;
        }

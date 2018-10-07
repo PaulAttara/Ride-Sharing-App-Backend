@@ -3,12 +3,13 @@ package ca.mcgill.ecse321.ridesharing.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.OneToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class User {
+public class User implements Serializable{
 	private Set<Role> role;
 
 	@OneToMany(mappedBy = "user")
@@ -36,7 +37,7 @@ public class User {
 	public void setUserName(String value) {
 		this.userName = value;
 	}
-	
+
 	@Id
 	public String getUserName() {
 		return this.userName;
@@ -48,6 +49,7 @@ public class User {
 		this.password = value;
 	}
 
+	@Id
 	public String getPassword() {
 		return this.password;
 	}
@@ -58,6 +60,7 @@ public class User {
 		this.firstName = value;
 	}
 
+	@Id
 	public String getFirstName() {
 		return this.firstName;
 	}
@@ -68,6 +71,7 @@ public class User {
 		this.lastName = value;
 	}
 
+	@Id
 	public String getLastName() {
 		return this.lastName;
 	}
@@ -78,6 +82,7 @@ public class User {
 		this.city = value;
 	}
 
+	@Id
 	public String getCity() {
 		return this.city;
 	}
@@ -88,6 +93,7 @@ public class User {
 		this.phoneNumber = value;
 	}
 
+	@Id
 	public String getPhoneNumber() {
 		return this.phoneNumber;
 	}
@@ -98,6 +104,7 @@ public class User {
 		this.address = value;
 	}
 
+	@Id
 	public String getAddress() {
 		return this.address;
 	}

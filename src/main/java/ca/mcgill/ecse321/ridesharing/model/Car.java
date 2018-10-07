@@ -1,12 +1,15 @@
 package ca.mcgill.ecse321.ridesharing.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Car{
+public class Car implements Serializable{
 private SystemAdministrator systemAdministrator;
 
 @ManyToOne(optional=false)
@@ -34,6 +37,7 @@ private String licensePlate;
 public void setLicensePlate(String value) {
 this.licensePlate = value;
     }
+@Id
 public String getLicensePlate() {
 return this.licensePlate;
     }
@@ -42,6 +46,7 @@ private String model;
 public void setModel(String value) {
 this.model = value;
     }
+@Id
 public String getModel() {
 return this.model;
     }
@@ -50,6 +55,7 @@ private String brand;
 public void setBrand(String value) {
 this.brand = value;
     }
+@Id
 public String getBrand() {
 return this.brand;
     }
