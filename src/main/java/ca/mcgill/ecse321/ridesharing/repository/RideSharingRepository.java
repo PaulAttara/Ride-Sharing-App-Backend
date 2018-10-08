@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.SortedSet;
 
 import javax.persistence.EntityManager;
 
@@ -29,10 +30,11 @@ public class RideSharingRepository {
 	EntityManager entityManager;
 
 	@Transactional
-	public User createUser(String firstName, String lastName, String userName, String password, String city, String phoneNumber, String address) {
-		
+	public User createUser(String firstName, String lastName, String userName, String password, String city,
+			String phoneNumber, String address) {
+
 		User existingUser = getUser(userName);
-		if(existingUser == null) {
+		if (existingUser == null) {
 			User userAccount = new User();
 			userAccount.setUserName(userName);
 			userAccount.setAddress(address);
@@ -41,44 +43,40 @@ public class RideSharingRepository {
 			userAccount.setLastName(lastName);
 			userAccount.setPassword(password);
 			userAccount.setPhoneNumber(phoneNumber);
-			
+
 			Driver driverRole = new Driver();
 			driverRole.setUser(userAccount);
-			
-			
+
 			Passenger passengerRole = new Passenger();
 			passengerRole.setUser(userAccount);
 			Set<Role> roles = new HashSet<Role>();
 			roles.add(driverRole);
 			roles.add(passengerRole);
 			userAccount.setRole(roles);
-			
+
 			entityManager.persist(userAccount);
-			
+
 			return userAccount;
-		}
-		else {
+		} else {
 			return null;
 		}
-			
+
 	}
-	
+
 	@Transactional
 	public User getUser(String userName) {
 		User userAccount = entityManager.find(User.class, userName);
 		return userAccount;
 
 	}
-	
+
 	@Transactional
-	//Returns true if user is found
-	//False if user login is invalid
+	// Returns true if user is found
+	// False if user login is invalid
 	public boolean loginAdmin(String userName, String password) {
-		if (userName.equals("adminUsername") && password.equals("adminPassword") ) {
+		if (userName.equals("adminUsername") && password.equals("adminPassword")) {
 			return true;
-		}
-		else 
-		{
+		} else {
 			return false;
 		}
 
@@ -86,7 +84,7 @@ public class RideSharingRepository {
 
 	public Car createCar(String brand, String model, String licensePlate, Driver driver) {
 		Car existingCar = entityManager.find(Car.class, licensePlate);
-		if(existingCar == null) {
+		if (existingCar == null) {
 			Car addedCar = new Car();
 			addedCar.setBrand(brand);
 			addedCar.setModel(model);
@@ -94,36 +92,29 @@ public class RideSharingRepository {
 			addedCar.setDriver(driver);
 			entityManager.persist(addedCar);
 			return addedCar;
-		}
-		else {
+		} else {
 			return null;
 		}
 	}
 
 	public void acceptPassengerRequest(Route aRoute, Request aRequest) {
 
-		
-				aRequest.setStatus(Status.Accepted);
-				int seats = aRoute.getSeatsAvailable();
-				seats--;
-				aRoute.setSeatsAvailable(seats);
-				aRoute.setLocation(aRoute.getLocation().add(aRequest.getPickUp());
-			
-		
-	}
-	
-	public void denyPassengerRequest(Route aRoute, Passenger aPassenger) {
+		aRequest.setStatus(Status.Accepted);
+		int seats = aRoute.getSeatsAvailable();
+		seats--;
+		aRoute.setSeatsAvailable(seats);
+		SortedSet<Location> location = aRoute.getLocation();
+		location.add(aRequest.getPickUp());
+		aRoute.setLocation(location);
 
-		Set<Request> requests = aRoute.getRequest();
-		for (Request r : requests) {
-			Passenger p = r.getPassenger();
-			if (p == aPassenger) {
-				r.setStatus(Status.Cancelled);
-			}
-		}
 	}
 
-	
+	public void denyPassengerRequest(Request aRequest) {
+		if(aRequest != null)
+		aRequest.setStatus(Status.Cancelled);
+
+	}
+
 	// this method updates the seats available in a route depending on the status of
 	// the route
 	@Transactional
@@ -143,7 +134,8 @@ public class RideSharingRepository {
 	}
 
 	// this method should be called when a passenger is dropped off
-	// this allows the driver to to rate the passenger and updates the passengers rating
+	// this allows the driver to to rate the passenger and updates the passengers
+	// rating
 	// this also increments the num of past trips for the passenger and updates his
 	// rating
 	// this also updates the status of the specific request of the passenger to
@@ -188,11 +180,10 @@ public class RideSharingRepository {
 		driver.setAvgRating(currentRating);
 
 	}
-	
-	
+
 	@Transactional
-	//Returns true if user is found
-	//False if user login is invalid
+	// Returns true if user is found
+	// False if user login is invalid
 	public boolean loginUser(String userName, String password) {
 		User user = entityManager.find(User.class, userName);
 		if (user != null && user.getPassword().equals(password)) {
@@ -202,11 +193,11 @@ public class RideSharingRepository {
 	}
 
 	@Transactional
-	public List<Route> getRelevantRoutes(Location endLocation){
+	public List<Route> getRelevantRoutes(Location endLocation) {
 		List<Route> routes = entityManager.createQuery("Select route from Route route", Route.class).getResultList();
 		List<Route> relevantRoutes = new ArrayList<Route>();
-		for(Route r : routes) {
-			if (endLocation.equals(r.getLocation().last())){
+		for (Route r : routes) {
+			if (endLocation.equals(r.getLocation().last())) {
 				relevantRoutes.add(r);
 			}
 		}
