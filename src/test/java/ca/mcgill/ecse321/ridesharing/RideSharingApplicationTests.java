@@ -22,6 +22,11 @@ import ca.mcgill.ecse321.ridesharing.controller.*;
 import ca.mcgill.ecse321.ridesharing.model.*;
 import ca.mcgill.ecse321.ridesharing.repository.*;
 
+import static org.junit.Assert.assertEquals;
+
+import static org.mockito.Mockito.when;
+
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class RideSharingApplicationTests {
