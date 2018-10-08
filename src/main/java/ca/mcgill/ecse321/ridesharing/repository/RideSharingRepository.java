@@ -1,6 +1,8 @@
 package ca.mcgill.ecse321.ridesharing.repository;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
@@ -11,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ca.mcgill.ecse321.ridesharing.model.Car;
 import ca.mcgill.ecse321.ridesharing.model.Driver;
+import ca.mcgill.ecse321.ridesharing.model.Location;
 import ca.mcgill.ecse321.ridesharing.model.Passenger;
 import ca.mcgill.ecse321.ridesharing.model.Request;
 import ca.mcgill.ecse321.ridesharing.model.Role;
@@ -186,7 +189,7 @@ public class RideSharingRepository {
 
 	}
 	
-
+	
 	@Transactional
 	//Returns true if user is found
 	//False if user login is invalid
@@ -198,4 +201,15 @@ public class RideSharingRepository {
 		return false;
 	}
 
+	@Transactional
+	public List<Route> getRelevantRoutes(Location endLocation){
+		List<Route> routes = entityManager.createQuery("Select route from Route route", Route.class).getResultList();
+		List<Route> relevantRoutes = new ArrayList<Route>();
+		for(Route r : routes) {
+			if (endLocation.equals(r.getLocation().last())){
+				relevantRoutes.add(r);
+			}
+		}
+		return relevantRoutes;
+	}
 }

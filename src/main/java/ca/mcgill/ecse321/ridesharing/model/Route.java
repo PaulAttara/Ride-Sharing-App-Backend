@@ -7,6 +7,8 @@ import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Set;
+import java.util.SortedSet;
+
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -39,14 +41,14 @@ return this.price;
 		this.systemAdministrator = systemAdministrator;
 	}
 
-	private Set<Location> location;
+	private SortedSet<Location> location;
 
 	@ManyToMany
-	public Set<Location> getLocation() {
+	public SortedSet<Location> getLocation() {
 		return this.location;
 	}
 
-	public void setLocation(Set<Location> locations) {
+	public void setLocation(SortedSet<Location> locations) {
 		this.location = locations;
 	}
 
