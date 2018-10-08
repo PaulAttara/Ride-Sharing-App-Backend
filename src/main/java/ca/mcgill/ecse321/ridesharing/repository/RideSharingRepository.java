@@ -41,18 +41,20 @@ public class RideSharingRepository {
 
 	@Transactional
 	/**
-	 * This method is for creating a users account
-	 * @param firstName
-	 * @param lastName
-	 * @param userName
-	 * @param password
-	 * @param city
-	 * @param phoneNumber
-	 * @param address
-	 * @return
+	 * This method is for creating a users account where they
+	 * input the information requested by them
+	 * 
+	 * @param firstName is inputed by the person creating the user
+	 * @param lastName is inputed by the person creating the user
+	 * @param userName is inputed by the person creating the user
+	 * @param password is inputed by the person creating the user
+	 * @param city is inputed by the person creating the user
+	 * @param phoneNumber is inputed by the person creating the user
+	 * @param address is inputed by the person creating the user
+	 * @return userAccount returns a user object
 	 */
 	public User createUser(String firstName, String lastName, String userName, String password, String city, String phoneNumber, String address) {
-		
+
 		User existingUser = getUser(userName);
 		if(existingUser == null) {
 			User userAccount = new User();
@@ -63,42 +65,42 @@ public class RideSharingRepository {
 			userAccount.setLastName(lastName);
 			userAccount.setPassword(password);
 			userAccount.setPhoneNumber(phoneNumber);
-			
+
 			Driver driverRole = new Driver();
 			driverRole.setUser(userAccount);
-			
-			
+
+
 			Passenger passengerRole = new Passenger();
 			passengerRole.setUser(userAccount);
 			Set<Role> roles = new HashSet<Role>();
 			roles.add(driverRole);
 			roles.add(passengerRole);
 			userAccount.setRole(roles);
-			
+
 			entityManager.persist(userAccount);
-			
+
 			return userAccount;
 		}
 		else {
 			return null;
 		}
-			
+
 	}
-	
+
 	@Transactional
 	public User getUser(String userName) {
 		User userAccount = entityManager.find(User.class, userName);
 		return userAccount;
 
 	}
-	
+
 	@Transactional
 	/**
 	 * This method returns true if user is found
 	 * It returns false is user login is invalid
-	 * @param userName
-	 * @param password
-	 * @return
+	 * @param userName is the account name of the user 
+	 * @param password is the password for a user to login 
+	 * @return boolean returns true if user if found and false if login is invalid
 	 */
 	public boolean loginAdmin(String userName, String password) {
 		if (userName.equals("adminUsername") && password.equals("adminPassword") ) {
@@ -117,7 +119,7 @@ public class RideSharingRepository {
 	 * @param model
 	 * @param licensePlate
 	 * @param driver
-	 * @return
+	 * @return addedCar returns a user object
 	 */
 	public Car createCar(String brand, String model, String licensePlate, Driver driver) {
 		Car existingCar = getCar(licensePlate);
@@ -140,7 +142,7 @@ public class RideSharingRepository {
 		Car addedCar = entityManager.find(Car.class, licensePlate);
 		return addedCar;	
 	}
-	
+
 	/**
 	 * This method is for a driver to accept a passengers route
 	 * @param aRoute
@@ -174,7 +176,7 @@ public class RideSharingRepository {
 		}
 	}
 
-	
+
 	@Transactional
 	/**
 	 * This method updates the seats available in a route depending on the status of
@@ -248,15 +250,16 @@ public class RideSharingRepository {
 		driver.setAvgRating(currentRating);
 
 	}
-	
-	
+
+
 	@Transactional
 	/**
 	 * This method returns true is user is found
 	 * It returns false if user login is invalid
-	 * @param userName
-	 * @param password
-	 * @return
+	 * @param userName is the user login account name
+	 * @param password is the users password to complete login
+	 * @return booleans returns true if user is found and false if 
+	 * user login is invalid
 	 */
 	public boolean loginUser(String userName, String password) {
 		User user = entityManager.find(User.class, userName);
@@ -269,8 +272,8 @@ public class RideSharingRepository {
 	@Transactional
 	/**
 	 * 
-	 * @param endLocation
-	 * @return
+	 * @param endLocation is the the route's ending address
+	 * @return relevant routes which is a list
 	 */
 	public List<Route> getRelevantRoutes(Location endLocation){
 		List<Route> routes = entityManager.createQuery("Select route from Route route", Route.class).getResultList();
