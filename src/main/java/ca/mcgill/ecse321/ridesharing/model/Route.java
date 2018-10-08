@@ -13,23 +13,30 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Route implements Serializable{
-private Status status;
-   
-   public void setStatus(Status value) {
-this.status = value;
-    }
-public Status getStatus() {
-return this.status;
-    }
-private double price;
+public class Route implements Serializable {
+	@Id
+	private Status status;
 
-public void setPrice(double value) {
-this.price = value;
-    }
-public double getPrice() {
-return this.price;
-    }
+	public void setStatus(Status value) {
+		this.status = value;
+	}
+
+	public Status getStatus() {
+		return this.status;
+	}
+
+	@Id
+	private double price;
+
+	public void setPrice(double value) {
+		this.price = value;
+	}
+
+	public double getPrice() {
+		return this.price;
+	}
+
+	@Id
 	private SystemAdministrator systemAdministrator;
 
 	@ManyToOne(optional = false)
@@ -41,6 +48,7 @@ return this.price;
 		this.systemAdministrator = systemAdministrator;
 	}
 
+	@Id
 	private SortedSet<Location> location;
 
 	@ManyToMany
@@ -52,36 +60,40 @@ return this.price;
 		this.location = locations;
 	}
 
+	@Id
 	private int seatsAvailable;
 
 	public void setSeatsAvailable(int value) {
 		this.seatsAvailable = value;
 	}
-	@Id
+
 	public int getSeatsAvailable() {
 		return this.seatsAvailable;
 	}
 
+	@Id
 	private Date date;
 
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	@Id
+
 	public Date getDate() {
 		return this.date;
 	}
 
+	@Id
 	private String comments;
 
 	public void setComments(String value) {
 		this.comments = value;
 	}
-	@Id
+
 	public String getComments() {
 		return this.comments;
 	}
 
+	@Id
 	private Car car;
 
 	@ManyToOne(optional = false)
@@ -93,6 +105,7 @@ return this.price;
 		this.car = car;
 	}
 
+	@Id
 	private Set<Request> request;
 
 	@OneToMany(mappedBy = "route")
@@ -104,6 +117,7 @@ return this.price;
 		this.request = requests;
 	}
 
+	@Id
 	private Driver driver;
 
 	@ManyToOne(optional = false)

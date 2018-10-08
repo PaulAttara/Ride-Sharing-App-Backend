@@ -8,65 +8,73 @@ import java.util.Set;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Car implements Serializable{
-private SystemAdministrator systemAdministrator;
+public class Car implements Serializable {
+	private SystemAdministrator systemAdministrator;
 
-@ManyToOne(optional=false)
-public SystemAdministrator getSystemAdministrator() {
-   return this.systemAdministrator;
-}
+	@ManyToOne(optional = false)
+	public SystemAdministrator getSystemAdministrator() {
+		return this.systemAdministrator;
+	}
 
-public void setSystemAdministrator(SystemAdministrator systemAdministrator) {
-   this.systemAdministrator = systemAdministrator;
-}
+	public void setSystemAdministrator(SystemAdministrator systemAdministrator) {
+		this.systemAdministrator = systemAdministrator;
+	}
 
-private Driver driver;
+	@Id
+	private Driver driver;
 
-@ManyToOne(optional=false)
-public Driver getDriver() {
-   return this.driver;
-}
+	@ManyToOne(optional = false)
+	public Driver getDriver() {
+		return this.driver;
+	}
 
-public void setDriver(Driver driver) {
-   this.driver = driver;
-}
+	public void setDriver(Driver driver) {
+		this.driver = driver;
+	}
 
-private String licensePlate;
+	@Id
+	private String licensePlate;
 
-public void setLicensePlate(String value) {
-this.licensePlate = value;
-    }
-@Id
-public String getLicensePlate() {
-return this.licensePlate;
-    }
-private String model;
+	public void setLicensePlate(String value) {
+		this.licensePlate = value;
+	}
 
-public void setModel(String value) {
-this.model = value;
-    }
-@Id
-public String getModel() {
-return this.model;
-    }
-private String brand;
+	public String getLicensePlate() {
+		return this.licensePlate;
+	}
 
-public void setBrand(String value) {
-this.brand = value;
-    }
-@Id
-public String getBrand() {
-return this.brand;
-    }
-private Set<Route> route;
+	@Id
+	private String model;
 
-@OneToMany(mappedBy="car")
-public Set<Route> getRoute() {
-   return this.route;
-}
+	public void setModel(String value) {
+		this.model = value;
+	}
 
-public void setRoute(Set<Route> routes) {
-   this.route = routes;
-}
+	public String getModel() {
+		return this.model;
+	}
+
+	@Id
+	private String brand;
+
+	public void setBrand(String value) {
+		this.brand = value;
+	}
+
+	public String getBrand() {
+		return this.brand;
+	}
+
+	@Id
+	private Set<Route> route;
+
+	@OneToMany(mappedBy = "car")
+	public Set<Route> getRoute() {
+		return this.route;
+	}
+
+	public void setRoute(Set<Route> routes) {
+		this.route = routes;
+	}
 
 }
