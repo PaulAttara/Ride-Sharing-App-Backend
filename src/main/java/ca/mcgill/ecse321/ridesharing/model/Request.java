@@ -1,79 +1,74 @@
 package ca.mcgill.ecse321.ridesharing.model;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
 import java.io.Serializable;
-import java.util.Set;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Id;
 
 @Entity
-public class Request implements Serializable {
-	private SystemAdministrator systemAdministrator;
+public class Request implements Serializable{
+private SystemAdministrator systemAdministrator;
 
-	@ManyToOne(optional = false)
-	public SystemAdministrator getSystemAdministrator() {
-		return this.systemAdministrator;
-	}
+@ManyToOne(optional=false)
+public SystemAdministrator getSystemAdministrator() {
+   return this.systemAdministrator;
+}
 
-	public void setSystemAdministrator(SystemAdministrator systemAdministrator) {
-		this.systemAdministrator = systemAdministrator;
-	}
+public void setSystemAdministrator(SystemAdministrator systemAdministrator) {
+   this.systemAdministrator = systemAdministrator;
+}
 
-	private Status status;
+private Status status;
 
-	public void setStatus(Status value) {
-		this.status = value;
-	}
+public void setStatus(Status value) {
+this.status = value;
+    }
+@Id
+public Status getStatus() {
+return this.status;
+    }
+private Location pickUp;
 
-	@Id
-	public Status getStatus() {
-		return this.status;
-	}
+@ManyToOne(optional=false)
+public Location getPickUp() {
+   return this.pickUp;
+}
 
-	private Set<Location> pickUp;
+public void setPickUp(Location pickUp) {
+   this.pickUp = pickUp;
+}
 
-	@ManyToMany(mappedBy = "request")
-	public Set<Location> getPickUp() {
-		return this.pickUp;
-	}
+private Location dropOff;
 
-	public void setPickUp(Set<Location> pickUps) {
-		this.pickUp = pickUps;
-	}
+@ManyToOne(optional=false)
+public Location getDropOff() {
+   return this.dropOff;
+}
 
-	private Set<Location> dropOff;
+public void setDropOff(Location dropOff) {
+   this.dropOff = dropOff;
+}
 
-	@ManyToMany(mappedBy = "request1")
-	public Set<Location> getDropOff() {
-		return this.dropOff;
-	}
+private Passenger passenger;
 
-	public void setDropOff(Set<Location> dropOffs) {
-		this.dropOff = dropOffs;
-	}
+@ManyToOne(optional=false)
+public Passenger getPassenger() {
+   return this.passenger;
+}
 
-	private Passenger passenger;
+public void setPassenger(Passenger passenger) {
+   this.passenger = passenger;
+}
 
-	@ManyToOne(optional = false)
-	public Passenger getPassenger() {
-		return this.passenger;
-	}
+private Route route;
 
-	public void setPassenger(Passenger passenger) {
-		this.passenger = passenger;
-	}
+@ManyToOne(optional=false)
+public Route getRoute() {
+   return this.route;
+}
 
-	private Route route;
-
-	@ManyToOne(optional = false)
-	public Route getRoute() {
-		return this.route;
-	}
-
-	public void setRoute(Route route) {
-		this.route = route;
-	}
+public void setRoute(Route route) {
+   this.route = route;
+}
 
 }

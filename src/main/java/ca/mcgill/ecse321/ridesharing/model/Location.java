@@ -1,18 +1,18 @@
 package ca.mcgill.ecse321.ridesharing.model;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
-
 import java.io.Serializable;
 import java.util.Set;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
+import javax.persistence.Id;
 
 @Entity
 public class Location implements Serializable{
 private Set<Request> request;
 
-@ManyToMany
+@OneToMany(mappedBy="pickUp")
 public Set<Request> getRequest() {
    return this.request;
 }
@@ -23,7 +23,7 @@ public void setRequest(Set<Request> requests) {
 
 private Set<Request> request1;
 
-@ManyToMany
+@OneToMany(mappedBy="dropOff")
 public Set<Request> getRequest1() {
    return this.request1;
 }

@@ -1,10 +1,9 @@
 package ca.mcgill.ecse321.ridesharing.model;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
 import java.io.Serializable;
+import javax.persistence.ManyToOne;
+import javax.persistence.Id;
 import java.util.Set;
 import javax.persistence.OneToMany;
 

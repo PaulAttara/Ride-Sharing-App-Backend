@@ -4,7 +4,7 @@
     <eAnnotations xmi:id="_Ph4NQMWmEeioHYpNRCzcsQ" source="http://ns.yatta.de/umllab">
       <contents xmi:type="ecore:EAnnotation" xmi:id="_Ph4NQcWmEeioHYpNRCzcsQ" source="codegen">
         <details xmi:id="_Ph40UMWmEeioHYpNRCzcsQ" key="codegenDirectory" value="/RideSharing-backend/src/main/java"/>
-        <details xmi:id="_PpWuQMWmEeioHYpNRCzcsQ" key="AssociatedSourceCode" value="/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/RideSharingApplication.java;994808621/1;/RideSharing-backend/src/test/java/ca/mcgill/ecse321/ridesharing/RideSharingApplicationTests.java;282792066/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Passenger.java;4024523728/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Driver.java;30763921/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/User.java;1434303831/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Route.java;1283107746/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Role.java;1733881079/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Status.java;3922786851/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/SystemAdministrator.java;1771883731/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Request.java;4208258147/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Location.java;2305297555/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Car.java;3607425002/1;"/>
+        <details xmi:id="_PpWuQMWmEeioHYpNRCzcsQ" key="AssociatedSourceCode" value="/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/RideSharingApplication.java;3494779482/1;/RideSharing-backend/src/test/java/ca/mcgill/ecse321/ridesharing/RideSharingApplicationTests.java;2678786076/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Passenger.java;4024523728/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Driver.java;30763921/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/User.java;682160978/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Route.java;1303270777/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Role.java;2274396096/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Status.java;3719898938/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/SystemAdministrator.java;4256684548/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Request.java;4017207796/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Location.java;116672097/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Car.java;2825671439/1;"/>
       </contents>
       <contents xmi:type="ecore:EAnnotation" xmi:id="_apmBMMWpEeioHYpNRCzcsQ" source="dangling-refs">
         <contents xmi:type="uml:Property" xmi:id="_186v0MWmEeioHYpNRCzcsQ" name="registrationManager"/>
@@ -123,15 +123,16 @@
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_30Cs8sd8EeiaZ-jG0wuTCA" value="1"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_8chCAcd-EeiaZ-jG0wuTCA" name="location" type="_Rau6oMd6EeiaZ-jG0wuTCA" association="_8chCAMd-EeiaZ-jG0wuTCA">
+                  <eAnnotations xmi:id="_53wacMqYEeiFtM8-Bn6ctQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+                    <details xmi:id="_53xBgMqYEeiFtM8-Bn6ctQ" key="sorted"/>
+                  </eAnnotations>
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8chpEMd-EeiaZ-jG0wuTCA" value="2"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8chpEcd-EeiaZ-jG0wuTCA" value="*"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_DIGTYMmnEeiPdPciJTia0g" name="seatsAvailable" visibility="public">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
                 </ownedAttribute>
-                <ownedAttribute xmi:id="_FqDSwMmnEeiPdPciJTia0g" name="date" visibility="public">
-                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-                </ownedAttribute>
+                <ownedAttribute xmi:id="_FqDSwMmnEeiPdPciJTia0g" name="date" visibility="public" type="_Cce78MqWEeiFtM8-Bn6ctQ"/>
                 <ownedAttribute xmi:id="_L6xC4MmnEeiPdPciJTia0g" name="comments" visibility="public">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedAttribute>
@@ -147,7 +148,7 @@
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1FDkgsmoEeiPdPciJTia0g" value="1"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_1FDkg8moEeiPdPciJTia0g" value="1"/>
                 </ownedAttribute>
-                <ownedAttribute xmi:id="_TPo2QMp5EeiK-PBQrWtYiQ" name="status" visibility="public" type="_Y0uccMd5EeiaZ-jG0wuTCA"/>
+                <ownedAttribute xmi:id="_TPo2QMp5EeiK-PBQrWtYiQ" name="status" visibility="public" type="_Y0uccMd5EeiaZ-jG0wuTCA" association="_CedR4MqWEeiFtM8-Bn6ctQ"/>
                 <ownedAttribute xmi:id="_V-LgIMp5EeiK-PBQrWtYiQ" name="price" visibility="public">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
                 </ownedAttribute>
@@ -220,12 +221,12 @@
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_LfXdgMd8EeiaZ-jG0wuTCA" name="status" type="_Y0uccMd5EeiaZ-jG0wuTCA"/>
                 <ownedAttribute xmi:id="_p4RVoMd8EeiaZ-jG0wuTCA" name="pickUp" type="_Rau6oMd6EeiaZ-jG0wuTCA" association="_p4QHgMd8EeiaZ-jG0wuTCA">
-                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p4RVocd8EeiaZ-jG0wuTCA"/>
-                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p4RVosd8EeiaZ-jG0wuTCA" value="*"/>
+                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p4RVocd8EeiaZ-jG0wuTCA" value="1"/>
+                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p4RVosd8EeiaZ-jG0wuTCA" value="1"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_qyEEY8d8EeiaZ-jG0wuTCA" name="dropOff" type="_Rau6oMd6EeiaZ-jG0wuTCA" association="_qyDdUMd8EeiaZ-jG0wuTCA">
-                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qyErcMd8EeiaZ-jG0wuTCA"/>
-                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qyErccd8EeiaZ-jG0wuTCA" value="*"/>
+                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qyErcMd8EeiaZ-jG0wuTCA" value="1"/>
+                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qyErccd8EeiaZ-jG0wuTCA" value="1"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_54x58cd-EeiaZ-jG0wuTCA" name="passenger" type="_Z-XagMd4EeiaZ-jG0wuTCA" association="_54x58Md-EeiaZ-jG0wuTCA">
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_54x58sd-EeiaZ-jG0wuTCA" value="1"/>
@@ -300,7 +301,12 @@
               <packagedElement xmi:type="uml:Association" xmi:id="_IKFxIMmoEeiPdPciJTia0g" name="" memberEnd="_IKFxIcmoEeiPdPciJTia0g _IKINYsmoEeiPdPciJTia0g"/>
               <packagedElement xmi:type="uml:Association" xmi:id="_dGhHwMmoEeiPdPciJTia0g" name="" memberEnd="_dGhHwcmoEeiPdPciJTia0g _dGhHxMmoEeiPdPciJTia0g"/>
               <packagedElement xmi:type="uml:Association" xmi:id="_1FDkgMmoEeiPdPciJTia0g" name="" memberEnd="_1FDkgcmoEeiPdPciJTia0g _1FELkMmoEeiPdPciJTia0g"/>
+              <packagedElement xmi:type="uml:Association" xmi:id="_CedR4MqWEeiFtM8-Bn6ctQ" name="" memberEnd="_TPo2QMp5EeiK-PBQrWtYiQ _CedR4cqWEeiFtM8-Bn6ctQ">
+                <ownedEnd xmi:id="_CedR4cqWEeiFtM8-Bn6ctQ" name="" type="_zpFFMMd4EeiaZ-jG0wuTCA" association="_CedR4MqWEeiFtM8-Bn6ctQ"/>
+              </packagedElement>
             </packagedElement>
+            <packagedElement xmi:type="uml:Package" xmi:id="_Cb8wcMqWEeiFtM8-Bn6ctQ" name="controller"/>
+            <packagedElement xmi:type="uml:Package" xmi:id="_Cb8wccqWEeiFtM8-Bn6ctQ" name="repository"/>
           </packagedElement>
         </packagedElement>
       </packagedElement>
@@ -339,6 +345,21 @@
           <packagedElement xmi:type="uml:Interface" xmi:id="_PnXKMcWmEeioHYpNRCzcsQ" name="RunWith"/>
         </packagedElement>
         <packagedElement xmi:type="uml:Interface" xmi:id="_PnWjIcWmEeioHYpNRCzcsQ" name="Test"/>
+        <packagedElement xmi:type="uml:Package" xmi:id="_Cb338MqWEeiFtM8-Bn6ctQ" name="jupiter">
+          <packagedElement xmi:type="uml:Package" xmi:id="_Cb6UMMqWEeiFtM8-Bn6ctQ" name="api">
+            <packagedElement xmi:type="uml:Package" xmi:id="_Cb7iUMqWEeiFtM8-Bn6ctQ" name="extension">
+              <packagedElement xmi:type="uml:Interface" xmi:id="_CdZh8cqWEeiFtM8-Bn6ctQ" name="ExtendWith"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Interface" xmi:id="_Cc8O8MqWEeiFtM8-Bn6ctQ" name="BeforeEach"/>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_Cb7iUcqWEeiFtM8-Bn6ctQ" name="mockito">
+        <packagedElement xmi:type="uml:Package" xmi:id="_Cb8JYMqWEeiFtM8-Bn6ctQ" name="invocation">
+          <packagedElement xmi:type="uml:Interface" xmi:id="_CeJI0MqWEeiFtM8-Bn6ctQ" name="InvocationOnMock"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Interface" xmi:id="_Cdsc4cqWEeiFtM8-Bn6ctQ" name="InjectMocks"/>
+        <packagedElement xmi:type="uml:Interface" xmi:id="_Cd4qIcqWEeiFtM8-Bn6ctQ" name="Mock"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_WMxigMWnEeioHYpNRCzcsQ" name="javax">
@@ -356,9 +377,13 @@
       <packagedElement xmi:type="uml:Package" xmi:id="_XSWOAMWoEeioHYpNRCzcsQ" name="util">
         <packagedElement xmi:type="uml:Interface" xmi:id="_XTAVUMWoEeioHYpNRCzcsQ" name="Set"/>
         <packagedElement xmi:type="uml:Class" xmi:id="_XTHDAMWoEeioHYpNRCzcsQ" name="HashSet"/>
+        <packagedElement xmi:type="uml:Interface" xmi:id="_54FxoMqYEeiFtM8-Bn6ctQ" name="SortedSet"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Package" xmi:id="_de4hMMpoEeiK-PBQrWtYiQ" name="io">
         <packagedElement xmi:type="uml:Interface" xmi:id="_dfgzUMpoEeiK-PBQrWtYiQ" name="Serializable"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_CbqckMqWEeiFtM8-Bn6ctQ" name="sql">
+        <packagedElement xmi:type="uml:DataType" xmi:id="_Cce78MqWEeiFtM8-Bn6ctQ" name="Date"/>
       </packagedElement>
     </packagedElement>
     <profileApplication xmi:id="_Ph5bYMWmEeioHYpNRCzcsQ">
@@ -583,4 +608,13 @@ return this.participant;
   </UMLLabProfile:Annotations>
   <UMLLabProfile:Reference xmi:id="_dftAkMpoEeiK-PBQrWtYiQ" base_Element="_dfgzUMpoEeiK-PBQrWtYiQ"/>
   <UMLLabProfile:Reference xmi:id="_df3_sMpoEeiK-PBQrWtYiQ" base_Element="_dftnoMpoEeiK-PBQrWtYiQ"/>
+  <UMLLabProfile:StyledElement xmi:id="_CcAa0MqWEeiFtM8-Bn6ctQ" base_Element="_TPo2QMp5EeiK-PBQrWtYiQ"/>
+  <UMLLabProfile:StyledElement xmi:id="_CcBo8MqWEeiFtM8-Bn6ctQ" base_Element="_V-LgIMp5EeiK-PBQrWtYiQ"/>
+  <UMLLabProfile:Reference xmi:id="_Cc5ysMqWEeiFtM8-Bn6ctQ" base_Element="_Cce78MqWEeiFtM8-Bn6ctQ"/>
+  <UMLLabProfile:Reference xmi:id="_CdZh8MqWEeiFtM8-Bn6ctQ" base_Element="_Cc8O8MqWEeiFtM8-Bn6ctQ"/>
+  <UMLLabProfile:Reference xmi:id="_Cdsc4MqWEeiFtM8-Bn6ctQ" base_Element="_CdZh8cqWEeiFtM8-Bn6ctQ"/>
+  <UMLLabProfile:Reference xmi:id="_Cd4qIMqWEeiFtM8-Bn6ctQ" base_Element="_Cdsc4cqWEeiFtM8-Bn6ctQ"/>
+  <UMLLabProfile:Reference xmi:id="_CeHToMqWEeiFtM8-Bn6ctQ" base_Element="_Cd4qIcqWEeiFtM8-Bn6ctQ"/>
+  <UMLLabProfile:Reference xmi:id="_CeZAcMqWEeiFtM8-Bn6ctQ" base_Element="_CeJI0MqWEeiFtM8-Bn6ctQ"/>
+  <UMLLabProfile:Reference xmi:id="_54O7kMqYEeiFtM8-Bn6ctQ" base_Element="_54FxoMqYEeiFtM8-Bn6ctQ"/>
 </xmi:XMI>
