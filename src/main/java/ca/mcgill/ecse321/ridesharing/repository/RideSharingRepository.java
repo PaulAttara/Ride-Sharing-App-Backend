@@ -22,6 +22,17 @@ import ca.mcgill.ecse321.ridesharing.model.Status;
 import ca.mcgill.ecse321.ridesharing.model.SystemAdministrator;
 import ca.mcgill.ecse321.ridesharing.model.User;
 
+/**
+ * This class consists of all the controller methods which we created
+ * @author Arielle Lasry
+ * @author Noam Suissa
+ * @author Eden Ovadia
+ * @author Kamy Moussavi
+ * @author Lucas Bellido
+ * @author Paul Attara
+ *
+ */
+
 @Repository
 public class RideSharingRepository {
 
@@ -29,6 +40,17 @@ public class RideSharingRepository {
 	EntityManager entityManager;
 
 	@Transactional
+	/**
+	 * This method is for creating a users account
+	 * @param firstName
+	 * @param lastName
+	 * @param userName
+	 * @param password
+	 * @param city
+	 * @param phoneNumber
+	 * @param address
+	 * @return
+	 */
 	public User createUser(String firstName, String lastName, String userName, String password, String city, String phoneNumber, String address) {
 		
 		User existingUser = getUser(userName);
@@ -71,8 +93,13 @@ public class RideSharingRepository {
 	}
 	
 	@Transactional
-	//Returns true if user is found
-	//False if user login is invalid
+	/**
+	 * This method returns true if user is found
+	 * It returns false is user login is invalid
+	 * @param userName
+	 * @param password
+	 * @return
+	 */
 	public boolean loginAdmin(String userName, String password) {
 		if (userName.equals("adminUsername") && password.equals("adminPassword") ) {
 			return true;
@@ -83,9 +110,17 @@ public class RideSharingRepository {
 		}
 
 	}
-
+	@Transactional
+	/**
+	 * This method adds/registers a new car 
+	 * @param brand
+	 * @param model
+	 * @param licensePlate
+	 * @param driver
+	 * @return
+	 */
 	public Car createCar(String brand, String model, String licensePlate, Driver driver) {
-		Car existingCar = entityManager.find(Car.class, licensePlate);
+		Car existingCar = getCar(licensePlate);
 		if(existingCar == null) {
 			Car addedCar = new Car();
 			addedCar.setBrand(brand);
@@ -100,6 +135,17 @@ public class RideSharingRepository {
 		}
 	}
 
+	@Transactional
+	public Car getCar(String licensePlate) {
+		Car addedCar = entityManager.find(Car.class, licensePlate);
+		return addedCar;	
+	}
+	
+	/**
+	 * This method is for a driver to accept a passenger's route request 
+	 * @param aRoute
+	 * @param aPassenger
+	 */
 	public void acceptPassengerRequest(Route aRoute, Passenger aPassenger) {
 
 		Set<Request> requests = aRoute.getRequest();
@@ -110,7 +156,13 @@ public class RideSharingRepository {
 			}
 		}
 	}
-	
+	@Transactional
+	/**
+	 * This method is for when a driver wants to deny/cancel a passengers route request
+	 * There is no return type
+	 * @param aRoute
+	 * @param aPassenger
+	 */
 	public void denyPassengerRequest(Route aRoute, Passenger aPassenger) {
 
 		Set<Request> requests = aRoute.getRequest();
@@ -123,9 +175,12 @@ public class RideSharingRepository {
 	}
 
 	
-	// this method updates the seats available in a route depending on the status of
-	// the route
 	@Transactional
+	/**
+	 * This method updates the seats available in a route depending on the status of
+	 * the route
+	 * @param aRoute
+	 */
 	public void updateSeatsAvail(Route aRoute) {
 		int seatsAvail = aRoute.getSeatsAvailable();
 		Set<Request> requests = aRoute.getRequest();
@@ -141,13 +196,18 @@ public class RideSharingRepository {
 		aRoute.setSeatsAvailable(seatsAvail);
 	}
 
-	// this method should be called when a passenger is dropped off
-	// this allows the driver to to rate the passenger and updates the passengers rating
-	// this also increments the num of past trips for the passenger and updates his
-	// rating
-	// this also updates the status of the specific request of the passenger to
-	// ended
+
 	@Transactional
+	/**
+	 * This method should be called when a passenger is dropped off
+	 * It allows the driver to to rate the passenger and then updates the passengers rating 
+	 * It increments the number of past trips for the passenger
+	 * It also updates the status of the specific request of the passenger to ended
+	 * 
+	 * @param aRoute
+	 * @param rating
+	 * @param aPassenger
+	 */
 	public void passengerDroppedOff(Route aRoute, double rating, Passenger aPassenger) {
 
 		Set<Request> requests = aRoute.getRequest();
@@ -167,14 +227,15 @@ public class RideSharingRepository {
 		}
 	}
 
-	// A passenger will call this when he's dropped off and status of request is
-	// ended
-	// the route only has one driver so it is not necessary to take in a role
-	// this updates the drivers rating and the number of trips
-	// this should only be called when the passengerDroppedOff method has been
-	// called
-	// the status MUST BE = ENDED
+
 	@Transactional
+	/**
+	 * This method is for when a passenger is dropped off and status of request is ended
+	 * It updates the drivers rating and the number of trips completed
+	 * 
+	 * @param rating
+	 * @param aRoute
+	 */
 	public void passengerRatesDriver(double rating, Route aRoute) {
 
 		Driver driver = aRoute.getDriver();
@@ -190,8 +251,13 @@ public class RideSharingRepository {
 	
 	
 	@Transactional
-	//Returns true if user is found
-	//False if user login is invalid
+	/**
+	 * This method returns true is user is found
+	 * It returns false if user login is invalid
+	 * @param userName
+	 * @param password
+	 * @return
+	 */
 	public boolean loginUser(String userName, String password) {
 		User user = entityManager.find(User.class, userName);
 		if (user != null && user.getPassword().equals(password)) {
@@ -201,6 +267,11 @@ public class RideSharingRepository {
 	}
 
 	@Transactional
+	/**
+	 * 
+	 * @param endLocation
+	 * @return
+	 */
 	public List<Route> getRelevantRoutes(Location endLocation){
 		List<Route> routes = entityManager.createQuery("Select route from Route route", Route.class).getResultList();
 		List<Route> relevantRoutes = new ArrayList<Route>();
