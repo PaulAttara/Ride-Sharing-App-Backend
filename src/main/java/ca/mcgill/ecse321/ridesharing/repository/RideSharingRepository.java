@@ -59,23 +59,6 @@ public class RideSharingRepository {
 		}
 			
 	}
-
-	public Car createCar(String brand, String model, String licensePlate, Driver driver) {
-		Car existingCar = entityManager.find(Car.class, licensePlate);
-		if(existingCar == null) {
-			Car addedCar = new Car();
-			addedCar.setBrand(brand);
-			addedCar.setModel(model);
-			addedCar.setLicensePlate(licensePlate);
-			addedCar.setDriver(driver);
-			entityManager.persist(addedCar);
-			return addedCar;
-		}
-		else {
-			return null;
-		}
-	}
-
 	
 	@Transactional
 	public User getUser(String userName) {
@@ -98,6 +81,45 @@ public class RideSharingRepository {
 
 	}
 
+	public Car createCar(String brand, String model, String licensePlate, Driver driver) {
+		Car existingCar = entityManager.find(Car.class, licensePlate);
+		if(existingCar == null) {
+			Car addedCar = new Car();
+			addedCar.setBrand(brand);
+			addedCar.setModel(model);
+			addedCar.setLicensePlate(licensePlate);
+			addedCar.setDriver(driver);
+			entityManager.persist(addedCar);
+			return addedCar;
+		}
+		else {
+			return null;
+		}
+	}
+
+	public void acceptPassengerRequest(Route aRoute, Passenger aPassenger) {
+
+		Set<Request> requests = aRoute.getRequest();
+		for (Request r : requests) {
+			Passenger p = r.getPassenger();
+			if (p == aPassenger) {
+				r.setStatus(Status.Accepted);
+			}
+		}
+	}
+	
+	public void denyPassengerRequest(Route aRoute, Passenger aPassenger) {
+
+		Set<Request> requests = aRoute.getRequest();
+		for (Request r : requests) {
+			Passenger p = r.getPassenger();
+			if (p == aPassenger) {
+				r.setStatus(Status.Cancelled);
+			}
+		}
+	}
+
+	
 	// this method updates the seats available in a route depending on the status of
 	// the route
 	@Transactional
@@ -117,7 +139,7 @@ public class RideSharingRepository {
 	}
 
 	// this method should be called when a passenger is dropped off
-	// this gives the driver the chance to rate the passenger
+	// this allows the driver to to rate the passenger and updates the passengers rating
 	// this also increments the num of past trips for the passenger and updates his
 	// rating
 	// this also updates the status of the specific request of the passenger to
