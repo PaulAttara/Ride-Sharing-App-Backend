@@ -1,9 +1,12 @@
 package ca.mcgill.ecse321.ridesharing.repository;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.persistence.EntityManager;
 
@@ -285,4 +288,36 @@ public class RideSharingRepository {
 		}
 		return relevantRoutes;
 	}
+	@Transactional
+	//this method creates a new route by adding locations
+	//It does not check to see if the route already exists
+
+	public void createNewRoute(Location startLocation, Location endLocation, int seatsAvailable, String comment, Date date, Car aCar, Driver driver) {
+		Route newRoute = new Route();
+		SortedSet<Location> locations = new TreeSet();
+		locations.add(startLocation);
+		locations.add(endLocation);
+		
+		newRoute.setLocation(locations);
+		newRoute.setDriver(driver);
+		newRoute.setComments(comment);
+		newRoute.setDate(date);
+		newRoute.setCar(aCar);
+		newRoute.setSeatsAvailable(seatsAvailable);
+	}
+	
+	// Adds request to a route
+		@Transactional
+		public boolean requestRoute(Route route, Location startLocation, Location endLocation) {
+			Request newRequest = new Request();
+			if(route != null && startLocation != null && endLocation != null) {
+				newRequest.setPickUp(startLocation);
+				newRequest.setDropOff(endLocation);
+				Set<Request> requests = route.getRequest();
+				requests.add(newRequest);
+				route.setRequest(requests);
+				return true;
+			}
+			return false;
+		}
 }
