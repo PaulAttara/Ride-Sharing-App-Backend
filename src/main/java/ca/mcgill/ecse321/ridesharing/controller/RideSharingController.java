@@ -25,9 +25,11 @@ public class RideSharingController {
 		return "Hello world!";
 	}
 
-	@PostMapping("/participants/{name}")
-	public String createUser(@PathVariable("name") String userName) {
-		User user = repository.createUser(userName);
+	@PostMapping("/participants/{firstname}_{lastname}_{username}_{password}_{city}_{phonenumber}_{address}")
+	public String createUser(@PathVariable("firstname") String firstname, @PathVariable("lastname") String lastname,@PathVariable("username") String username,
+											@PathVariable("password") String password,@PathVariable("city") String city, @PathVariable("phonenumber") String phonenumber,
+											@PathVariable("address") String address) {
+		User user = repository.createUser(firstname, lastname, username, password, city, phonenumber, address);
 		return user.getUserName();
 	}
 
