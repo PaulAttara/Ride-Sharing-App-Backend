@@ -302,4 +302,19 @@ public class RideSharingRepository {
 		newRoute.setCar(aCar);
 		newRoute.setSeatsAvailable(seatsAvailable);
 	}
+	
+	// Adds request to a route
+		@Transactional
+		public boolean requestRoute(Route route, Location startLocation, Location endLocation) {
+			Request newRequest = new Request();
+			if(route != null && startLocation != null && endLocation != null) {
+				newRequest.setPickUp(startLocation);
+				newRequest.setDropOff(endLocation);
+				Set<Request> requests = route.getRequest();
+				requests.add(newRequest);
+				route.setRequest(requests);
+				return true;
+			}
+			return false;
+		}
 }
