@@ -97,15 +97,16 @@ public class RideSharingRepository {
 		}
 	}
 
-	public void acceptPassengerRequest(Route aRoute, Passenger aPassenger) {
+	public void acceptPassengerRequest(Route aRoute, Request aRequest) {
 
-		Set<Request> requests = aRoute.getRequest();
-		for (Request r : requests) {
-			Passenger p = r.getPassenger();
-			if (p == aPassenger) {
-				r.setStatus(Status.Accepted);
-			}
-		}
+		
+				aRequest.setStatus(Status.Accepted);
+				int seats = aRoute.getSeatsAvailable();
+				seats--;
+				aRoute.setSeatsAvailable(seats);
+				aRoute.setLocation(aRoute.getLocation().add(aRequest.getPickUp());
+			
+		
 	}
 	
 	public void denyPassengerRequest(Route aRoute, Passenger aPassenger) {
