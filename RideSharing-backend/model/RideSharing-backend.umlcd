@@ -317,7 +317,7 @@
       <modelElement href="RideSharing-backend.uml#_kgvyINY0Eeih67g0bTK26w"/>
     </stereotypes>
     <visibility xmi:id="_zm_oQdYjEeih67g0bTK26w" label="+"/>
-    <attributes xmi:id="_BBNxsNYkEeih67g0bTK26w" name="userName">
+    <attributes xmi:id="_BBNxsNYkEeih67g0bTK26w" name="username">
       <modelElement href="RideSharing-backend.uml#_BBISINYkEeih67g0bTK26w"/>
       <stereotypes xmi:id="_khdj0NY0Eeih67g0bTK26w" name="PrimaryKey">
         <modelElement href="RideSharing-backend.uml#_kgxAQNY0Eeih67g0bTK26w"/>

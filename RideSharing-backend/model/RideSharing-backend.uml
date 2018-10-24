@@ -133,7 +133,7 @@
           <packagedElement xmi:type="uml:Package" xmi:id="_zSCE4NYjEeih67g0bTK26w" name="ridesharing">
             <packagedElement xmi:type="uml:Package" xmi:id="_BKmhwNYlEeih67g0bTK26w" name="model">
               <packagedElement xmi:type="uml:Class" xmi:id="_zmsGQNYjEeih67g0bTK26w" name="User">
-                <ownedAttribute xmi:id="_BBISINYkEeih67g0bTK26w" name="userName">
+                <ownedAttribute xmi:id="_BBISINYkEeih67g0bTK26w" name="username">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:id="_CRREUNYkEeih67g0bTK26w" name="password">
