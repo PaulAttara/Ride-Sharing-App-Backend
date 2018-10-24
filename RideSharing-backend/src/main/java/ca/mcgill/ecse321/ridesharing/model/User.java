@@ -1,10 +1,10 @@
-package ca.mcgill.ecse321.model;
+package ca.mcgill.ecse321.ridesharing.model;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "app_users")
+@Table(name = "users")
 @NamedQueries({
 	@NamedQuery(name = "User.findAll", query = "SELECT e FROM User e")
 })

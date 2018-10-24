@@ -1,8 +1,8 @@
-package ca.mcgill.ecse321.controller;
+package ca.mcgill.ecse321.ridesharing.controller;
 
-import ca.mcgill.ecse321.model.*;
-import ca.mcgill.ecse321.repository.CarRepository;
 import ca.mcgill.ecse321.ridesharing.*;
+import ca.mcgill.ecse321.ridesharing.model.*;
+import ca.mcgill.ecse321.ridesharing.repository.CarRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

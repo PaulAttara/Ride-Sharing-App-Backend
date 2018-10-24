@@ -1,10 +1,10 @@
-package ca.mcgill.ecse321.repository;
+package ca.mcgill.ecse321.ridesharing.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import ca.mcgill.ecse321.model.*;
+import ca.mcgill.ecse321.ridesharing.model.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
