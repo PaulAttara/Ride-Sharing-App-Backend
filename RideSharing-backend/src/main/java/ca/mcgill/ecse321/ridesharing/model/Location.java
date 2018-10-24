@@ -1,4 +1,4 @@
-package ca.mcgill.ecse321.model;
+package ca.mcgill.ecse321.ridesharing.model;
 
 import javax.persistence.*;
 
@@ -16,6 +16,7 @@ public class Location{
 
 	@Id
 	@Column(name="locationid")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getLocationId() {
 		return this.locationId;
 	}

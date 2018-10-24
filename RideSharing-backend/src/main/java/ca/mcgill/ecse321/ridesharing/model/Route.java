@@ -1,11 +1,10 @@
-package ca.mcgill.ecse321.model;
+package ca.mcgill.ecse321.ridesharing.model;
 
 import javax.persistence.*;
 
 import java.util.Set;
 
 @Entity
-@Table(name = "routes")
 @NamedQueries({
 	@NamedQuery(name = "Route.findAll", query = "SELECT e FROM Route e")
 })
@@ -17,7 +16,7 @@ public class Route{
 	}
 
 	@Id
-	@Column 
+	@Column(name="routeid")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getRouteId() {
 		return this.routeId;
