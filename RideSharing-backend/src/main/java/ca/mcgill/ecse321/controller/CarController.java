@@ -1,6 +1,6 @@
 package ca.mcgill.ecse321.controller;
 
-import ca.mcgill.ecse321.ridesharing.model.*;
+import ca.mcgill.ecse321.model.*;
 import ca.mcgill.ecse321.repository.CarRepository;
 import ca.mcgill.ecse321.ridesharing.*;
 
