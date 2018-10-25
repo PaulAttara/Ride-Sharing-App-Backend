@@ -11,26 +11,31 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Repository
-public class CarRepository {
+public class UserRepository {
+	
 	@PersistenceContext
 	EntityManager em;
 
 	@Transactional
-	public Car createVehicle(String brand, String model, String licensePlate) {
-
-		Car aCar = new Car();
-		aCar.setBrand(brand);
-		aCar.setModel(model);
-		aCar.setLicensePlate(licensePlate);
-		aCar.setRoute(null);
-		aCar.setDriver(null);
-		em.persist(aCar);
-		return aCar;
+	public User createUser(String username, String password, String firstname, String lastname, String phonenumber,
+			String city, String address) {
+		User user = new User();
+		user.setUsername(username);
+		user.setPassword(password);
+		user.setFirstName(firstname);
+		user.setLastName(lastname);
+		user.setPhoneNumber(phonenumber);
+		user.setCity(city);
+		user.setAddress(address);
+		em.persist(user);
+		return user;
 	}
 
 	@Transactional
-	public Car getVehicle(int id) {
-		return em.find(Car.class, id);
+	public User getUser(int id) {
+		return em.find(User.class, id);
 	}
+
 }
