@@ -414,9 +414,6 @@
       <stereotypes xmi:id="_r2oakNY0Eeih67g0bTK26w" name="Column">
         <modelElement href="RideSharing-backend.uml#_r16o4NY0Eeih67g0bTK26w"/>
       </stereotypes>
-      <stereotypes xmi:id="_RTTO8NkrEeih67g0bTK26w" name="LegacyStyledElement">
-        <modelElement href="RideSharing-backend.uml#_RTHowNkrEeih67g0bTK26w"/>
-      </stereotypes>
       <visibility xmi:id="_OtlbEdYkEeih67g0bTK26w" label="+"/>
       <cardinality xmi:id="_OtlbEtYkEeih67g0bTK26w" label="1" max="1" min="1"/>
       <type xmi:id="_OtlbE9YkEeih67g0bTK26w" name="int">
@@ -475,6 +472,14 @@
           <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
         </type>
       </parameters>
+    </operations>
+    <operations xmi:id="_B4omANlSEeih67g0bTK26w" name="increaseNumTrips">
+      <modelElement href="RideSharing-backend.uml#_B4e1ANlSEeih67g0bTK26w"/>
+      <stereotypes xmi:id="_B4omAdlSEeih67g0bTK26w" name="LegacyStyledElement">
+        <modelElement href="RideSharing-backend.uml#_B4h4UNlSEeih67g0bTK26w"/>
+      </stereotypes>
+      <visibility xmi:id="_B4omAtlSEeih67g0bTK26w" label="+"/>
+      <cardinality xmi:id="_B4omA9lSEeih67g0bTK26w" label="1" max="1" min="1"/>
     </operations>
   </nodes>
 </com.yattasolutions.uml.diagrams.classifier:ClassDiagram>

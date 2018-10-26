@@ -112,7 +112,11 @@ public class User{
 	private int numTrips;
 
 	public void setNumTrips(int value) {
-		this.numTrips++;
+		this.numTrips = value;
+	}
+	
+	public void increaseNumTrips() {
+		this.numTrips = numTrips + 1;
 	}
 	
 	@Column

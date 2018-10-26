@@ -5,6 +5,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name="routes")
 @NamedQueries({
 	@NamedQuery(name = "Route.findAll", query = "SELECT e FROM Route e")
 })

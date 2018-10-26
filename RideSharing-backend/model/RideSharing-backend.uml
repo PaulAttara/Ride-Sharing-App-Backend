@@ -4,7 +4,7 @@
     <eAnnotations xmi:id="_ypEncNYjEeih67g0bTK26w" source="http://ns.yatta.de/umllab">
       <contents xmi:type="ecore:EAnnotation" xmi:id="_ypEncdYjEeih67g0bTK26w" source="codegen">
         <details xmi:id="_ypEnctYjEeih67g0bTK26w" key="codegenDirectory" value="/RideSharing-backend/src/main/java"/>
-        <details xmi:id="_00adoNYjEeih67g0bTK26w" key="AssociatedSourceCode" value="/RideSharing-backend/src/test/java/ca/mcgill/ecse321/ridesharing/RideSharingApplicationTests.java;1970769919/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/RideSharingApplication.java;3492212231/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Car.java;951783507/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Request.java;2824879673/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Route.java;4226249683/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/User.java;1442992590/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Vehicle.java;3746772775/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/User.java;3719527450/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Route.java;4012429104/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Car.java;3564723395/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Location.java;2731388401/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/repository/CarRepository.java;810655736/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/controller/CarController.java;3250601683/1;"/>
+        <details xmi:id="_00adoNYjEeih67g0bTK26w" key="AssociatedSourceCode" value="/RideSharing-backend/src/test/java/ca/mcgill/ecse321/ridesharing/RideSharingApplicationTests.java;1970769919/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/RideSharingApplication.java;3492212231/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Car.java;951783507/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Request.java;2824879673/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Route.java;4226249683/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/User.java;1442992590/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Vehicle.java;3746772775/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/User.java;4135191251/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Route.java;1458674948/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Car.java;3564723395/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Location.java;2731388401/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/repository/CarRepository.java;810655736/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/controller/CarController.java;3250601683/1;"/>
       </contents>
     </eAnnotations>
     <elementImport xmi:id="_zV5RMNYjEeih67g0bTK26w">
@@ -101,11 +101,17 @@
                   <body>this.ratings.add(rating);
 	</body>
                 </ownedBehavior>
+                <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_B4k7oNlSEeih67g0bTK26w" name="increaseNumTrips" specification="_B4e1ANlSEeih67g0bTK26w">
+                  <language>java</language>
+                  <body>this.numTrips = numTrips + 1;
+	</body>
+                </ownedBehavior>
                 <ownedOperation xmi:id="_V-8woNkpEeih67g0bTK26w" name="addRating" method="_V-_z8NkpEeih67g0bTK26w">
                   <ownedParameter xmi:id="_V-8wodkpEeih67g0bTK26w" name="rating">
                     <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
                   </ownedParameter>
                 </ownedOperation>
+                <ownedOperation xmi:id="_B4e1ANlSEeih67g0bTK26w" name="increaseNumTrips" method="_B4k7oNlSEeih67g0bTK26w"/>
               </packagedElement>
               <packagedElement xmi:type="uml:Class" xmi:id="_3X1coNYjEeih67g0bTK26w" name="Route">
                 <ownedAttribute xmi:id="_euGRUNYkEeih67g0bTK26w" name="routeId">
@@ -2380,6 +2386,11 @@
         </annotations>
       </annotationParameters>
     </annotations>
+    <annotations xmi:id="_qOkFwNlDEeih67g0bTK26w" name="Table">
+      <annotationParameters xmi:id="_qOkFwdlDEeih67g0bTK26w" name="name" skipArray="true">
+        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_qOlT4NlDEeih67g0bTK26w" value="&quot;routes&quot;"/>
+      </annotationParameters>
+    </annotations>
   </UMLLabProfile:Annotations>
   <UMLLabProfile:Reference xmi:id="_RPKMsNY0Eeih67g0bTK26w" base_Element="_RPFUMNY0Eeih67g0bTK26w"/>
   <Persistency:PrimaryKey xmi:id="_WnqicNY0Eeih67g0bTK26w" base_Property="_euGRUNYkEeih67g0bTK26w"/>
@@ -2483,35 +2494,5 @@
     <body>this.ratings=ratings;
 	</body>
   </uml:OpaqueBehavior>
-  <UMLLabProfile:LegacyStyledElement xmi:id="_RTHowNkrEeih67g0bTK26w" base_Element="_OtkM8NYkEeih67g0bTK26w">
-    <associatedElement xmi:type="uml:Operation" xmi:id="_RTI24NkrEeih67g0bTK26w" name="getNumTrips" method="_RTOWcNkrEeih67g0bTK26w">
-      <ownedParameter xmi:id="_RTLTINkrEeih67g0bTK26w" direction="return">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
-      </ownedParameter>
-    </associatedElement>
-    <associatedElement xmi:type="uml:Operation" xmi:id="_RTLTIdkrEeih67g0bTK26w" name="setNumTrips" method="_RTO9gNkrEeih67g0bTK26w">
-      <ownedParameter xmi:id="_RTLTItkrEeih67g0bTK26w" name="value">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
-      </ownedParameter>
-    </associatedElement>
-  </UMLLabProfile:LegacyStyledElement>
-  <UMLLabProfile:Annotations xmi:id="_RTJd8NkrEeih67g0bTK26w" base_Element="_RTI24NkrEeih67g0bTK26w">
-    <annotations xmi:id="_RTJd8dkrEeih67g0bTK26w" name="Column"/>
-  </UMLLabProfile:Annotations>
-  <uml:OpaqueBehavior xmi:id="_RTOWcNkrEeih67g0bTK26w" name="getNumTrips" specification="_RTI24NkrEeih67g0bTK26w">
-    <ownedParameter xmi:id="_RTOWcdkrEeih67g0bTK26w" direction="return">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
-    </ownedParameter>
-    <language>java</language>
-    <body>return this.numTrips;
-	</body>
-  </uml:OpaqueBehavior>
-  <uml:OpaqueBehavior xmi:id="_RTO9gNkrEeih67g0bTK26w" name="setNumTrips" specification="_RTLTIdkrEeih67g0bTK26w">
-    <ownedParameter xmi:id="_RTO9gdkrEeih67g0bTK26w" name="value">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
-    </ownedParameter>
-    <language>java</language>
-    <body>this.numTrips++;
-	</body>
-  </uml:OpaqueBehavior>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_B4h4UNlSEeih67g0bTK26w" base_Element="_B4e1ANlSEeih67g0bTK26w"/>
 </xmi:XMI>
