@@ -1,6 +1,8 @@
 package ca.mcgill.ecse321.ridesharing.model;
 
 import javax.persistence.*;
+
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -9,6 +11,15 @@ import java.util.Set;
 	@NamedQuery(name = "User.findAll", query = "SELECT e FROM User e")
 })
 public class User{
+	
+	private List<Double> ratings;
+	public void addRating(double rating) {
+		this.ratings.add(rating);
+	}
+	
+	public List<Double> getRatings(){
+		return this.ratings;
+	}
 	private String username;
 
 	public void setUsername(String value) {

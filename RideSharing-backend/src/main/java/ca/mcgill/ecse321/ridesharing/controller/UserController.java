@@ -21,8 +21,9 @@ public class UserController {
 								@RequestParam("lastname") String lastname,
 								@RequestParam("phonenumber") String phonenumber,
 								@RequestParam("city") String city,
-								@RequestParam("address") String address) {
-		User result = repository.createUser(username, password, firstname, lastname, phonenumber, city, address);
+								@RequestParam("address") String address,
+								@RequestParam("role") String role) {
+		User result = repository.createUser(username, password, firstname, lastname, phonenumber, city, address, role);
 		if (result != null) {
 			return username + " created!";
 		} else {
@@ -30,8 +31,14 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public User getVehicle(@PathVariable("id") int id) {
+	@RequestMapping("/addRating/{username}/{rating}")
+	public String addRating(@PathVariable("username") String username, @PathVariable("rating") double rating) {
+		double avgRating = repository.addToRatings(username, rating);
+		return rating + "was added. " + username + " has an average rating of " + avgRating;
+	}
+	
+	@RequestMapping(value = "/getUser/{id}", method = RequestMethod.GET)
+	public User getVehicle(@PathVariable("id") String id) {
 		return repository.getUser(id);
 	}
 }
