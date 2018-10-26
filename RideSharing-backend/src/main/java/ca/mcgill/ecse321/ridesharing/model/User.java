@@ -13,10 +13,18 @@ import java.util.Set;
 public class User{
 	
 	private List<Double> ratings;
+	
+	public void setRatings(List<Double> ratings) {
+		this.ratings=ratings;
+	}
+	
 	public void addRating(double rating) {
 		this.ratings.add(rating);
 	}
 	
+	@ElementCollection
+	@CollectionTable(name="ratings", joinColumns=@JoinColumn(name="username"))
+	@Column(name="rating")
 	public List<Double> getRatings(){
 		return this.ratings;
 	}
@@ -104,7 +112,7 @@ public class User{
 	private int numTrips;
 
 	public void setNumTrips(int value) {
-		this.numTrips = value;
+		this.numTrips++;
 	}
 	
 	@Column

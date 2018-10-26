@@ -23,6 +23,7 @@ public class UserRepository {
 	@Transactional
 	public double addToRatings(String username, double rating) {
 		User driver = getUser(username);
+		driver.setNumTrips(0);
 		driver.addRating(rating);
 		double avgRating = computeRating(username);
 		return avgRating;
@@ -55,6 +56,7 @@ public class UserRepository {
 		user.setCity(city);
 		user.setAddress(address);
 		user.setRole(role);
+		user.setRatings(null);
 		em.persist(user);
 		return user;
 	}

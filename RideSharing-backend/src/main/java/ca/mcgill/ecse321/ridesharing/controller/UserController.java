@@ -32,9 +32,10 @@ public class UserController {
 	}
 	
 	@RequestMapping("/addRating/{username}/{rating}")
-	public String addRating(@PathVariable("username") String username, @PathVariable("rating") double rating) {
-		double avgRating = repository.addToRatings(username, rating);
-		return rating + "was added. " + username + " has an average rating of " + avgRating;
+	public String addRating(@PathVariable("username") String username, @PathVariable("rating") String rating) {
+		double newRating = Double.parseDouble(rating);
+		double avgRating = repository.addToRatings(username, newRating);
+		return rating + " was added. " + username + " has an average rating of " + avgRating;
 	}
 	
 	@RequestMapping(value = "/getUser/{id}", method = RequestMethod.GET)
