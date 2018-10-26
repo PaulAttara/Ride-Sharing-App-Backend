@@ -38,6 +38,16 @@ public class UserController {
 		return rating + " was added. " + username + " has an average rating of " + avgRating;
 	}
 	
+	@RequestMapping("/login/{username}/{password}")
+	public String login(@PathVariable("username") String username, @PathVariable("password") String password) {
+		boolean result = repository.login(username, password);
+		if(result) {
+			return "Login successful";
+		}else {
+			return "Username and/or Password incorrect!";
+		}
+	}
+	
 	@RequestMapping(value = "/getUser/{id}", method = RequestMethod.GET)
 	public User getVehicle(@PathVariable("id") String id) {
 		return repository.getUser(id);
