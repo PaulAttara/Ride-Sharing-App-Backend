@@ -1,27 +1,12 @@
 package ca.mcgill.ecse321.ridesharing.repository;
 
-import org.hibernate.SessionFactory;
-import org.hibernate.transform.Transformers;
-import org.junit.runner.Computer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.provider.HibernateUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import ca.mcgill.ecse321.ridesharing.model.*;
-import ch.qos.logback.core.joran.conditional.IfAction;
+import javax.persistence.*;
 
-import javax.persistence.Query;
-import javax.persistence.EntityManager;
-import javax.persistence.Id;
-import javax.persistence.PersistenceContext;
-
-import static org.hamcrest.CoreMatchers.nullValue;
-
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Repository
 public class UserRepository {
@@ -71,6 +56,8 @@ public class UserRepository {
 		user.setAddress(address);
 		user.setRole(role);
 		user.setRatings(null);
+		user.setAvgRating(0);
+		user.setNumTrips(0);
 		em.persist(user);
 		return user;
 	}
