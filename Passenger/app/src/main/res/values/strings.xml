@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">Passenger</string>
-    <string name="action_settings">Settings</string>
-    <string name="newpassenger_hint">Participant Name</string>
-    <string name="newpassenger_button">Add Passenger</string>
-</resources>
