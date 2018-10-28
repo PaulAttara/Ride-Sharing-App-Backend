@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyProfileFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/txtmyprofileusername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/prompt_username"
+            android:paddingLeft="10dp"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/btnchangeusername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/action_changeusername" />
+
+        <Button
+            android:id="@+id/btnchangepassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/action_changepassword" />
+
+        <TextView
+            android:id="@+id/txtaddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/prompt_address"
+            android:paddingLeft="10dp"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/btnchangeaddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/action_changeaddress" />
+        <Button
+            android:id="@+id/btndeleteaccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/action_deleteaccount" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/prompt_rating"
+            android:paddingLeft="10dp"
+            android:textSize="24sp" />
+        <TextView
+            android:id="@+id/txtmyrating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4.5"
+            android:paddingLeft="10dp"
+            android:textSize="24sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

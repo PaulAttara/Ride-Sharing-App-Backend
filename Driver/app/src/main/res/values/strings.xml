@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Driver</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_username">Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <!--end login strings-->
+
+    <string name="title_activity_main">Create Route</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Driver</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Logout</string>
+    <string name="action_register">Register</string>
+    <string name="prompt_firstname">First Name</string>
+    <string name="prompt_lastname">Last Name</string>
+    <string name="prompt_phonenumber">Phone Number</string>
+    <string name="prompt_address">Address</string>
+    <string name="prompt_city">City</string>
+    <string name="prompt_carbrand">Car Brand</string>
+    <string name="prompt_carmodel">Car Model</string>
+    <string name="prompt_licenseplate">License Plate</string>
+    <string name="prompt_startaddress">Start Address</string>
+    <string name="prompt_endaddress">End Address</string>
+    <string name="prompt_numberofseats">Number of Seats</string>
+    <string name="prompt_newlocationname">New Location</string>
+    <string name="prompt_newlocationprice">Price</string>
+    <string name="action_back">Back</string>
+
+    <string name="prompt_routedate">Date</string>
+    <string name="prompt_routetime">Time</string>
+    <string name="action_changepassword">Change Password</string>
+    <string name="action_changeusername">Change Username</string>
+    <string name="action_changeaddress">Change Address</string>
+    <string name="action_deleteaccount">Delete Account</string>
+    <string name="prompt_rating">My Rating: </string>
+
+</resources>

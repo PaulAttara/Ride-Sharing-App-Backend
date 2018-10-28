@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<android.support.constraint.ConstraintLayout-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
+
+<!--</android.support.constraint.ConstraintLayout>-->
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal">
+
+    <EditText
+        android:id="@+id/txtnewlocation"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:hint="@string/prompt_newlocationname" />
+
+    <EditText
+        android:id="@+id/txtlocationprice"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="@string/prompt_newlocationprice"/>
+
+    <Button
+        android:id="@+id/newbtnremovelocation"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:background="@android:drawable/ic_delete"/>
+</LinearLayout>
