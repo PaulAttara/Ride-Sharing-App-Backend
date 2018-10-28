@@ -33,4 +33,18 @@ public class CarRepository {
 	public Car getVehicle(int id) {
 		return em.find(Car.class, id);
 	}
+
+	@Transactional
+	public boolean assignUserToCar(String username, int carId) {
+		User driver = em.find(User.class, username);
+		Car car = getVehicle(carId);
+		if(driver == null || car == null) {
+			return false;
+		}
+		driver.setCar(car);
+		car.setDriver(driver);
+		em.persist(car);
+		em.persist(driver);
+		return true;
+	}
 }
