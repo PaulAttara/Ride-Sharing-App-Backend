@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".SearchListingsFragment">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/txtsearch"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/prompt_search"
+            android:width="230dp"
+            android:background="@android:color/transparent" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"/>
+
+        <Spinner
+            android:id="@+id/searchtypespinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:dropDownWidth="match_parent"
+            android:minWidth="140dp"
+            android:paddingTop="10dp"
+            android:minHeight="50dp"
+            android:prompt="@string/prompt_sort"></Spinner>
+
+        <ImageButton
+            android:id="@+id/btnsearchlocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_search"
+            android:background="?android:selectableItemBackground"
+            android:layout_weight="1"
+            android:maxWidth="10pt"
+            android:minHeight="50dp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@android:color/darker_gray"/>
+
+
+    <ListView
+        android:id="@+id/searchlistingslistview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ></ListView>
+
+
+</LinearLayout>
