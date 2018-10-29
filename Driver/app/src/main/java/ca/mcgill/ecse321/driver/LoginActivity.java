@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
     public void attemptLogin(View view){
         String username = mUsername.getText().toString();
         String password = mPassword.getText().toString();
-        if(username.equals("admin") && password.equals(""/*"pass"*/)){
+        if(username.equals("Admin") && password.equals(""/*"pass"*/)){
 
             Intent MainIntent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(MainIntent);

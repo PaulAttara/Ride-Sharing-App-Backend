@@ -4,6 +4,7 @@ package ca.mcgill.ecse321.driver;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -90,10 +91,20 @@ public class RouteListingsFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                //dataModel is the selected item
                 RouteTemplate dataModel= dataModels.get(position);
 
+                //Display message
                 Snackbar.make(view, dataModel.getStartAddress()+"\n"+dataModel.getEndAddress(), Snackbar.LENGTH_LONG)
                         .setAction("No action", null).show();
+
+                //set the ID of the selected item so that the fields on the selected listing page can be populated
+                //SelectedListingFragment.ID = ...;
+
+                //navigate to selected listing page
+                FragmentTransaction ft = ((MainActivity) getActivity()).getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fMain, new SelectedRouteListingFragment());
+                ft.commit();
             }
         });
     }

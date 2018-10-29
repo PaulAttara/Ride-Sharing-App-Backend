@@ -39,4 +39,8 @@
     <string name="action_deleteaccount">Delete Account</string>
     <string name="prompt_rating">My Rating: </string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="action_backlistings">Back to Listings</string>
+
 </resources>

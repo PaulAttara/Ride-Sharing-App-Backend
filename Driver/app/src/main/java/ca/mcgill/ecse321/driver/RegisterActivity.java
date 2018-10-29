@@ -100,35 +100,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    public void newDriver(View view) {
-//        AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
-//        dlgAlert.setMessage("This is an alert with no consequence");
-//        dlgAlert.setTitle("App Title");
-//        dlgAlert.setPositiveButton("OK", null);
-//        dlgAlert.setCancelable(true);
-//        dlgAlert.create().show();
-        error = "";
-        final TextView tv = (TextView) findViewById(R.id.txtusername);
-        HttpUtils.post("participants/" + tv.getText().toString(), new RequestParams(), new JsonHttpResponseHandler() {
-            @Override
-            public void onFinish() {
-                refreshErrorMessage();
-                tv.setText("");
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                try {
-                    error += errorResponse.get("message").toString();
-                } catch (JSONException e) {
-                    error += e.getMessage();
-                }
-                refreshErrorMessage();
-            }
-        });
-
-
-    }
 
     private void refreshErrorMessage() {
         // set the error message
