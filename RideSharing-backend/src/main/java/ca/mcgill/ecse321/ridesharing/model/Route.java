@@ -2,7 +2,8 @@ package ca.mcgill.ecse321.ridesharing.model;
 
 import javax.persistence.*;
 
-import java.sql.Date;
+
+import java.sql.Timestamp;
 import java.util.Set;
 
 @Entity
@@ -34,14 +35,14 @@ public class Route{
 		return this.seatsAvailable;
 	}
 	
-	private Date date;
+	private Timestamp date;
 	
-	public void setDate(Date date) {
+	public void setDate(Timestamp date) {
 		this.date = date;
 	}
 	
 	@Column
-	public Date getDate() {
+	public Timestamp getDate() {
 		return this.date;
 	}
 	
