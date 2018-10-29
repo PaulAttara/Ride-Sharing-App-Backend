@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.ridesharing.model;
 
 import javax.persistence.*;
 
+import java.sql.Date;
 import java.util.Set;
 
 @Entity
@@ -32,6 +33,18 @@ public class Route{
 	public int getSeatsAvailable() {
 		return this.seatsAvailable;
 	}
+	
+	private Date date;
+	
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
+	@Column
+	public Date getDate() {
+		return this.date;
+	}
+	
 	private Car car;
 
 	@OneToOne(optional=false)

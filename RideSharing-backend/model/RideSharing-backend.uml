@@ -4,7 +4,7 @@
     <eAnnotations xmi:id="_ypEncNYjEeih67g0bTK26w" source="http://ns.yatta.de/umllab">
       <contents xmi:type="ecore:EAnnotation" xmi:id="_ypEncdYjEeih67g0bTK26w" source="codegen">
         <details xmi:id="_ypEnctYjEeih67g0bTK26w" key="codegenDirectory" value="/RideSharing-backend/src/main/java"/>
-        <details xmi:id="_00adoNYjEeih67g0bTK26w" key="AssociatedSourceCode" value="/RideSharing-backend/src/test/java/ca/mcgill/ecse321/ridesharing/RideSharingApplicationTests.java;1970769919/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/RideSharingApplication.java;3492212231/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Car.java;951783507/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Request.java;2824879673/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Route.java;4226249683/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/User.java;1442992590/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Vehicle.java;3746772775/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/User.java;4135191251/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Route.java;1458674948/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Car.java;3564723395/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Location.java;2731388401/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/repository/CarRepository.java;2903162732/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/controller/CarController.java;3693530383/1;"/>
+        <details xmi:id="_00adoNYjEeih67g0bTK26w" key="AssociatedSourceCode" value="/RideSharing-backend/src/test/java/ca/mcgill/ecse321/ridesharing/RideSharingApplicationTests.java;1970769919/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/RideSharingApplication.java;3492212231/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Car.java;951783507/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Request.java;2824879673/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Route.java;4226249683/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/User.java;1442992590/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Vehicle.java;3746772775/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/User.java;4135191251/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Route.java;815045831/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Car.java;3564723395/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Location.java;2731388401/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/repository/CarRepository.java;2903162732/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/controller/CarController.java;3693530383/1;"/>
       </contents>
     </eAnnotations>
     <elementImport xmi:id="_zV5RMNYjEeih67g0bTK26w">
@@ -128,6 +128,7 @@
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_QGCpgdYpEeih67g0bTK26w" value="1"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_QGCpgtYpEeih67g0bTK26w" value="*"/>
                 </ownedAttribute>
+                <ownedAttribute xmi:id="_6E3ZsNr8EeihQqIsRIz_jQ" name="date" type="_6Eu20Nr8EeihQqIsRIz_jQ"/>
               </packagedElement>
               <packagedElement xmi:type="uml:Class" xmi:id="_24J3ANYjEeih67g0bTK26w" name="Car">
                 <ownedAttribute xmi:id="_XDU-ANYkEeih67g0bTK26w" name="vehicleId">
@@ -1012,6 +1013,9 @@
         </packagedElement>
         <packagedElement xmi:type="uml:Interface" xmi:id="_zgn6gNYjEeih67g0bTK26w" name="List"/>
         <packagedElement xmi:type="uml:Interface" xmi:id="_RPFUMNY0Eeih67g0bTK26w" name="Set"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_6EfmQNr8EeihQqIsRIz_jQ" name="sql">
+        <packagedElement xmi:type="uml:DataType" xmi:id="_6Eu20Nr8EeihQqIsRIz_jQ" name="Date"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_3dSu8NYkEeih67g0bTK26w" name="" memberEnd="_3dSu8dYkEeih67g0bTK26w _3dTWAtYkEeih67g0bTK26w"/>
@@ -2452,18 +2456,13 @@
     <annotations xmi:id="_RPAbsdY0Eeih67g0bTK26w" name="NamedQueries">
       <annotationParameters xmi:id="_RPBp0NY0Eeih67g0bTK26w" skipName="true">
         <annotations xmi:id="_RPBp0dY0Eeih67g0bTK26w" name="NamedQuery">
-          <annotationParameters xmi:id="_RPBp0tY0Eeih67g0bTK26w" name="name" skipArray="true">
+          <annotationParameters xmi:id="_qOkFwdlDEeih67g0bTK26w" name="name" skipArray="true">
             <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_AfrXoNY0Eeih67g0bTK26w" value="&quot;Route.findAll&quot;"/>
           </annotationParameters>
           <annotationParameters xmi:id="_RPBp09Y0Eeih67g0bTK26w" name="query" skipArray="true">
             <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_RPLa0dY0Eeih67g0bTK26w" value="&quot;SELECT e FROM Route e&quot;"/>
           </annotationParameters>
         </annotations>
-      </annotationParameters>
-    </annotations>
-    <annotations xmi:id="_qOkFwNlDEeih67g0bTK26w" name="Table">
-      <annotationParameters xmi:id="_qOkFwdlDEeih67g0bTK26w" name="name" skipArray="true">
-        <valueSpecifications xmi:type="uml:LiteralString" xmi:id="_qOlT4NlDEeih67g0bTK26w" value="&quot;routes&quot;"/>
       </annotationParameters>
     </annotations>
   </UMLLabProfile:Annotations>
@@ -2596,4 +2595,7 @@
   <UMLLabProfile:Annotations xmi:id="_6XjKkNpLEeih67g0bTK26w" base_Element="_6XijgNpLEeih67g0bTK26w">
     <annotations xmi:id="_6XjKkdpLEeih67g0bTK26w" name="Transactional"/>
   </UMLLabProfile:Annotations>
+  <UMLLabProfile:Reference xmi:id="_6E1kgNr8EeihQqIsRIz_jQ" base_Element="_6Eu20Nr8EeihQqIsRIz_jQ"/>
+  <Persistency:Column xmi:id="_8SERENr8EeihQqIsRIz_jQ" base_Property="_6E3ZsNr8EeihQqIsRIz_jQ"/>
+  <Persistency:Table xmi:id="_BDIMUNr9EeihQqIsRIz_jQ" tableName="routes" base_Classifier="_3X1coNYjEeih67g0bTK26w"/>
 </xmi:XMI>
