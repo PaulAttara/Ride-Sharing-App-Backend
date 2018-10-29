@@ -23,6 +23,7 @@ public class RouteRepository {
 		route.setSeatsAvailable(seatsAvailable);
 		Car car = em.find(Car.class, carId);
 		route.setCar(car);
+		//test for push
 		//date must be in format yyyy-mm-dd hh:mm
 		Timestamp anyDate = Timestamp.valueOf(date + " " + time + ":00");
 		route.setDate(anyDate);
