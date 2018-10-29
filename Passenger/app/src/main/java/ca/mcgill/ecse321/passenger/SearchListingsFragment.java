@@ -4,6 +4,7 @@ package ca.mcgill.ecse321.passenger;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,7 @@ public class SearchListingsFragment extends Fragment {
     }
 
     Spinner searchTypeSpinner;
-    EditText searchLocation;
+    EditText txtsearchLocation;
     ImageButton btnSearch;
 
     ArrayList<SearchTemplate> dataModels;
@@ -44,12 +45,13 @@ public class SearchListingsFragment extends Fragment {
         ((MainActivity) getActivity()).setActionBarTitle("Search Listings");
         final View searchListingsView = inflater.inflate(R.layout.fragment_search_listings, null);
         searchTypeSpinner = searchListingsView.findViewById(R.id.searchtypespinner);
-        searchLocation = searchListingsView.findViewById(R.id.txtsearch);
+        txtsearchLocation = searchListingsView.findViewById(R.id.txtsearch);
         btnSearch = searchListingsView.findViewById(R.id.btnsearchlocation);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                searchLocation(v);
+                getSearchListings(v);
+                //getSearchListings(v, txtsearchLocation.getText().toString(), searchTypeSpinner.getSelectedItem().toString());
             }
         });
         listView = (ListView) searchListingsView.findViewById(R.id.searchlistingslistview);
@@ -61,7 +63,7 @@ public class SearchListingsFragment extends Fragment {
         return searchListingsView;
     }
 
-    private void getSearchListings() {
+    private void getSearchListings(View v) {
         dataModels = new ArrayList<>();
 
         dataModels.add(new SearchTemplate("Sauvignon", "McGill"));
@@ -97,17 +99,25 @@ public class SearchListingsFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                SearchTemplate dataModel= dataModels.get(position);
+                //dataModel is the selected item
+                SearchTemplate dataModel = dataModels.get(position);
 
+                //display message
                 Snackbar.make(view, dataModel.getStartAddress()+"\n"+dataModel.getEndAddress(), Snackbar.LENGTH_LONG)
                         .setAction("No action", null).show();
+
+                //set the ID of the selected item so that the fields on the selected listing page can be populated
+                //SelectedListingFragment.ID = ...;
+
+                //navigate to selected listing page
+                FragmentTransaction ft = ((MainActivity) getActivity()).getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.fMain, new SelectedListingFragment());
+                ft.commit();
             }
         });
     }
 
-    private void searchLocation(View v) {
-        getSearchListings();
-    }
+
 
     private void loadSpinner() {
         final List<String> list = new ArrayList<String>();

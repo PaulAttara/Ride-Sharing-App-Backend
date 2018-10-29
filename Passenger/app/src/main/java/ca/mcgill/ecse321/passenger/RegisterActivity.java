@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
         rp.add("model", "cheese");
         rp.add("plate", "1234");
 
-        HttpUtils.post("api/vehicle/create", rp, new JsonHttpResponseHandler() {
+        HttpUtils.post("/vehicle/create", rp, new JsonHttpResponseHandler() {
 
 
             @Override
