@@ -38,7 +38,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import org.apache.http.Header;
+
+import cz.msebera.android.httpclient.Header;
+import android.util.Log;
 
 
 
@@ -73,19 +75,42 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void attemptLogin(View view) {
+        attemptLogin();
+    }
+
+    public void attemptLogin(){
+        error = "";
         final String username = mUsername.getText().toString();
         final String password = mPassword.getText().toString();
-        HttpUtils.get("api/user/login/" + username + "/" + password, new RequestParams(), new JsonHttpResponseHandler() {
+        String pathURL = "api/user/login/" + username + "/" + password+"/";
+        System.out.println("this is my path: " + pathURL);
+        HttpUtils.get(pathURL, new RequestParams(), new JsonHttpResponseHandler() {
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+//
+//                try {
+//                    //loginSuccess = response.getBoolean(0);
+//                } catch (Exception e) {
+//                    error += e.getMessage();
+//                }
+//                refreshErrorMessage();
+//
+//                if (loginSuccess) {
+//                    Intent MainIntent = new Intent(LoginActivity.this, MainActivity.class);
+//                    startActivity(MainIntent);
+//                    finish();
+//                    MainActivity.username = username;
+//                    Toast.makeText(LoginActivity.this, "You are successfully signed in", Toast.LENGTH_LONG).show();
+//                } else {
+//                    Toast.makeText(LoginActivity.this, "Incorrect Username or Password", Toast.LENGTH_LONG).show();
+//                }
+//            }
 
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-
-                try {
-                    loginSuccess = response.getBoolean(0);
-                } catch (Exception e) {
-                    error += e.getMessage();
-                }
-                refreshErrorMessage();
-
+            // For some reason it always fails, but the value we're looking for is stored in errorResponse
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
+                loginSuccess = errorResponse.equals("true");
+                Toast.makeText(LoginActivity.this, error, Toast.LENGTH_LONG).show();
                 if (loginSuccess) {
                     Intent MainIntent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(MainIntent);
@@ -95,15 +120,6 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(LoginActivity.this, "Incorrect Username or Password", Toast.LENGTH_LONG).show();
                 }
-            }
-
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                try {
-                    error += errorResponse.get("message").toString();
-                } catch (JSONException e) {
-                    error += e.getMessage();
-                }
-                refreshErrorMessage();
             }
         });
     }
