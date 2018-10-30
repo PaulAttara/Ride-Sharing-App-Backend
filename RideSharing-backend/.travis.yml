@@ -1,4 +1,0 @@
-language: java
-before_script: cd RideSharing-backend
-script:
-- mvn clean install -DskipTests
