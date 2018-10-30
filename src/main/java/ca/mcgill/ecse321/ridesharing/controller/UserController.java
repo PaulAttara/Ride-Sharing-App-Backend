@@ -15,7 +15,7 @@ public class UserController {
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@ResponseBody
-	public String createVehicle(@RequestParam("username") String username,
+	public User createUser(@RequestParam("username") String username,
 								@RequestParam("password") String password,
 								@RequestParam("firstname") String firstname,
 								@RequestParam("lastname") String lastname,
@@ -23,13 +23,36 @@ public class UserController {
 								@RequestParam("city") String city,
 								@RequestParam("address") String address,
 								@RequestParam("role") String role) {
-		User result = repository.createUser(username, password, firstname, lastname, phonenumber, city, address, role);
-		if (result != null) {
-			return username + " created!";
+		User user = repository.createUser(username, password, firstname, lastname, phonenumber, city, address, role);
+		if (user != null) {
+			return user;
 		} else {
-			return "User could not be created.";
+			return null;
 		}
 	}
+	
+//	@RequestMapping(value = "/createWithCar", method = RequestMethod.POST)
+//	@ResponseBody
+//	public String createUserWithCar(@RequestParam("username") String username,
+//								@RequestParam("password") String password,
+//								@RequestParam("firstname") String firstname,
+//								@RequestParam("lastname") String lastname,
+//								@RequestParam("phonenumber") String phonenumber,
+//								@RequestParam("city") String city,
+//								@RequestParam("address") String address,
+//								@RequestParam("role") String role,
+//								@RequestParam("brand") String brand, 
+//								@RequestParam("model") String model, 
+//								@RequestParam("plate") String plate) {
+//		User user = repository.createUser(username, password, firstname, lastname, phonenumber, city, address, role);
+//		Car car = repository.createVehicle(brand, model, plate);
+//		if (result != null) {
+//			return username + " created!";
+//		} else {
+//			return "User could not be created.";
+//		}
+//	}
+//	
 	
 	@RequestMapping(value = "/addRating/{username}/{rating}", method = RequestMethod.GET)
 	public String addRating(@PathVariable("username") String username, @PathVariable("rating") String rating) {
@@ -49,7 +72,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/getUser/{id}", method = RequestMethod.GET)
-	public User getVehicle(@PathVariable("id") String id) {
+	public User getId(@PathVariable("id") String id) {
 		return repository.getUser(id);
 	}
 }

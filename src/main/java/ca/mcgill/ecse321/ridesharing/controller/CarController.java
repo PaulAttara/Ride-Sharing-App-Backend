@@ -15,12 +15,12 @@ public class CarController {
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@ResponseBody
-	public String createVehicle(@RequestParam("brand") String brand, @RequestParam("model") String model, @RequestParam("plate") String plate) {
+	public Car createVehicle(@RequestParam("brand") String brand, @RequestParam("model") String model, @RequestParam("plate") String plate) {
 		Car result = repository.createVehicle(brand, model, plate);
 		if (result != null) {
-			return model + " created!";
+			return result;
 		} else {
-			return "Vehicle could not be created.";
+			return null;
 		}
 	}
 	

@@ -7,10 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,6 +32,8 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText mCarBrand;
     private EditText mCarModel;
     private EditText mLicensePlate;
+
+    private int carId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +68,9 @@ public class RegisterActivity extends AppCompatActivity {
         Intent RegisterIntent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(RegisterIntent);
         finish();
-        addDriver();
+        addDriverUser();
+        addDriverCar();
+        //assignDriverToCar();
     }
 
     public void backToLogin(View view) {
@@ -72,17 +78,99 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(LoginIntent);
     }
 
-    public void addDriver() {
+    public void addDriverUser() {
         error = "";
         final TextView tv = (TextView) findViewById(R.id.txtusername);
         RequestParams rp = new RequestParams();
-        rp.add("brand", "Tesla");
-        rp.add("model", "cheese");
-        rp.add("plate", "1234");
+        rp.add("username", mUsername.getText().toString());
+        rp.add("password", mPassword.getText().toString());
+        rp.add("firstname", mFirstName.getText().toString());
+        rp.add("lastname", mLastName.getText().toString());
+        rp.add("phonenumber", mPhoneNumber.getText().toString());
+        rp.add("city", mCity.getText().toString());
+        rp.add("address", mAddress.getText().toString());
+        rp.add("role", "Driver");
 
+        //TODO
+        //create user with post
+        HttpUtils.post("api/user/create", rp, new JsonHttpResponseHandler() {
+            @Override
+            public void onFinish() {
+                //refreshErrorMessage();
+                tv.setText("");
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
+                System.out.println("USER: " + errorResponse);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                //refreshErrorMessage();
+            }
+        });
+    }
+
+    public int addDriverCar() {
+        error = "";
+
+        final TextView tv = (TextView) findViewById(R.id.txtusername);
+        RequestParams rp = new RequestParams();
+        rp.add("brand", mCarBrand.getText().toString());
+        rp.add("model", mCarModel.getText().toString());
+        rp.add("plate", mLicensePlate.getText().toString());
+
+        //create user with post
         HttpUtils.post("api/vehicle/create", rp, new JsonHttpResponseHandler() {
+            @Override
+            public void onFinish() {
+                //refreshErrorMessage();
+                tv.setText("");
+            }
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
 
+                try {
+                    carId = (int) response.get("vehicleId");
+                } catch (Exception e) {
+                    error += e.getMessage();
+                }
+                //refreshErrorMessage();
+            }
 
+            // For some reason it always fails, but the value we're looking for is stored in errorResponse
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
+            System.out.println("CAR: " + errorResponse);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                //refreshErrorMessage();
+            }
+        });
+
+        return carId;
+    }
+
+    public void assignDriverToCar() {
+        error = "";
+        final TextView tv = (TextView) findViewById(R.id.txtusername);
+        RequestParams rp = new RequestParams();
+
+        //create user with post
+        HttpUtils.post("api/user/create", rp, new JsonHttpResponseHandler() {
             @Override
             public void onFinish() {
                 //refreshErrorMessage();
@@ -99,7 +187,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void refreshErrorMessage() {
         // set the error message
