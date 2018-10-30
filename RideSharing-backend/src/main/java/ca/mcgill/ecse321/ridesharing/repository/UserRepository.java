@@ -84,26 +84,16 @@ public class UserRepository {
 		
 		for (String thisUsername : usernames) {
 			if(username.equals(thisUsername)) {
-				usernameFound = true;
+				
+				User user = em.find(User.class, username);
+				String userPassword = user.getPassword();
+				
+				if (userPassword.equals(password)) return true;
+				
 			}
 		}
 		
-		Query query_pass = em.createNativeQuery("select password from users;");
-		@SuppressWarnings("unchecked")
-		List<String> passwords = (List<String>) query_pass.getResultList();
-		
-		for (String thisPassword : passwords) {
-			if(password.equals(thisPassword)) {
-				passwordFound = true;
-			}
-		}
-		
-		if(usernameFound && passwordFound) {
-			return true;
-		}else {
-			return false;
-		}
-		
+		return false;	
 	}
 	
 	@Transactional
