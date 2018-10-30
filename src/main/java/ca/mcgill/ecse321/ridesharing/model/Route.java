@@ -48,7 +48,7 @@ public class Route{
 	
 	private Car car;
 
-	@OneToOne(optional=false)
+	@ManyToOne(optional=false)
 	public Car getCar() {
 		return this.car;
 	}

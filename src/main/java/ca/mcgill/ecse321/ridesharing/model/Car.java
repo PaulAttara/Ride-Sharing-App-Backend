@@ -1,5 +1,7 @@
 package ca.mcgill.ecse321.ridesharing.model;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Entity
@@ -62,14 +64,14 @@ public class Car{
 		this.driver = driver;
 	}
 
-	private Route route;
+	private Set<Route> route;
 
-	@OneToOne(mappedBy="car", optional=true)
-	public Route getRoute() {
+	@OneToMany(mappedBy="car")
+	public Set<Route> getRoute() {
 		return this.route;
 	}
 
-	public void setRoute(Route route) {
+	public void setRoute(Set<Route> route) {
 		this.route = route;
 	}
 
