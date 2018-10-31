@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -52,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
         Intent RegisterIntent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(RegisterIntent);
         finish();
-        addDriver();
+        addPassengerUser();
     }
 
     public void backToLogin(View view) {
@@ -60,15 +61,22 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(LoginIntent);
     }
 
-    public void addDriver() {
+    public void addPassengerUser() {
         error = "";
         final TextView tv = (TextView) findViewById(R.id.txtusername);
         RequestParams rp = new RequestParams();
-        rp.add("brand", "Tesla");
-        rp.add("model", "cheese");
-        rp.add("plate", "1234");
+        final String username = mUsername.getText().toString();
+        rp.add("username", username);
+        rp.add("password", mPassword.getText().toString());
+        rp.add("firstname",mFirstName.getText().toString());
+        rp.add("lastname",mLastName.getText().toString());
+        rp.add("phonenumber",mPhoneNumber.getText().toString());
+        rp.add("city",mCity.getText().toString());
+        rp.add("address",mAddress.getText().toString());
+        rp.add("role", "Passenger");
 
-        HttpUtils.post("/vehicle/create", rp, new JsonHttpResponseHandler() {
+        // question
+        HttpUtils.post("api/user/create", rp, new JsonHttpResponseHandler() {
 
 
             @Override
@@ -76,6 +84,22 @@ public class RegisterActivity extends AppCompatActivity {
                 //refreshErrorMessage();
                 tv.setText("");
             }
+           /* @Override DO I NEED THIS FOR PASSENGER
+            public void onSucces (int statusCode, Header[] header, JSONObject response){
+                try {
+
+                }
+            }*/
+           public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable){
+               System.out.println("USER: " + errorResponse);
+               if (errorResponse.equals("User Created.")) {
+
+                   Toast.makeText(RegisterActivity.this, errorResponse, Toast.LENGTH_LONG).show();
+               }
+               else{
+                   Toast.makeText(RegisterActivity.this, errorResponse, Toast.LENGTH_LONG).show();
+               }
+           }
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 try {
@@ -87,7 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-
+/*
     public void newDriver(View view) {
 //        AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
 //        dlgAlert.setMessage("This is an alert with no consequence");
@@ -117,7 +141,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     }
-
+*/
 //    private void refreshErrorMessage() {
 //        // set the error message
 //        TextView tvError = (TextView) findViewById(R.id.error);
