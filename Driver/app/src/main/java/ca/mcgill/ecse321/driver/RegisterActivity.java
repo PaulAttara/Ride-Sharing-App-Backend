@@ -69,8 +69,8 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(RegisterIntent);
         finish();
         addDriverUser();
-        addDriverCar();
-        //assignDriverToCar();
+        int id = addDriverCar();
+        assignDriverToCar(id);
     }
 
     public void backToLogin(View view) {
@@ -98,6 +98,17 @@ public class RegisterActivity extends AppCompatActivity {
             public void onFinish() {
                 //refreshErrorMessage();
                 tv.setText("");
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+
+                try {
+                    carId = (int) response.get("vehicleId");
+                } catch (Exception e) {
+                    error += e.getMessage();
+                }
+                //refreshErrorMessage();
             }
 
             @Override
@@ -148,26 +159,24 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
             System.out.println("CAR: " + errorResponse);
+            carId = Integer.parseInt(error);
+            Toast.makeText(RegisterActivity.this, errorResponse, Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                try {
-                    error += errorResponse.get("message").toString();
-                } catch (JSONException e) {
-                    error += e.getMessage();
-                }
-                //refreshErrorMessage();
+                Toast.makeText(RegisterActivity.this, "There was an error", Toast.LENGTH_LONG).show();
             }
         });
 
         return carId;
     }
 
-    public void assignDriverToCar() {
+    public void assignDriverToCar(int id) {
         error = "";
         final TextView tv = (TextView) findViewById(R.id.txtusername);
         RequestParams rp = new RequestParams();
+        final String username = mUsername.getText().toString();
 
         //create user with post
         HttpUtils.post("api/user/create", rp, new JsonHttpResponseHandler() {
