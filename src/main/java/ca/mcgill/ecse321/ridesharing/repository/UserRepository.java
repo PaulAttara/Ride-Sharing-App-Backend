@@ -10,10 +10,10 @@ import java.util.List;
 
 @Repository
 public class UserRepository {
-	
+
 	@PersistenceContext
 	EntityManager em;
-	
+
 	@Transactional
 	public double addToRatings(String username, double rating) {
 		User driver = getUser(username);
@@ -22,7 +22,7 @@ public class UserRepository {
 		double avgRating = computeRating(username);
 		return avgRating;
 	}
-	
+
 	@Transactional
 	public double computeRating(String username) {
 		User driver = getUser(username);
@@ -61,7 +61,7 @@ public class UserRepository {
 		em.persist(user);
 		return user;
 	}
-	
+
 	public boolean validateUsername(String username) {
 		Query query = em.createNativeQuery("select username from users;");
 		@SuppressWarnings("unchecked")
@@ -71,29 +71,31 @@ public class UserRepository {
 				return false;
 			}
 		}
-		
+
 		return true;
 	}
-	
+
 	public boolean login(String username, String password) {
 		Query query_user = em.createNativeQuery("select username from users;");
 		@SuppressWarnings("unchecked")
 		List<String> usernames = (List<String>) query_user.getResultList();
-		
+
 		for (String thisUsername : usernames) {
 			if(username.equals(thisUsername)) {
-				
+
 				User user = em.find(User.class, username);
 				String userPassword = user.getPassword();
-				
-				if (userPassword.equals(password)) return true;
-				
+
+				if (userPassword.equals(password)) {
+					return true;
+				}
+
 			}
 		}
-		
+
 		return false;	
 	}
-	
+
 	@Transactional
 	public User getUser(String id) {
 		return em.find(User.class, id);

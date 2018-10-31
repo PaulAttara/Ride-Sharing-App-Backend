@@ -29,7 +29,7 @@ public class RouteController {
 	}
 	
 	@RequestMapping(value = "/getRoute/{id}", method = RequestMethod.GET)
-	public Route getVehicle(@PathVariable("id") String id) {
+	public Route getRoute(@PathVariable("id") int id) {
 		return repository.getRoute(id);
 	}
 }

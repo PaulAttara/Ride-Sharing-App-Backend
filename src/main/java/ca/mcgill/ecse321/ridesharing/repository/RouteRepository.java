@@ -32,7 +32,7 @@ public class RouteRepository {
 	}
 	
 	@Transactional
-	public Route getRoute(String id) {
+	public Route getRoute(int id) {
 		return em.find(Route.class, id);
 	}
 }
