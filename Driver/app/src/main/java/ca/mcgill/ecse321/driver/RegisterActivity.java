@@ -55,7 +55,6 @@ public class RegisterActivity extends AppCompatActivity {
         mCarModel = (EditText) findViewById(R.id.txtcarmodel);
         mLicensePlate = (EditText) findViewById(R.id.txtlicenseplate);
 
-
     }
 
     //    @Override
@@ -69,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(RegisterIntent);
         finish();
         addDriverUser();
-        Toast.makeText(RegisterActivity.this, "User" + mUsername.getText().toString() + "was created", Toast.LENGTH_LONG).show();
+
     }
 
     public void backToLogin(View view) {
@@ -81,7 +80,8 @@ public class RegisterActivity extends AppCompatActivity {
         error = "";
         final TextView tv = (TextView) findViewById(R.id.txtusername);
         RequestParams rp = new RequestParams();
-        rp.add("username", mUsername.getText().toString());
+        final String username = mUsername.getText().toString();
+        rp.add("username", username);
         rp.add("password", mPassword.getText().toString());
         rp.add("firstname", mFirstName.getText().toString());
         rp.add("lastname", mLastName.getText().toString());
@@ -110,10 +110,12 @@ public class RegisterActivity extends AppCompatActivity {
                 //refreshErrorMessage();
             }
 
+            // ONSUCCESS: For some reason it always fails, but the value we're looking for is stored in errorResponse
             @Override
             public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
                 System.out.println("USER: " + errorResponse);
-                if (errorResponse.equals("User Created")) addDriverCar();;
+                if (errorResponse.equals("User Created.")) addDriverCar(username);
+                else Toast.makeText(RegisterActivity.this, errorResponse, Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -124,12 +126,12 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    public void addDriverCar() {
+    public void addDriverCar(final String username) {
         error = "";
 
         final TextView tv = (TextView) findViewById(R.id.txtusername);
         RequestParams rp = new RequestParams();
-        final String username = mUsername.getText().toString();
+
         rp.add("brand", mCarBrand.getText().toString());
         rp.add("model", mCarModel.getText().toString());
         rp.add("plate", mLicensePlate.getText().toString());
@@ -152,19 +154,21 @@ public class RegisterActivity extends AppCompatActivity {
                 //refreshErrorMessage();
             }
 
-            // For some reason it always fails, but the value we're looking for is stored in errorResponse
+            // ONSUCCESS: For some reason it always fails, but the value we're looking for is stored in errorResponse
             @Override
             public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
             //System.out.println("CAR: " + errorResponse);
             carId = Integer.parseInt(errorResponse);
-            System.out.println("CAR: " + carId);
-            assignDriverToCar(username, carId);
-            Toast.makeText(RegisterActivity.this, errorResponse, Toast.LENGTH_LONG).show();
+            //System.out.println("CAR: " + carId);
+
+            if (carId != -1) assignDriverToCar(username, carId);
+            else Toast.makeText(RegisterActivity.this, "Error in creating the vehicle", Toast.LENGTH_LONG).show();
+
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                Toast.makeText(RegisterActivity.this, "Error in creating the car", Toast.LENGTH_LONG).show();
+                Toast.makeText(RegisterActivity.this, "Error in creating the vehicle", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -173,23 +177,27 @@ public class RegisterActivity extends AppCompatActivity {
         error = "";
         final TextView tv = (TextView) findViewById(R.id.txtusername);
         RequestParams rp = new RequestParams();
-        String path = "api/vehicle/assignCar/" + username + "/" + id;
+
+        String pathUrl = "api/vehicle/assignCar/" + username + "/" + id;
 
         //create user with post
-        //System.out.println("this is my path: " + path);
-        HttpUtils.post(path, rp, new JsonHttpResponseHandler() {
+        System.out.println("this is my path: " + pathUrl);
+        HttpUtils.post(pathUrl, rp, new JsonHttpResponseHandler() {
             @Override
             public void onFinish() {
-                //refreshErrorMessage();
+                //refreshErrorMessage()
                 tv.setText("");
             }
+
+            // ONSUCCESS: For some reason it always fails, but the value we're looking for is stored in errorResponse
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
+                Toast.makeText(RegisterActivity.this, errorResponse, Toast.LENGTH_LONG).show();
+            }
+
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                try {
-                    error += errorResponse.get("message").toString();
-                } catch (JSONException e) {
-                    error += e.getMessage();
-                }
+                Toast.makeText(RegisterActivity.this, "Error in assigning user to car", Toast.LENGTH_LONG).show();
                 //refreshErrorMessage();
             }
         });
