@@ -1,6 +1,8 @@
 package ca.mcgill.ecse321.ridesharing.repository;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -51,11 +53,30 @@ public class LocationRepository {
 		}
 		
 		location.setPassenger(passenger);
+		passenger.setRequest(location);
+		em.persist(location);
+		em.persist(route);
+		em.persist(passenger);
 		return true;
 	}
 	
 	@Transactional
 	public Location getLocation(int id) {
 		return em.find(Location.class, id);
+	}
+
+	public boolean assignToRoute(int routeId) {
+		Route route = em.find(Route.class, routeId);
+		if(route == null) {
+			return false;
+		}
+		Query query = em.createNativeQuery("select * from locations where route_routeid = '"+ routeId + "';");
+		@SuppressWarnings("unchecked")
+		List<String> locations = (List<String>) query.getResultList();
+		@SuppressWarnings("unchecked")
+		Set<Location> locationSet = new HashSet(locations);
+		route.setStops(locationSet);
+		em.persist(route);
+		return true;
 	}
 }

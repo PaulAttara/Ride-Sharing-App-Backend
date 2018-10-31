@@ -46,6 +46,17 @@ public class LocationController {
 		}
 	}
 	
+	@RequestMapping(value="/assignLocations/{routeId}", method = RequestMethod.POST)
+	@ResponseBody
+	public String setLocationsToRoute(@PathVariable("routeId") int routeId) {
+		boolean result = repository.assignToRoute(routeId);
+		if(result) {
+			return "Stops assigned.";
+		}else {
+			return "Could not assign stops";
+		}
+	}
+	
 	@RequestMapping(value = "/getLocation/{id}", method = RequestMethod.GET)
 	public Location getLocation(@PathVariable("id") int id) {
 		return repository.getLocation(id);
