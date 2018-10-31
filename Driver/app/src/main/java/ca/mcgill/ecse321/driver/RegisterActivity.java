@@ -69,8 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(RegisterIntent);
         finish();
         addDriverUser();
-        int id = addDriverCar();
-        assignDriverToCar(id);
+        Toast.makeText(RegisterActivity.this, "User" + mUsername.getText().toString() + "was created", Toast.LENGTH_LONG).show();
     }
 
     public void backToLogin(View view) {
@@ -114,25 +113,23 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
                 System.out.println("USER: " + errorResponse);
+                if (errorResponse.equals("User Created")) addDriverCar();;
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                try {
-                    error += errorResponse.get("message").toString();
-                } catch (JSONException e) {
-                    error += e.getMessage();
-                }
+                System.out.println("USER: " + errorResponse);
                 //refreshErrorMessage();
             }
         });
     }
 
-    public int addDriverCar() {
+    public void addDriverCar() {
         error = "";
 
         final TextView tv = (TextView) findViewById(R.id.txtusername);
         RequestParams rp = new RequestParams();
+        final String username = mUsername.getText().toString();
         rp.add("brand", mCarBrand.getText().toString());
         rp.add("model", mCarModel.getText().toString());
         rp.add("plate", mLicensePlate.getText().toString());
@@ -158,28 +155,29 @@ public class RegisterActivity extends AppCompatActivity {
             // For some reason it always fails, but the value we're looking for is stored in errorResponse
             @Override
             public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
-            System.out.println("CAR: " + errorResponse);
-            carId = Integer.parseInt(error);
+            //System.out.println("CAR: " + errorResponse);
+            carId = Integer.parseInt(errorResponse);
+            System.out.println("CAR: " + carId);
+            assignDriverToCar(username, carId);
             Toast.makeText(RegisterActivity.this, errorResponse, Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                Toast.makeText(RegisterActivity.this, "There was an error", Toast.LENGTH_LONG).show();
+                Toast.makeText(RegisterActivity.this, "Error in creating the car", Toast.LENGTH_LONG).show();
             }
         });
-
-        return carId;
     }
 
-    public void assignDriverToCar(int id) {
+    public void assignDriverToCar(String username, int id) {
         error = "";
         final TextView tv = (TextView) findViewById(R.id.txtusername);
         RequestParams rp = new RequestParams();
-        final String username = mUsername.getText().toString();
+        String path = "api/vehicle/assignCar/" + username + "/" + id;
 
         //create user with post
-        HttpUtils.post("api/user/create", rp, new JsonHttpResponseHandler() {
+        //System.out.println("this is my path: " + path);
+        HttpUtils.post(path, rp, new JsonHttpResponseHandler() {
             @Override
             public void onFinish() {
                 //refreshErrorMessage();

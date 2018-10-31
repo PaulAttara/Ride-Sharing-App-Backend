@@ -15,7 +15,7 @@ public class UserController {
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@ResponseBody
-	public User createUser(@RequestParam("username") String username,
+	public String createUser(@RequestParam("username") String username,
 								@RequestParam("password") String password,
 								@RequestParam("firstname") String firstname,
 								@RequestParam("lastname") String lastname,
@@ -25,9 +25,9 @@ public class UserController {
 								@RequestParam("role") String role) {
 		User user = repository.createUser(username, password, firstname, lastname, phonenumber, city, address, role);
 		if (user != null) {
-			return user;
+			return "User Created.";
 		} else {
-			return null;
+			return "error";
 		}
 	}
 	
