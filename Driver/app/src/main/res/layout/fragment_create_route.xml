@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/parent_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
         android:orientation="vertical">
 
         <TextView
@@ -22,46 +19,44 @@
             android:textColor="@color/colorAccent"
             android:visibility="gone" />
 
-        <LinearLayout
-            android:id="@+id/parent_linear_layout"
+        <EditText
+            android:id="@+id/txtnumberofseats"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/prompt_numberofseats"
+            android:inputType="number" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/txtstartcity"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/prompt_startlocationcity" />
 
 
             <EditText
-                android:id="@+id/txtnumberofseats"
-                android:layout_width="match_parent"
+                android:id="@+id/txtstartstreet"
+                android:layout_width="208dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/prompt_numberofseats"
-                android:inputType="number" />
+                android:hint="@string/prompt_startlocationstreet" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        </LinearLayout>
 
-                <EditText
-                    android:id="@+id/txtstartcity"
-                    android:layout_width="190dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/prompt_startlocationcity" />
-
-
-                <EditText
-                    android:id="@+id/txtstartstreet"
-                    android:layout_width="208dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/prompt_startlocationstreet" />
-
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/txtroutedate"
-                android:layout_width="wrap_content"
+                android:layout_width="190dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/prompt_routedate"
@@ -74,53 +69,67 @@
                 android:ems="10"
                 android:hint="@string/prompt_routetime"
                 android:inputType="time" />
+        </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/txtnewlocation"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:hint="@string/prompt_newlocationcity" />
+
+            <EditText
+                android:id="@+id/txtlocationstreet"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/prompt_newlocationstreet"
+                android:inputType="numberDecimal" />
 
-                <EditText
-                    android:id="@+id/txtnewlocation"
-                    android:layout_width="20dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:hint="@string/prompt_newlocationcity" />
+            <EditText
+                android:id="@+id/txtlocationprice"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/prompt_newlocationprice"
+                android:inputType="numberDecimal" />
 
-                <EditText
-                    android:id="@+id/txtlocationstreet"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="@string/prompt_newlocationstreet"
-                    android:inputType="numberDecimal" />
+            <Button
+                android:id="@+id/btnremovelocation"
+                android:layout_width="10dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:background="@android:drawable/ic_delete" />
+        </LinearLayout>
 
-                <EditText
-                    android:id="@+id/txtlocationprice"
-                    android:layout_width="65dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="@string/prompt_newlocationprice"
-                    android:inputType="numberDecimal" />
 
-                <Button
-                    android:id="@+id/btnremovelocation"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:background="@android:drawable/ic_delete" />
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/btnaddlocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/action_addlocation" />
+
+            <Button
+                android:id="@+id/btncreateroute"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add Location" />
+                android:text="@string/action_createroute" />
+
 
         </LinearLayout>
     </LinearLayout>
+</LinearLayout>
 
 
-</RelativeLayout>

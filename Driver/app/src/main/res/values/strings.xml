@@ -33,16 +33,16 @@
     <string name="prompt_newlocationprice">Price</string>
     <string name="action_back">Back</string>
 
-    <string name="prompt_routedate">Date</string>
-    <string name="prompt_routetime">Time</string>
+    <string name="prompt_routedate">Departure Date</string>
+    <string name="prompt_routetime">Departure Time</string>
     <string name="action_changepassword">Change Password</string>
     <string name="action_changeusername">Change Username</string>
     <string name="action_changeaddress">Change Address</string>
     <string name="action_deleteaccount">Delete Account</string>
     <string name="prompt_rating">My Rating: </string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="action_backlistings">Back to Listings</string>
+    <string name="action_addlocation">Add Location</string>
+    <string name="action_createroute">Create</string>
 
 </resources>

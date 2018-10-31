@@ -11,10 +11,19 @@
 
     <EditText
         android:id="@+id/txtnewlocation"
-        android:layout_width="0dp"
+        android:layout_width="20dp"
         android:layout_height="match_parent"
         android:layout_weight="5"
-        android:hint= "asdf" />
+        android:hint="@string/prompt_newlocationcity" />
+
+    <EditText
+        android:id="@+id/txtlocationstreet"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="@string/prompt_newlocationstreet"
+        android:inputType="numberDecimal" />
 
     <EditText
         android:id="@+id/txtlocationprice"
@@ -22,13 +31,13 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ems="10"
-        android:inputType="numberDecimal"
-        android:hint="@string/prompt_newlocationprice"/>
+        android:hint="@string/prompt_newlocationprice"
+        android:inputType="numberDecimal" />
 
     <Button
-        android:id="@+id/newbtnremovelocation"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:id="@+id/btnremovelocation"
+        android:layout_width="10dp"
+        android:layout_height="30dp"
         android:layout_weight="1"
-        android:background="@android:drawable/ic_delete"/>
+        android:background="@android:drawable/ic_delete" />
 </LinearLayout>

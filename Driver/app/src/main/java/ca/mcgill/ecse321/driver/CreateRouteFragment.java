@@ -74,7 +74,7 @@ public class CreateRouteFragment extends Fragment {
         LayoutInflater inflater = (LayoutInflater) ((MainActivity)getActivity()).getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View rowView = inflater.inflate(R.layout.addlocationrow, null);
         parentLinearLayout.addView(rowView, parentLinearLayout.getChildCount() - 1);
-        Button remove = rowView.findViewById(R.id.newbtnremovelocation);
+        Button remove = rowView.findViewById(R.id.btnremovelocation);
         remove.setOnClickListener(new View.OnClickListener()
         {
             @Override
