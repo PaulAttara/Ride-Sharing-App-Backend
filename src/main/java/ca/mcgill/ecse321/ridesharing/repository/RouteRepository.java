@@ -2,12 +2,14 @@ package ca.mcgill.ecse321.ridesharing.repository;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import ca.mcgill.ecse321.ridesharing.model.*;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -34,5 +36,13 @@ public class RouteRepository {
 	@Transactional
 	public Route getRoute(int id) {
 		return em.find(Route.class, id);
+	}
+
+	public List<Route> getRoutesForDriver(String username) {
+		User driver = em.find(User.class, username);
+		Set<Route> routes = driver.getCar().getRoute();
+		List<Route> routeList = new ArrayList<Route>();
+		routeList.addAll(routes);
+		return routeList;
 	}
 }

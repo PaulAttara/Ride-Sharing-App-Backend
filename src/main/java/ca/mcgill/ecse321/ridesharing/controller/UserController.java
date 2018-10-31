@@ -31,29 +31,6 @@ public class UserController {
 		}
 	}
 	
-//	@RequestMapping(value = "/createWithCar", method = RequestMethod.POST)
-//	@ResponseBody
-//	public String createUserWithCar(@RequestParam("username") String username,
-//								@RequestParam("password") String password,
-//								@RequestParam("firstname") String firstname,
-//								@RequestParam("lastname") String lastname,
-//								@RequestParam("phonenumber") String phonenumber,
-//								@RequestParam("city") String city,
-//								@RequestParam("address") String address,
-//								@RequestParam("role") String role,
-//								@RequestParam("brand") String brand, 
-//								@RequestParam("model") String model, 
-//								@RequestParam("plate") String plate) {
-//		User user = repository.createUser(username, password, firstname, lastname, phonenumber, city, address, role);
-//		Car car = repository.createVehicle(brand, model, plate);
-//		if (result != null) {
-//			return username + " created!";
-//		} else {
-//			return "User could not be created.";
-//		}
-//	}
-//	
-	
 	@RequestMapping(value = "/addRating/{username}/{rating}", method = RequestMethod.GET)
 	public String addRating(@PathVariable("username") String username, @PathVariable("rating") String rating) {
 		double newRating = Double.parseDouble(rating);

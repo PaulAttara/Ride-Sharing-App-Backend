@@ -3,6 +3,8 @@ package ca.mcgill.ecse321.ridesharing.controller;
 import ca.mcgill.ecse321.ridesharing.model.*;
 import ca.mcgill.ecse321.ridesharing.repository.RouteRepository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +28,12 @@ public class RouteController {
 		} else {
 			return "Route could not be created.";
 		}
+	}
+	
+	@RequestMapping(value = "/getRoutes/{username}", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Route> getRoutes(@PathVariable("username") String username){
+		return repository.getRoutesForDriver(username);
 	}
 	
 	@RequestMapping(value = "/getRoute/{id}", method = RequestMethod.GET)

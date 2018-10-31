@@ -30,16 +30,26 @@ public class LocationRepository {
 	}
 	
 	@Transactional
-	public boolean addPassenger(String username, int routeId, int locationId) {
+	public boolean addPassenger(String username, int routeId, int locationId){
 		User passenger = em.find(User.class, username);
 		if(passenger == null) {
 			return false;
 		}
 		Location location = getLocation(locationId);
 		Route route = location.getRoute();
+	
 		if(route.getRouteId() != routeId) {
 			return false;
 		}
+		int seatsAvailable = route.getSeatsAvailable();
+		seatsAvailable--;
+		route.setSeatsAvailable(seatsAvailable);
+		
+		if(seatsAvailable < 0) {
+			route.setSeatsAvailable(0);
+			return false;
+		}
+		
 		location.setPassenger(passenger);
 		return true;
 	}

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.mcgill.ecse321.ridesharing.model.Location;
+import ca.mcgill.ecse321.ridesharing.repository.InvalidInputException;
 import ca.mcgill.ecse321.ridesharing.repository.LocationRepository;
 
 @RestController
@@ -32,11 +33,11 @@ public class LocationController {
 		}
 	}
 	
-	@RequestMapping(value="/addPassenger/{username}/{routeId}/{locationId}")
+	@RequestMapping(value="/addPassenger/{username}/{routeId}/{locationId}", method = RequestMethod.POST)
 	@ResponseBody
 	public String registerUserToLocation(@PathVariable("username") String username, 
 										 @PathVariable("routeId") int routeId,
-										 @PathVariable("locationId") int locationId) {
+										 @PathVariable("locationId") int locationId){
 		boolean result = repository.addPassenger(username, routeId, locationId);
 		if(result) {
 			return username + " added to location #" + locationId + " on route #" + routeId; 
