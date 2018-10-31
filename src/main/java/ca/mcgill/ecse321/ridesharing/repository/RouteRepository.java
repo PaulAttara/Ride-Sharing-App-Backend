@@ -38,6 +38,7 @@ public class RouteRepository {
 		return em.find(Route.class, id);
 	}
 
+	@Transactional
 	public List<Route> getRoutesForDriver(String username) {
 		User driver = em.find(User.class, username);
 		Set<Route> routes = driver.getCar().getRoute();
