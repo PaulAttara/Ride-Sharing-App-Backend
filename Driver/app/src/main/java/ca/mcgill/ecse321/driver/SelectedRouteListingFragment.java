@@ -31,7 +31,6 @@ public class SelectedRouteListingFragment extends Fragment {
     TextView txtEndAddress;
     Button btnBackResults;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 

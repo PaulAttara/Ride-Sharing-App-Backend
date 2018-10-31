@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -23,10 +24,15 @@ public class CreateRouteFragment extends Fragment {
     Button removeRowBtn;
 
 
+    private EditText mUsername;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        mUsername = (EditText) findViewById(R.id.txtusername)
 
     }
 

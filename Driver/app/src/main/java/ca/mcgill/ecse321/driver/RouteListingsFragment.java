@@ -17,7 +17,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+
+import cz.msebera.android.httpclient.Header;
 
 
 public class RouteListingsFragment extends Fragment {
@@ -31,7 +37,7 @@ public class RouteListingsFragment extends Fragment {
     ArrayList<RouteTemplate> dataModels;
     ListView listView;
     private static RouteAdapter adapter;
-
+    private String username = MainActivity.username;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -69,6 +75,32 @@ public class RouteListingsFragment extends Fragment {
     public void getRouteListings(){
 
         dataModels = new ArrayList<>();
+        //System.out.println("TEST: " + MainActivity.username );
+
+        //This is where the get method for routes goes for the user.
+//        HttpUtils.get("api/user/create", rp, new JsonHttpResponseHandler() {
+//            @Override
+//            public void onFinish() {
+//                //refreshErrorMessage();
+//            }
+//
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+//                try {
+//                } catch (Exception e) {
+//                }
+//                //refreshErrorMessage();
+//            }
+//
+//            // ONSUCCESS: For some reason it always fails, but the value we're looking for is stored in errorResponse
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+//            }
+//        });
 
         dataModels.add(new RouteTemplate("Sauvignon", "McGill"));
         dataModels.add(new RouteTemplate("Canada", "Egypt"));

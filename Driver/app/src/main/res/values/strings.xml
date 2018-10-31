@@ -24,10 +24,12 @@
     <string name="prompt_carbrand">Car Brand</string>
     <string name="prompt_carmodel">Car Model</string>
     <string name="prompt_licenseplate">License Plate</string>
-    <string name="prompt_startaddress">Start Address</string>
+    <string name="prompt_startlocationcity">Start City</string>
+    <string name="prompt_startlocationstreet">Start Street</string>
     <string name="prompt_endaddress">End Address</string>
     <string name="prompt_numberofseats">Number of Seats</string>
-    <string name="prompt_newlocationname">New Location</string>
+    <string name="prompt_newlocationcity">New City</string>
+    <string name="prompt_newlocationstreet">New Street</string>
     <string name="prompt_newlocationprice">Price</string>
     <string name="action_back">Back</string>
 

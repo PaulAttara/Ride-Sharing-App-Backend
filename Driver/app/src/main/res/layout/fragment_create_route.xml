@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
         android:orientation="vertical">
 
         <TextView
@@ -27,38 +34,46 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number"
-                android:hint="@string/prompt_numberofseats" />
+                android:hint="@string/prompt_numberofseats"
+                android:inputType="number" />
 
-            <EditText
-                android:id="@+id/txtstartaddress"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/prompt_startaddress" />
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/txtendaddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/prompt_endaddress" />
+                <EditText
+                    android:id="@+id/txtstartcity"
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/prompt_startlocationcity" />
+
+
+                <EditText
+                    android:id="@+id/txtstartstreet"
+                    android:layout_width="208dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/prompt_startlocationstreet" />
+
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/txtroutedate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="date"
-                android:hint="@string/prompt_routedate"/>
+                android:hint="@string/prompt_routedate"
+                android:inputType="date" />
 
             <EditText
                 android:id="@+id/txtroutetime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="time"
-                android:hint="@string/prompt_routetime"/>
+                android:hint="@string/prompt_routetime"
+                android:inputType="time" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -67,10 +82,19 @@
 
                 <EditText
                     android:id="@+id/txtnewlocation"
-                    android:layout_width="0dp"
+                    android:layout_width="20dp"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
-                    android:hint="@string/prompt_newlocationname" />
+                    android:hint="@string/prompt_newlocationcity" />
+
+                <EditText
+                    android:id="@+id/txtlocationstreet"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/prompt_newlocationstreet"
+                    android:inputType="numberDecimal" />
 
                 <EditText
                     android:id="@+id/txtlocationprice"
@@ -78,8 +102,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="numberDecimal"
-                    android:hint="@string/prompt_newlocationprice"/>
+                    android:hint="@string/prompt_newlocationprice"
+                    android:inputType="numberDecimal" />
 
                 <Button
                     android:id="@+id/btnremovelocation"
@@ -93,7 +117,7 @@
                 android:id="@+id/btnaddlocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add Location"/>
+                android:text="Add Location" />
 
         </LinearLayout>
     </LinearLayout>

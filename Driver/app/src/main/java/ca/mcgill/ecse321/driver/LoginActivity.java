@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
         final String username = mUsername.getText().toString();
         final String password = mPassword.getText().toString();
         String pathURL = "api/user/login/" + username + "/" + password+"/";
-        System.out.println("this is my path: " + pathURL);
+        //System.out.println("this is my path: " + pathURL);
         HttpUtils.get(pathURL, new RequestParams(), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
