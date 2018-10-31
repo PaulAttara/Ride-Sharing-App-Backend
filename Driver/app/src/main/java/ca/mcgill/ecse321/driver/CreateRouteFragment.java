@@ -32,7 +32,7 @@ public class CreateRouteFragment extends Fragment {
 
         super.onCreate(savedInstanceState);
 
-        mUsername = (EditText) findViewById(R.id.txtusername)
+        //mUsername = (EditText) findViewById(R.id.txtusername);
 
     }
 
