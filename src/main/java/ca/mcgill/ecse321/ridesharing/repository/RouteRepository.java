@@ -45,21 +45,30 @@ public class RouteRepository {
 	@Transactional
 	public List<Route> getRoutesForDriver(String username) {
 		User driver = em.find(User.class, username);
-		Set<Route> routes = driver.getCar().getRoute();
-		List<Route> routeList = new ArrayList<Route>();
-		routeList.addAll(routes);
-		return routeList;
+		int carId = driver.getCar().getVehicleId();
+		Query query_routes = em.createNativeQuery("select * from routes where car_vehicleid = '"+carId+"';");
+		@SuppressWarnings("unchecked")
+		List<Route> routes = (List<Route>) query_routes.getResultList();
+		return routes;
 	}
 
-//	public boolean assignCarToRoute(int carId, int routeIdInt) {
-//		Car car = em.find(Car.class, carId);
-//		Route route = getRoute(routeIdInt);
-//		if(car == null || route == null) {
-//			return false;
-//		}
-//		//driver.setCar(car);
-//		route.setCar(car);
-//		em.persist(route);
-//		return true;
-//	}
+	@Transactional
+	public boolean removeRoute(int id) {
+		int rowsDeleted = em.createQuery("delete from routes where routeid = '" + id + "';").executeUpdate();
+		if(rowsDeleted == 1) {
+			return true;
+		}
+		return false;
+	}
+
+	@Transactional
+	public boolean updateRoute(int id, String date, String time) {
+		Timestamp anyDate = Timestamp.valueOf(date + " " + time + ":00");
+		Route route = getRoute(id);
+		route.setDate(anyDate);
+		em.persist(route);
+		
+		return false;
+	}
+
 }

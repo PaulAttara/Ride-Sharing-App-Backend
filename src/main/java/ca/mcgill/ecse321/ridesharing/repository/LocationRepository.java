@@ -53,10 +53,8 @@ public class LocationRepository {
 		}
 		
 		location.setPassenger(passenger);
-		passenger.setRequest(location);
 		em.persist(location);
 		em.persist(route);
-		em.persist(passenger);
 		return true;
 	}
 	
@@ -65,18 +63,23 @@ public class LocationRepository {
 		return em.find(Location.class, id);
 	}
 
-	public boolean assignToRoute(int routeId) {
+	@Transactional
+	public boolean assignToRoute(int locationId, int routeId) {
 		Route route = em.find(Route.class, routeId);
 		if(route == null) {
 			return false;
 		}
-		Query query = em.createNativeQuery("select * from locations where route_routeid = '"+ routeId + "';");
-		@SuppressWarnings("unchecked")
-		List<String> locations = (List<String>) query.getResultList();
-		@SuppressWarnings("unchecked")
-		Set<Location> locationSet = new HashSet(locations);
-		route.setStops(locationSet);
-		em.persist(route);
+		Location stop = getLocation(locationId);
+		stop.setRoute(route);
+		em.persist(stop);
 		return true;
+	}
+
+	@Transactional
+	public List<Location> getStops(int routeId) {
+		Query query_stops = em.createNativeQuery("select * from locations where route_routeid = '"+routeId+"';");
+		@SuppressWarnings("unchecked")
+		List<Location> stops = (List<Location>) query_stops.getResultList();
+		return stops;
 	}
 }

@@ -30,19 +30,29 @@ public class RouteController {
 		}
 	}
 	
-//	@RequestMapping("/assignCar/{id}/{routeId}")
-//	@ResponseBody
-//	public String assignUserToCar(@PathVariable("id") String id, @PathVariable("routeId") String routeId) {
-//		int carId = Integer.parseInt(id);
-//		int routeIdInt = Integer.parseInt(routeId);
-//		boolean result = repository.assignCarToRoute(carId, routeIdInt);
-//		if(result) {
-//			return "car #" + carId + " assigned to route id # " + routeIdInt;
-//		}else {
-//			return "Could not assign car " +carId + " to route id: " + routeIdInt +". Please make sure the fields are correct.";
-//		}
-//	}
+	@RequestMapping(value = "/remove/{id}")
+	@ResponseBody
+	public boolean removeRoute(@PathVariable("id") int id) {
+		boolean result = repository.removeRoute(id);
+		if(result) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
+	@RequestMapping(value = "/update/{id}")
+	@ResponseBody
+	public boolean updateRoute(@PathVariable("id") int id,
+				   	 		   @RequestParam("date") String date,
+							   @RequestParam("time") String time) {
+		boolean result = repository.updateRoute(id, date, time);
+		if(result) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
 	@RequestMapping(value = "/getRoutes/{username}", method = RequestMethod.GET)
 	@ResponseBody
