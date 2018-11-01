@@ -53,7 +53,7 @@ public class Location{
 
 	private User passenger;
 
-	@OneToOne(optional=false)
+	@OneToOne(optional = false)
 	public User getPassenger() {
 		return this.passenger;
 	}
