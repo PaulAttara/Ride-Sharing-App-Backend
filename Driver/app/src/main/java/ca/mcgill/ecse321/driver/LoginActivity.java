@@ -82,6 +82,17 @@ public class LoginActivity extends AppCompatActivity {
         error = "";
         final String username = mUsername.getText().toString();
         final String password = mPassword.getText().toString();
+
+        //attempt admin login
+        if (username.equals("admin") && password.equals("admin")){
+            Intent MainIntent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(MainIntent);
+            finish();
+            MainActivity.username = username;
+            Toast.makeText(LoginActivity.this, "Logged in as admin", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         String pathURL = "api/user/login/" + username + "/" + password+"/";
         //System.out.println("this is my path: " + pathURL);
         HttpUtils.get(pathURL, new RequestParams(), new JsonHttpResponseHandler() {
@@ -155,4 +166,3 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 }
-
