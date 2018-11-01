@@ -30,6 +30,10 @@ public class RouteRepository {
 		Timestamp anyDate = Timestamp.valueOf(date + " " + time + ":00");
 		route.setDate(anyDate);
 		em.persist(route);
+//		Set<Route> routes = car.getRoute();
+//		routes.add(route);
+//		em.persist(car);
+		//test
 		return route;
 	}
 	
@@ -46,4 +50,16 @@ public class RouteRepository {
 		routeList.addAll(routes);
 		return routeList;
 	}
+
+//	public boolean assignCarToRoute(int carId, int routeIdInt) {
+//		Car car = em.find(Car.class, carId);
+//		Route route = getRoute(routeIdInt);
+//		if(car == null || route == null) {
+//			return false;
+//		}
+//		//driver.setCar(car);
+//		route.setCar(car);
+//		em.persist(route);
+//		return true;
+//	}
 }

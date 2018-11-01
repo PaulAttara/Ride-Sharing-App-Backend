@@ -146,7 +146,7 @@ public class User{
 
 	private Location request;
 
-	@OneToOne(mappedBy="passenger", optional=true)
+	@OneToOne(mappedBy="passenger", optional=false)
 	public Location getRequest() {
 		return this.request;
 	}
