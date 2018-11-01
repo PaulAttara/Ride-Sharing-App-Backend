@@ -24,9 +24,9 @@ public class RouteController {
 		int seatsAvailable = Integer.parseInt(seats);
 		Route result = repository.createRoute(seatsAvailable, carId, date, time);
 		if (result != null) {
-			return "Route #" + result.getRouteId() + " created!";
+			return String.valueOf(result.getRouteId());
 		} else {
-			return "Route could not be created.";
+			return "-1";
 		}
 	}
 	

@@ -4,7 +4,7 @@
     <eAnnotations xmi:id="_ypEncNYjEeih67g0bTK26w" source="http://ns.yatta.de/umllab">
       <contents xmi:type="ecore:EAnnotation" xmi:id="_ypEncdYjEeih67g0bTK26w" source="codegen">
         <details xmi:id="_ypEnctYjEeih67g0bTK26w" key="codegenDirectory" value="/RideSharing-backend/src/main/java"/>
-        <details xmi:id="_00adoNYjEeih67g0bTK26w" key="AssociatedSourceCode" value="/RideSharing-backend/src/test/java/ca/mcgill/ecse321/ridesharing/RideSharingApplicationTests.java;1970769919/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/RideSharingApplication.java;3492212231/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Car.java;951783507/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Request.java;2824879673/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Route.java;4226249683/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/User.java;1442992590/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Vehicle.java;3746772775/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/User.java;4135191251/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Route.java;815045831/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Car.java;3564723395/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Location.java;2731388401/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/repository/CarRepository.java;1861387656/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/controller/CarController.java;3158630890/1;"/>
+        <details xmi:id="_00adoNYjEeih67g0bTK26w" key="AssociatedSourceCode" value="/RideSharing-backend/src/test/java/ca/mcgill/ecse321/ridesharing/RideSharingApplicationTests.java;1970769919/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/RideSharingApplication.java;3492212231/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Car.java;951783507/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Request.java;2824879673/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Route.java;4226249683/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/User.java;1442992590/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/model0/Vehicle.java;3746772775/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/User.java;4135191251/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Route.java;815045831/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Car.java;3564723395/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/model/Location.java;2731388401/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/repository/CarRepository.java;1861387656/1;/RideSharing-backend/src/main/java/ca/mcgill/ecse321/ridesharing/controller/CarController.java;2993874497/1;"/>
       </contents>
     </eAnnotations>
     <elementImport xmi:id="_zV5RMNYjEeih67g0bTK26w">
@@ -302,22 +302,24 @@
               <packagedElement xmi:type="uml:Class" xmi:id="_zVrOwNYjEeih67g0bTK26w" name="CarController">
                 <ownedAttribute xmi:id="_zh9XQNYjEeih67g0bTK26w" name="repository" visibility="package" type="_zZvPYNYjEeih67g0bTK26w" association="_zKPL8NexEeih67g0bTK26w"/>
                 <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_zkHTYNYjEeih67g0bTK26w" name="createVehicle" specification="_zWGskNYjEeih67g0bTK26w">
-                  <ownedParameter xmi:id="_mFYVENzAEeilEq-G_HLe7A" name="brand">
+                  <ownedParameter xmi:id="_mOIEkNzEEeilEq-G_HLe7A" name="brand">
                     <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                   </ownedParameter>
-                  <ownedParameter xmi:id="_mFY8INzAEeilEq-G_HLe7A" name="model">
+                  <ownedParameter xmi:id="_mOIroNzEEeilEq-G_HLe7A" name="model">
                     <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                   </ownedParameter>
-                  <ownedParameter xmi:id="_mFY8IdzAEeilEq-G_HLe7A" name="plate">
+                  <ownedParameter xmi:id="_mOIrodzEEeilEq-G_HLe7A" name="plate">
                     <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                   </ownedParameter>
-                  <ownedParameter xmi:id="_mFY8ItzAEeilEq-G_HLe7A" type="_24J3ANYjEeih67g0bTK26w" direction="return"/>
+                  <ownedParameter xmi:id="_mOIrotzEEeilEq-G_HLe7A" direction="return">
+                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                  </ownedParameter>
                   <language>java</language>
                   <body>Car result = repository.createVehicle(brand, model, plate);&#xD;
 		if (result != null) {&#xD;
-			return result;&#xD;
+			return String.valueOf(result.getVehicleId());&#xD;
 		} else {&#xD;
-			return null;&#xD;
+			return &quot;-1&quot;;&#xD;
 		}&#xD;
 	</body>
                 </ownedBehavior>
@@ -364,7 +366,9 @@
                   <ownedParameter xmi:id="_zWHTodYjEeih67g0bTK26w" name="plate">
                     <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                   </ownedParameter>
-                  <ownedParameter xmi:id="_zWH6sNYjEeih67g0bTK26w" type="_24J3ANYjEeih67g0bTK26w" direction="return"/>
+                  <ownedParameter xmi:id="_zWH6sNYjEeih67g0bTK26w" direction="return">
+                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                  </ownedParameter>
                 </ownedOperation>
                 <ownedOperation xmi:id="_zWOBUNYjEeih67g0bTK26w" name="getVehicle" method="_zkH6cNYjEeih67g0bTK26w">
                   <ownedParameter xmi:id="_zWOBUdYjEeih67g0bTK26w" name="id">

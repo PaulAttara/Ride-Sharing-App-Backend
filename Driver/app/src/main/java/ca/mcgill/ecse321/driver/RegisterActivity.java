@@ -80,14 +80,37 @@ public class RegisterActivity extends AppCompatActivity {
         error = "";
         final TextView tv = (TextView) findViewById(R.id.txtusername);
         RequestParams rp = new RequestParams();
+
         final String username = mUsername.getText().toString();
+        String password = mPassword.getText().toString();
+        String firstname = mFirstName.getText().toString();
+        String lastname = mLastName.getText().toString();
+        String phonenumber = mPhoneNumber.getText().toString();
+        String city = mCity.getText().toString();
+        String address = mAddress.getText().toString();
+
+        //checking for empty boxes
+        if ("".equals(password) || "".equals(firstname) ||"".equals(lastname) ||"".equals(phonenumber) ||"".equals(city) || "".equals(address)){
+            Toast.makeText(RegisterActivity.this, "One or more field empty in user", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        String brand = mCarBrand.getText().toString();
+        String model = mCarModel.getText().toString();
+        String plate = mLicensePlate.getText().toString();
+
+        if ("".equals(brand) || "".equals(model) ||"".equals(plate)) {
+            Toast.makeText(RegisterActivity.this, "One or more field empty in car", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         rp.add("username", username);
-        rp.add("password", mPassword.getText().toString());
-        rp.add("firstname", mFirstName.getText().toString());
-        rp.add("lastname", mLastName.getText().toString());
-        rp.add("phonenumber", mPhoneNumber.getText().toString());
-        rp.add("city", mCity.getText().toString());
-        rp.add("address", mAddress.getText().toString());
+        rp.add("password", password);
+        rp.add("firstname", firstname);
+        rp.add("lastname", lastname);
+        rp.add("phonenumber", phonenumber);
+        rp.add("city", city);
+        rp.add("address", address);
         rp.add("role", "Driver");
 
         //TODO
