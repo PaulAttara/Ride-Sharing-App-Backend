@@ -163,13 +163,13 @@ public class CreateRouteFragment extends Fragment {
         mPassword = (EditText) v.findViewById(R.id.txtpassword);
         mFirstName = (EditText) v.findViewById(R.id.txtroutedate);
         mLastName = (EditText) v.findViewById(R.id.txtroutetime);
-        rp.add("username", username);
-        rp.add("password", password);
-        rp.add("firstname", firstname);
-        rp.add("lastname", lastname);
-        rp.add("phonenumber", phonenumber);
-        rp.add("city", city);
-        rp.add("address", address);
+        //rp.add("username", username);
+       // rp.add("password", password);
+        //rp.add("firstname", firstname);
+       // rp.add("lastname", lastname);
+        //rp.add("phonenumber", phonenumber);
+        //rp.add("city", city);
+        //rp.add("address", address);
         rp.add("role", "Driver");
         //send post to create route
         String pathURL = "api/user/login/";

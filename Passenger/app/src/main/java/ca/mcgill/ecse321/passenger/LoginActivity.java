@@ -77,10 +77,19 @@ public class LoginActivity extends AppCompatActivity {
         attemptLogin();
     }
     public void attemptLogin () {
+
         error = "";
         final String username = mUsername.getText().toString();
         final String password = mPassword.getText().toString();
         String pathURL = "api/user/login/" + username + "/" + password + "/";
+        //attempt admin login
+        if (username.equals("admin") && password.equals("admin")){
+            Intent MainIntent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(MainIntent);
+            finish();
+            MainActivity.username = username;
+            Toast.makeText(LoginActivity.this, "Logged in as admin", Toast.LENGTH_LONG).show();
+        }
 
         HttpUtils.get(pathURL, new RequestParams(), new JsonHttpResponseHandler() {
               @Override
@@ -120,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
             @Override
-            public void onFailure(int statusCofe, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                /* try {
                   error += errorResponse.get("message").toString();
 

@@ -31,6 +31,7 @@
     <string name="prompt_address">Address</string>
     <string name="prompt_city">City</string>
     <string name="prompt_search">Search</string>
+    <string name="DropOff">Drop Off</string>
     <string name="prompt_sort">Sort By</string>
     <string name="action_back">Back</string>
     <string name="prompt_rating">My Rating:</string>
