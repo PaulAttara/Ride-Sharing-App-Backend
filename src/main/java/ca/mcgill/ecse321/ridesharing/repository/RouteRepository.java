@@ -20,11 +20,11 @@ public class RouteRepository {
 	EntityManager em;
 
 	@Transactional
-	public Route createRoute(int seatsAvailable, int carId, String date, String time) {
+	public Route createRoute(int seatsAvailable,/* int carId,*/ String date, String time) {
 		Route route = new Route();
 		route.setSeatsAvailable(seatsAvailable);
-		Car car = em.find(Car.class, carId);
-		route.setCar(car);
+//		Car car = em.find(Car.class, carId);
+//		route.setCar(car);
 		//test for push 3
 		//date must be in format yyyy-mm-dd hh:mm
 		Timestamp anyDate = Timestamp.valueOf(date + " " + time + ":00");
@@ -48,5 +48,18 @@ public class RouteRepository {
 		List<Route> routeList = new ArrayList<Route>();
 		routeList.addAll(routes);
 		return routeList;
+	}
+
+	public boolean assignCarToRoute(int carId, int routeIdInt) {
+		Car car = em.find(Car.class, carId);
+		Route route = getRoute(routeIdInt);
+		if(car == null || route == null) {
+			return false;
+		}
+		//driver.setCar(car);
+		route.setCar(car);
+		em.persist(route);
+		//em.persist(driver);
+		return true;
 	}
 }

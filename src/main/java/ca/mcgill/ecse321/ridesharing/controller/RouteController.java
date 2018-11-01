@@ -18,17 +18,31 @@ public class RouteController {
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@ResponseBody
 	public String createRoute(@RequestParam("seats") String seats,
-							  @RequestParam("car") int carId,
+							  /*@RequestParam("car") int carId,*/
 							  @RequestParam("date") String date,
 							  @RequestParam("time") String time) {
 		int seatsAvailable = Integer.parseInt(seats);
-		Route result = repository.createRoute(seatsAvailable, carId, date, time);
+		Route result = repository.createRoute(seatsAvailable, /*carId,*/ date, time);
 		if (result != null) {
 			return "Route #" + result.getRouteId() + " created!";
 		} else {
 			return "Route could not be created.";
 		}
 	}
+	
+	@RequestMapping("/assignCar/{id}/{routeId}")
+	@ResponseBody
+	public String assignUserToCar(@PathVariable("id") String id, @PathVariable("routeId") String routeId) {
+		int carId = Integer.parseInt(id);
+		int routeIdInt = Integer.parseInt(routeId);
+		boolean result = repository.assignCarToRoute(carId, routeIdInt);
+		if(result) {
+			return "car #" + carId + " assigned to route id # " + routeIdInt;
+		}else {
+			return "Could not assign car " +carId + " to route id: " + routeIdInt +". Please make sure the fields are correct.";
+		}
+	}
+	
 	
 	@RequestMapping(value = "/getRoutes/{username}", method = RequestMethod.GET)
 	@ResponseBody
