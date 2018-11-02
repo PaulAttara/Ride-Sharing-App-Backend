@@ -87,7 +87,7 @@ public class SearchListingsFragment extends Fragment {
 
         final String dropOff = txtsearchLocation.getText().toString();
 
-        String pathURL = "api/route/getRoutesForPass/" + dropOff + "/" ;
+        String pathURL = "api/location/getRoutesForPass/" + dropOff + "/" ;
 
         HttpUtils.get(pathURL, new RequestParams(), new JsonHttpResponseHandler() {
 
@@ -100,6 +100,7 @@ public class SearchListingsFragment extends Fragment {
             public void onSuccess (int statusCode, Header[] headers, JSONArray response) {
 
                 try {
+                    
                     int len = response.length();
 
                     ArrayList<JSONObject> arrays = new ArrayList<JSONObject>();
@@ -113,6 +114,7 @@ public class SearchListingsFragment extends Fragment {
                         int carId = (int) route.get(3);
                         //locations = getRouteLocations(routeId);
                         dataModels.add(new SearchTemplate(date, routeId, numSeats));
+
                     }
                         // arrays now is an array list of strings
 
@@ -149,18 +151,7 @@ public class SearchListingsFragment extends Fragment {
 
         //drivers Username and Route ID, date
 
-//        dataModels.add(new SearchTemplate("Sauvignon", "McGill"));
-//        dataModels.add(new SearchTemplate("Canada", "Egypt"));
-//        dataModels.add(new SearchTemplate("Toronto", "Ottawa"));
-//        dataModels.add(new SearchTemplate("Sauvignon", "McGill"));
-//        dataModels.add(new SearchTemplate("Canada", "Egypt"));
-//        dataModels.add(new SearchTemplate("Toronto", "Ottawa"));
-//        dataModels.add(new SearchTemplate("Sauvignon", "McGill"));
-//        dataModels.add(new SearchTemplate("Canada", "Egypt"));
-//        dataModels.add(new SearchTemplate("Toronto", "Ottawa"));
-//        dataModels.add(new SearchTemplate("Sauvignon", "McGill"));
-//        dataModels.add(new SearchTemplate("Canada", "Egypt"));
-//        dataModels.add(new SearchTemplate("Toronto", "Ottawa"));
+//
 
         //as a test to test the search, delete all non occurences of the text in the search bar once search button is clicked
 //        for(SearchTemplate location : dataModels){
