@@ -46,7 +46,6 @@ public class SelectedRouteListingFragment extends Fragment {
         txtselectedendaddess = selectedRouteListingView.findViewById(R.id.txtselectedendaddess);
         btnBackResults = selectedRouteListingView.findViewById(R.id.btnbackresults);
         txtnewstartaddess = selectedRouteListingView.findViewById(R.id.txtnewstartaddess);
-        txtnewendaddess = selectedRouteListingView.findViewById(R.id.txtnewendaddess);
         btnmodifyroute = selectedRouteListingView.findViewById(R.id.btnmodifyroute);
         error = selectedRouteListingView.findViewById(R.id.errorselected);
         btndeleteRoute =  selectedRouteListingView.findViewById(R.id.btndeleteroute);
