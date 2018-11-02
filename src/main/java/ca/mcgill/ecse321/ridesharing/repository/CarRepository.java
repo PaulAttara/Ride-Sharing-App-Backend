@@ -5,6 +5,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ca.mcgill.ecse321.ridesharing.model.*;
 
+import java.util.List;
+
 import javax.persistence.*;
 @Repository
 public class CarRepository {
@@ -36,6 +38,16 @@ public class CarRepository {
 		if(driver == null || car == null) {
 			return false;
 		}
+		int numCarsAssigned = 0;
+		Query query = em.createNativeQuery("select * from cars where driver_username = '"+username+"';");
+		@SuppressWarnings("unchecked")
+		List<Car> cars = (List<Car>) query.getResultList();
+		for(Car thisCar : cars) {
+			numCarsAssigned++;
+			if(numCarsAssigned == 1) {
+				return false;
+			}
+		}
 		//driver.setCar(car);
 		car.setDriver(driver);
 		em.persist(car);
@@ -45,8 +57,9 @@ public class CarRepository {
 
 	@Transactional
 	public int getByUsername(String username) {
-		Query query = em.createNativeQuery("select * from cars where driver_username = '"+username+"';");
-		Car car = (Car) query.getSingleResult();
-		return car.getVehicleId();
+		Query query = em.createNativeQuery("select vehicleid from cars where driver_username = '"+username+"';");
+		String idString = query.getSingleResult().toString();
+		int id = Integer.parseInt(idString);
+		return id;
 	}
 }
