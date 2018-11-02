@@ -22,6 +22,7 @@ import java.util.Collections;
 import java.util.List;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import android.content.Context;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,7 +50,7 @@ public class SearchListingsFragment extends Fragment {
     ArrayList<SearchTemplate> dataModels;
     ListView listView;
     private static SearchAdapter adapter;
-
+    public final static String ID_EXTRA = "ca.mcgill.ecse321.passenger._ID";
 
     public class Result {
         public boolean error;
@@ -165,6 +166,7 @@ public class SearchListingsFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+
                 //dataModel is the selected item
                 SearchTemplate dataModel = dataModels.get(position);
 
@@ -199,6 +201,10 @@ public class SearchListingsFragment extends Fragment {
         {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
+
+                Intent i = new Intent(SearchListingsFragment.this.getActivity(),SelectedListingFragment.class);
+                i.putExtra(ID_EXTRA, String.valueOf(id));
+                startActivity(i);
                 // TODO Auto-generated method stub
                 Toast.makeText( ((MainActivity) getActivity()), list.get(position), Toast.LENGTH_SHORT).show();
             }
