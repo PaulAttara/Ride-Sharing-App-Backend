@@ -1,22 +1,28 @@
 package ca.mcgill.ecse321.passenger;
 
 public class SearchTemplate {
-    String startAddress;
-    String endAddress;
+    String username;
+    String routeID;
+    String date;
 
 
-    public SearchTemplate(String startAddress, String endAddress) {
-        this.startAddress = startAddress;
-        this.endAddress = endAddress;
+    public SearchTemplate(String username, String routeID, String date) {
+        this.username = username;
+        this.routeID = routeID;
+        this.date = date;
     }
 
-    public String getStartAddress() {
-        return startAddress;
+    public String getUsername() {
+        return username;
     }
 
 
-    public String getEndAddress() {
-        return endAddress;
+    public String getrouteID() {
+        return routeID;
     }
+    public String getDate() {
+        return date;
+    }
+
 
 }

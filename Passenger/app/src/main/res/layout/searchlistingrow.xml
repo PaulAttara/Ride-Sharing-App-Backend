@@ -6,21 +6,30 @@
     android:padding="10dp">>
 
     <TextView
-        android:id="@+id/txtstartaddress"
+        android:id="@+id/txtrouteID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:text="Start Address"
+        android:text="Route ID"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@android:color/black" />
 
     <TextView
-        android:id="@+id/txtendaddress"
+        android:id="@+id/txtdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtstartaddress"
+        android:layout_below="@+id/txtrouteID"
         android:layout_marginTop="5dp"
-        android:text="End Address"
+        android:text="Date"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/txtusername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtdate"
+        android:layout_marginTop="5dp"
+        android:text="username"
         android:textColor="@android:color/black" />
 
     <ImageView
