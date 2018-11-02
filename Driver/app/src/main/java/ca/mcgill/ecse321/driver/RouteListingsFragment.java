@@ -40,7 +40,11 @@ public class RouteListingsFragment extends Fragment {
     }
 
     private LinearLayout parentLinearLayout;
-    ArrayList<RouteTemplate> dataModels;
+    ArrayList<RouteTemplate> dataModels; //for UI when logging in with valid user
+    ArrayList<RouteTemplate> dataModelsTEST; //for UI when logging in with admin user(AS A TEST), in case httputil doesnt pass
+    ArrayList<LocationTemplate> locationsTEST;
+
+
     ListView listView;
     private static RouteAdapter adapter;
     private String username = MainActivity.username;
@@ -54,6 +58,8 @@ public class RouteListingsFragment extends Fragment {
         final View routeListingsView = inflater.inflate(R.layout.fragment_listings_route, null);
 
         listView = (ListView) routeListingsView.findViewById(R.id.routelistingslistview);
+        locationsTEST = new ArrayList<LocationTemplate>();
+        dataModelsTEST = new ArrayList<RouteTemplate>();
 
         getRouteListings();
 
@@ -80,6 +86,47 @@ public class RouteListingsFragment extends Fragment {
     }
 
     public void getRouteListings(){
+
+        //for testing purposes (WHOLE IF STATEMENT)//////////////
+
+        if(username.equals("admin")){
+
+            locationsTEST.add(new LocationTemplate("DDO", "Mozart", "", 0));
+            locationsTEST.add(new LocationTemplate("Montreal", "Mansfield", "", 200));
+
+            dataModelsTEST.add(new RouteTemplate(locationsTEST, "2018-11-15",1234, 5, 1234 ));
+
+            adapter = new RouteAdapter(dataModelsTEST, ((MainActivity)getActivity()).getApplicationContext());
+
+
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    //dataModel is the selected item
+                    RouteTemplate dataModel = dataModelsTEST.get(position);
+
+                    //Display message
+                    Snackbar.make(view, dataModel.getStartLocation().toString()+"\n"+dataModel.getEndLocation().toString(), Snackbar.LENGTH_LONG)
+                            .setAction("No action", null).show();
+
+                    //set the ID of the selected item so that the fields on the selected listing page can be populated
+                    //SelectedListingFragment.ID = ...;
+
+                    //navigate to selected listing page
+                    FragmentTransaction ft = ((MainActivity) getActivity()).getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.fMain, new SelectedRouteListingFragment());
+                    ft.commit();
+
+                    //set routeID in selected route page
+                    SelectedRouteListingFragment.routeID = 1;
+                }
+            });
+            return;
+        }
+
+
 
         dataModels = new ArrayList<>();
 
@@ -146,7 +193,7 @@ public class RouteListingsFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 //dataModel is the selected item
-                RouteTemplate dataModel= dataModels.get(position);
+                RouteTemplate dataModel = dataModels.get(position);
 
                 //Display message
                 Snackbar.make(view, dataModel.getStartLocation().toString()+"\n"+dataModel.getEndLocation().toString(), Snackbar.LENGTH_LONG)

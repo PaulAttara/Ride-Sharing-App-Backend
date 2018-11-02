@@ -11,11 +11,31 @@
         android:orientation="vertical">
 
         <TextView
+        android:id="@+id/errorselected"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:text=""
+        android:textColor="@color/colorAccent"/>
+
+        <TextView
             android:id="@+id/txtselectedstartaddess"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:text="Start Address"/>
+
+        <EditText
+            android:id="@+id/txtnewstartaddess"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:hint="@string/prompt_newstartaddress"/>
+        <Button
+            android:id="@+id/btnchangestartaddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/action_modifystart" />
 
         <TextView
             android:id="@+id/txtselectedendaddess"
@@ -24,11 +44,28 @@
             android:textSize="24sp"
             android:text="End Address"/>
 
+        <EditText
+            android:id="@+id/txtnewendaddess"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:hint="@string/prompt_newendaddress"/>
+        <Button
+            android:id="@+id/btnchangeendaddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/action_modifystart" />
         <Button
             android:id="@+id/btnbackresults"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/action_backlistings" />
+
+        <Button
+            android:id="@+id/btndeleteroute"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/action_deleteroute" />
     </LinearLayout>
 
 </FrameLayout>
