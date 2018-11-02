@@ -9,14 +9,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-<<<<<<< HEAD
-=======
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View.OnClickListener;
 
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
+
 import static android.content.Intent.getIntent;
->>>>>>> 97ee12ed8f7f81651af91a3522fa44bb0bf8f952
 
 
 /**
@@ -33,12 +42,9 @@ public class SelectedListingFragment extends Fragment {
     //use this ID to know which listing selected
     //populate the fields of the page using it
 
-<<<<<<< HEAD
     public static String ID;
-=======
-   // public static String ID_EXTRA;
+    String error = "";
     String passedVar = null;
->>>>>>> 97ee12ed8f7f81651af91a3522fa44bb0bf8f952
     TextView txtStartAddress;
     TextView txtEndAddress;
     Button btnBackResults;
@@ -79,18 +85,49 @@ public class SelectedListingFragment extends Fragment {
     }
 
     private void populateSelectedListingPage() {
-<<<<<<< HEAD
-        //set the fields with values using ID
-=======
->>>>>>> 97ee12ed8f7f81651af91a3522fa44bb0bf8f952
+        //String pathUrl = "api/route/getStops" + "/" + ID;
+        //This is where the get method for routes goes for the user.
+        // HttpUtils.get(pathUrl, new RequestParams(), new JsonHttpResponseHandler() {
+        final String ID = txtStartAddress.getText().toString();
+        String pathURL = "api/route/getRoutes/" + ID + "/" ;
+        HttpUtils.get(pathURL, new RequestParams(), new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess (int statusCode, Header[] headers, JSONArray response) {
 
+                try {
+
+
+                }   catch (Exception e) {
+                    error += e.getMessage();
+                }
+
+
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    error += errorResponse.get("message").toString();
+                    List<String> list = new ArrayList<String>();
+                    for (int i=0; i < errorResponse.length(); i++) {
+                        list.add( errorResponse.toString() );
+
+
+                        System.out.print(errorResponse.toString()+ "\n \n \n \n");
+
+                    }
+                    // the array called
+
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+
+            }
+        });
         //set the fields with values using ID
         passedVar=getActivity().getIntent().getStringExtra(SearchListingsFragment.ID_EXTRA);
         //example
-<<<<<<< HEAD
-        txtStartAddress.setText("CANADA");
-        txtEndAddress.setText("USA");
-=======
         TextView txtStartAddress = (TextView)getView().findViewById(R.id.txtselectedstartaddess);
         TextView txtEndAddress = (TextView)getView().findViewById(R.id.txtselectedendaddess);
         //txtStartAddress=(TextView)findViewById(R.id.txtselectedstartaddess);
@@ -99,7 +136,6 @@ public class SelectedListingFragment extends Fragment {
         //txtEndAddress.setText("USA");
         txtStartAddress.setText("You selected start address ID" +passedVar);
         txtEndAddress.setText("You selected start address ID" +passedVar);
->>>>>>> 97ee12ed8f7f81651af91a3522fa44bb0bf8f952
     }
 
 }
