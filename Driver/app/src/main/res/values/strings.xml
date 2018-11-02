@@ -44,5 +44,9 @@
     <string name="action_backlistings">Back to Listings</string>
     <string name="action_addlocation">Add Location</string>
     <string name="action_createroute">Create</string>
+    <string name="action_modifystart">Modify</string>
+    <string name="prompt_newstartaddress">New Start Address</string>
+    <string name="prompt_newendaddress">New End Address</string>
+    <string name="action_deleteroute">Delete Route</string>
 
 </resources>
