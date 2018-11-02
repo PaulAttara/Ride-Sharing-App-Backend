@@ -43,8 +43,6 @@ import com.loopj.android.http.RequestParams;
 import cz.msebera.android.httpclient.Header;
 import android.util.Log;
 
-import cz.msebera.android.httpclient.Header;
-
 import static android.Manifest.permission.READ_CONTACTS;
 public class LoginActivity extends AppCompatActivity {
 

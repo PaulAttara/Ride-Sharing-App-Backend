@@ -30,7 +30,7 @@ import org.json.JSONObject;
 import cz.msebera.android.httpclient.Header;
 
 
-import com.google.gson.*;
+//import com.google.gson.*;
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -217,7 +217,7 @@ public class SearchListingsFragment extends Fragment {
         {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
-
+                
                 //Intent i = new Intent(SearchListingsFragment.this.getActivity(),SelectedListingFragment.class);
                 //i.putExtra(ID_EXTRA, String.valueOf(id));
                 //startActivity(i);
