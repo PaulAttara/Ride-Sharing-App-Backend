@@ -152,7 +152,7 @@ public class SelectedListingFragment extends Fragment {
         });
 
         //set the fields with values using ID
-        passedVar=getActivity().getIntent().getStringExtra(SearchListingsFragment.ID_EXTRA);
+        //passedVar=getActivity().getIntent().getStringExtra(SearchListingsFragment.ID_EXTRA);
         //example
         TextView txtStartAddress = (TextView)getView().findViewById(R.id.txtselectedstartaddess);
         TextView txtEndAddress = (TextView)getView().findViewById(R.id.txtselectedendaddess);
