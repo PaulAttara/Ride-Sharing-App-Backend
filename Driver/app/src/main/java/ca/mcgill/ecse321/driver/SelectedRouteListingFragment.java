@@ -54,7 +54,6 @@ public class SelectedRouteListingFragment extends Fragment {
 
         final View selectedRouteListingView = inflater.inflate(R.layout.fragment_selected_route_listing, null);
         txtselectedstartaddess = selectedRouteListingView.findViewById(R.id.txtselectedstartaddess);
-        txtselectedendaddess = selectedRouteListingView.findViewById(R.id.txtselectedendaddess);
         btnBackResults = selectedRouteListingView.findViewById(R.id.btnbackresults);
         txtnewstartaddess = selectedRouteListingView.findViewById(R.id.txtnewstartaddess);
         btnmodifyroute = selectedRouteListingView.findViewById(R.id.btnmodifyroute);
@@ -171,7 +170,6 @@ public class SelectedRouteListingFragment extends Fragment {
                 }
 
             }
-
 
             // For some reason it always fails, but the value we're looking for is stored in errorResponse
             @Override
