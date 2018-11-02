@@ -59,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
     private String error = null;
     private boolean loginSuccess = false;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -39,6 +39,8 @@ public class SelectedRouteListingFragment extends Fragment {
         txtEndAddress = selectedRouteListingView.findViewById(R.id.txtselectedendaddess);
         btnBackResults = selectedRouteListingView.findViewById(R.id.btnbackresults);
 
+
+
         btnBackResults.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,7 +50,13 @@ public class SelectedRouteListingFragment extends Fragment {
             }
         });
 
+        loadRouteInfo();
         return selectedRouteListingView;
+    }
+
+    private void loadRouteInfo() {
+
+
     }
 
 }

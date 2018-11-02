@@ -73,9 +73,8 @@ public class RouteRepository {
 	
 	@Transactional
 	public List<Location> getStops(int id) {
-		Route route = getRoute(id);
-		@SuppressWarnings("unchecked")
 		Query query_stops = em.createNativeQuery("select * from locations where route_routeid = '"+id+"';");
+		@SuppressWarnings("unchecked")
 		List<Location> stops = (List<Location>) query_stops.getResultList();
 		return stops;
 	}

@@ -2,12 +2,17 @@ package ca.mcgill.ecse321.driver;
 
 public class LocationTemplate {
 
+    @Override
+    public String toString() {
+        return City + ", " + Street;
+    }
+
     String City;
     String Street;
-    int price;
+    double price;
     String passenger;
 
-    public LocationTemplate(String city, String street, String passenger, int price) {
+    public LocationTemplate(String city, String street, String passenger, double price) {
         City = city;
         Street = street;
         this.price = price;
@@ -22,7 +27,7 @@ public class LocationTemplate {
         return Street;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 

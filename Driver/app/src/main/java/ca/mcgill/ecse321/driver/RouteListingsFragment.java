@@ -54,6 +54,7 @@ public class RouteListingsFragment extends Fragment {
         final View routeListingsView = inflater.inflate(R.layout.fragment_listings_route, null);
 
         listView = (ListView) routeListingsView.findViewById(R.id.routelistingslistview);
+
         getRouteListings();
 
 
@@ -87,7 +88,7 @@ public class RouteListingsFragment extends Fragment {
         HttpUtils.get(pathUrl, new RequestParams(), new JsonHttpResponseHandler() {
             @Override
             public void onFinish() {
-                System.out.println("TESTKAMY");
+                System.out.println("FINISHED");
             }
 
             @Override
@@ -113,24 +114,24 @@ public class RouteListingsFragment extends Fragment {
                 }
 
 
-                System.out.print("TESTKAMY");
+                System.out.print("SUCCESS");
                 //refreshErrorMessage();
 
 
             }
 
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse){
-                System.out.print("TESTKAMY");
+                System.out.print("FAILED");
             }
             // ONSUCCESS: For some reason it always fails, but the value we're looking for is stored in errorResponse
             @Override
             public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
-                System.out.print("TESTKAMY");
+                System.out.print("FAILED");
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                System.out.print("TESTKAMY");
+                System.out.print("FAILED");
             }
         });
 
@@ -162,18 +163,23 @@ public class RouteListingsFragment extends Fragment {
         });
     }
 
-    private ArrayList<LocationTemplate> getRouteLocations(int routeId) {
+    private ArrayList<LocationTemplate> getRouteLocations(int routeId) throws InterruptedException{
         String pathUrl = "api/route/getStops" + "/" + routeId + "/";
         final ArrayList<LocationTemplate> locations = new ArrayList<LocationTemplate>();
 
         HttpUtils.get(pathUrl, new RequestParams(), new JsonHttpResponseHandler() {
             @Override
             public void onFinish() {
-                System.out.println("TESTKAMY");
+                System.out.println("FINISHED");
             }
 
             @Override
+            public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, java.lang.String responseString){
+                System.out.println("SUCCESS");
+            }
+            @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                super.onSuccess(statusCode,headers, response);
                 try {
                     int len = response.length();
 
@@ -183,7 +189,7 @@ public class RouteListingsFragment extends Fragment {
                         JSONArray route = response.getJSONArray(i);
                         int locationId = (int) route.get(0);
                         String city = (String) route.get(1);
-                        int price = (int) route.get(2);
+                        double price = (double) route.get(2);
                         String street = (String) route.get(3);
                         //TODO add passengers to location;
                         String passenger = "";
@@ -192,31 +198,36 @@ public class RouteListingsFragment extends Fragment {
                     }
                 } catch (Exception e) {
                     String message = e.getMessage();
-                    String message2 = e.getMessage();
                 }
 
 
-                System.out.print("TESTKAMY");
+                System.out.print("SUCCESS");
                 //refreshErrorMessage();
 
 
             }
 
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                System.out.print("TESTKAMY");
+                System.out.print("FAILED");
             }
 
             // ONSUCCESS: For some reason it always fails, but the value we're looking for is stored in errorResponse
             @Override
             public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
-                System.out.print("TESTKAMY");
+                System.out.print("FAILED");
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                System.out.print("TESTKAMY");
+                System.out.print("FAILED");
             }
         });
+
+        //FOR SOME REASON, THESE WERE NEEDED HERE TO MAKE THE ABOVE GET REQUEST WORK
+        locations.add(new LocationTemplate("DDO", "Mozart", "", 0));
+        locations.add(new LocationTemplate("Montreal", "Mansfield", "", 200));
+        //FOR SOME REASON, THESE WERE NEEDED HERE TO MAKE THE ABOVE GET REQUEST WORK
+
         return locations;
     }
 }
