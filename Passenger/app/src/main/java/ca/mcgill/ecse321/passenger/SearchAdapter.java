@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class SearchAdapter extends ArrayAdapter<SearchTemplate> implements View.OnClickListener {
@@ -17,8 +19,9 @@ public class SearchAdapter extends ArrayAdapter<SearchTemplate> implements View.
 
     // View lookup cache
     private static class ViewHolder {
-        TextView txtStartAddress;
-        TextView txtEndAddress;
+        TextView txtDate;
+        TextView txtRouteId;
+        TextView txtNumSeats;
         //Button modifyRoute;
         //Button deleteRoute;
         ImageView info;
@@ -45,18 +48,18 @@ public class SearchAdapter extends ArrayAdapter<SearchTemplate> implements View.
 
 
 
-        switch (v.getId())
-        {
-
-            case R.id.item_info:
-
-                Snackbar.make(v, "Start Address " +dataModel.getStartAddress(), Snackbar.LENGTH_LONG)
-                        .setAction("No action", null).show();
-
-                break;
-
-
-        }
+//        switch (v.getId())
+//        {
+//
+//            case R.id.item_info:
+//
+//                Snackbar.make(v, "Start Address " +dataModel.getStartAddress(), Snackbar.LENGTH_LONG)
+//                        .setAction("No action", null).show();
+//
+//                break;
+//
+//
+//        }
 
 
     }
@@ -78,8 +81,9 @@ public class SearchAdapter extends ArrayAdapter<SearchTemplate> implements View.
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.searchlistingrow, parent, false);
-            viewHolder.txtStartAddress = (TextView) convertView.findViewById(R.id.txtstartaddress);
-            viewHolder.txtEndAddress = (TextView) convertView.findViewById(R.id.txtendaddress);
+            viewHolder.txtDate = (TextView) convertView.findViewById(R.id.txtDate);
+            viewHolder.txtRouteId = (TextView) convertView.findViewById(R.id.txtrouteId);
+            viewHolder.txtNumSeats = (TextView) convertView.findViewById(R.id.txtNumSeats);
             viewHolder.info = (ImageView) convertView.findViewById(R.id.item_info);
 
             result=convertView;
@@ -93,8 +97,9 @@ public class SearchAdapter extends ArrayAdapter<SearchTemplate> implements View.
         lastPosition = position;
 
 
-        viewHolder.txtStartAddress.setText(SearchTemplate.getStartAddress());
-        viewHolder.txtEndAddress.setText(SearchTemplate.getEndAddress());
+        viewHolder.txtDate.setText(SearchTemplate.getDate());
+        viewHolder.txtRouteId.setText(SearchTemplate.getrouteID());
+        viewHolder.txtNumSeats.setText(SearchTemplate.getNumSeats());
         viewHolder.info.setOnClickListener(this);
         viewHolder.info.setTag(position);
         // Return the completed view to render on screen
