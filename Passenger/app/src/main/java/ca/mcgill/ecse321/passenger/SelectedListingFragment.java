@@ -42,6 +42,8 @@ public class SelectedListingFragment extends Fragment {
     //use this ID to know which listing selected
     //populate the fields of the page using it
 
+
+    //ArrayList<RouteTemplate> dataModels;
     public static String ID;
     String error = "";
     String passedVar = null;
@@ -85,17 +87,39 @@ public class SelectedListingFragment extends Fragment {
     }
 
     private void populateSelectedListingPage() {
+
         //String pathUrl = "api/route/getStops" + "/" + ID;
         //This is where the get method for routes goes for the user.
         // HttpUtils.get(pathUrl, new RequestParams(), new JsonHttpResponseHandler() {
-        final String ID = txtStartAddress.getText().toString();
-        String pathURL = "api/route/getRoutes/" + ID + "/" ;
+        //final String ID = txtStartAddress.getText().toString();
+        String pathURL = "api/location/getLocationsForPassenger/" + ID;
+        //HttpUtils.get(pathURL, new RequestParams(), new JsonHttpResponseHandler() {
         HttpUtils.get(pathURL, new RequestParams(), new JsonHttpResponseHandler() {
+
+            @Override
+            public void onFinish() {
+                System.out.println("FINISHED");
+            }
+
             @Override
             public void onSuccess (int statusCode, Header[] headers, JSONArray response) {
 
                 try {
+                    int len = response.length();
 
+                    ArrayList<JSONObject> arrays = new ArrayList<JSONObject>();
+                    ArrayList<ca.mcgill.ecse321.driver.LocationTemplate> locations = new ArrayList<ca.mcgill.ecse321.driver.LocationTemplate>();
+
+                    for (int  i = 0; i < len; i++) {
+                        JSONArray route = response.getJSONArray(i);
+                        int routeId = (int) route.get(0);
+                        String date = (String) route.get(1);
+                        int numSeats = (int) route.get(2);
+                        int carId = (int) route.get(3);
+                        //locations = getRouteLocations(routeId);
+                       // dataModels.add(new SearchTemplate(date, routeId, numSeats));
+                    }
+                    // arrays now is an array list of strings
 
                 }   catch (Exception e) {
                     error += e.getMessage();
@@ -106,25 +130,21 @@ public class SelectedListingFragment extends Fragment {
             }
 
             @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse){
+                System.out.print("FAILED");
+            }
+            // ONSUCCESS: For some reason it always fails, but the value we're looking for is stored in errorResponse
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
+                System.out.print("FAILED");
+            }
+
+            @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                try {
-                    error += errorResponse.get("message").toString();
-                    List<String> list = new ArrayList<String>();
-                    for (int i=0; i < errorResponse.length(); i++) {
-                        list.add( errorResponse.toString() );
-
-
-                        System.out.print(errorResponse.toString()+ "\n \n \n \n");
-
-                    }
-                    // the array called
-
-                } catch (JSONException e) {
-                    error += e.getMessage();
-                }
-
+                System.out.print("FAILED");
             }
         });
+
         //set the fields with values using ID
         passedVar=getActivity().getIntent().getStringExtra(SearchListingsFragment.ID_EXTRA);
         //example
