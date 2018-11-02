@@ -28,8 +28,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import cz.msebera.android.httpclient.Header;
-import model.Car;
-import model.Route;
+
 
 import com.google.gson.*;
 /**
@@ -87,13 +86,35 @@ public class SearchListingsFragment extends Fragment {
         dataModels = new ArrayList<>();
 
         final String dropOff = txtsearchLocation.getText().toString();
-        String pathURL = "api/route/getRoutes/" + dropOff + "/" ;
+
+        String pathURL = "api/route/getRoutesForPass/" + dropOff + "/" ;
+
         HttpUtils.get(pathURL, new RequestParams(), new JsonHttpResponseHandler() {
+
+            @Override
+            public void onFinish() {
+                System.out.println("FINISHED");
+            }
+
             @Override
             public void onSuccess (int statusCode, Header[] headers, JSONArray response) {
 
                 try {
-                   // arrays now is an array list of strings
+                    int len = response.length();
+
+                    ArrayList<JSONObject> arrays = new ArrayList<JSONObject>();
+                    ArrayList<ca.mcgill.ecse321.driver.LocationTemplate> locations = new ArrayList<ca.mcgill.ecse321.driver.LocationTemplate>();
+
+                    for (int  i = 0; i < len; i++) {
+                        JSONArray route = response.getJSONArray(i);
+                        int routeId = (int) route.get(0);
+                        String date = (String) route.get(1);
+                        int numSeats = (int) route.get(2);
+                        int carId = (int) route.get(3);
+                        //locations = getRouteLocations(routeId);
+                        dataModels.add(new SearchTemplate(date, routeId, numSeats));
+                    }
+                        // arrays now is an array list of strings
 
                 }   catch (Exception e) {
                     error += e.getMessage();
@@ -104,23 +125,18 @@ public class SearchListingsFragment extends Fragment {
             }
 
             @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse){
+                System.out.print("FAILED");
+            }
+            // ONSUCCESS: For some reason it always fails, but the value we're looking for is stored in errorResponse
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
+                System.out.print("FAILED");
+            }
+
+            @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                 try {
-                   error += errorResponse.get("message").toString();
-                     List<String> list = new ArrayList<String>();
-                     for (int i=0; i < errorResponse.length(); i++) {
-                         list.add( errorResponse.toString() );
-
-
-                         System.out.print(errorResponse.toString()+ "\n \n \n \n");
-
-                     }
-                     // the array called
-
-                 } catch (JSONException e) {
-                     error += e.getMessage();
-                 }
-
+                System.out.print("FAILED");
             }
         });
     // this will work with a route type
@@ -171,8 +187,8 @@ public class SearchListingsFragment extends Fragment {
                 SearchTemplate dataModel = dataModels.get(position);
 
                 //display message
-                Snackbar.make(view, dataModel.getUsername()+"\n"+dataModel.getrouteID()+"\n" +dataModel.getDate(), Snackbar.LENGTH_LONG)
-                        .setAction("No action", null).show();
+               // Snackbar.make(view,"\n"+dataModel.getrouteID()+"\n" +dataModel.getDate(),"\n"+dataModel.getNumSeats()+ Snackbar.LENGTH_LONG)
+                       // .setAction("No action", null).show();
 
                 //set the ID of the selected item so that the fields on the selected listing page can be populated
                 //SelectedListingFragment.ID = ...;

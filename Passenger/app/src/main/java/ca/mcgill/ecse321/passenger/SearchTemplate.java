@@ -1,23 +1,24 @@
 package ca.mcgill.ecse321.passenger;
 
 public class SearchTemplate {
-    String username;
-    String routeID;
+
+    int routeID;
     String date;
+    int numSeats;
 
-
-    public SearchTemplate(String username, String routeID, String date) {
-        this.username = username;
-        this.routeID = routeID;
+    public SearchTemplate(String date, int routeID, int numSeats) {
         this.date = date;
+        this.routeID = routeID;
+        this.numSeats = numSeats;
     }
 
-    public String getUsername() {
-        return username;
+    public int getNumSeats() {
+        return numSeats;
     }
 
 
-    public String getrouteID() {
+
+    public int getrouteID() {
         return routeID;
     }
     public String getDate() {
