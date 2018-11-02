@@ -35,10 +35,8 @@ public class SelectedRouteListingFragment extends Fragment {
     EditText txtnewstartaddess;
     EditText txtnewendaddess;
     TextView error;
-
-    Button btnchangestartaddress;
-    Button btnchangeendaddress;
-    Button deleteRoute;
+    Button btndeleteRoute;
+    Button btnmodifyroute;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,10 +47,9 @@ public class SelectedRouteListingFragment extends Fragment {
         btnBackResults = selectedRouteListingView.findViewById(R.id.btnbackresults);
         txtnewstartaddess = selectedRouteListingView.findViewById(R.id.txtnewstartaddess);
         txtnewendaddess = selectedRouteListingView.findViewById(R.id.txtnewendaddess);
-        btnchangestartaddress = selectedRouteListingView.findViewById(R.id.btnchangestartaddress);
-        btnchangeendaddress = selectedRouteListingView.findViewById(R.id.btnchangeendaddress);
+        btnmodifyroute = selectedRouteListingView.findViewById(R.id.btnmodifyroute);
         error = selectedRouteListingView.findViewById(R.id.errorselected);
-        deleteRoute =  selectedRouteListingView.findViewById(R.id.btndeleteroute);
+        btndeleteRoute =  selectedRouteListingView.findViewById(R.id.btndeleteroute);
 
         ///POPULATE PAGE USING ROUTE ID, THERES A CONTROLLER METHOD THAT RETURNS
         //CALL GET ROUTE USING ID, RETURN INTO JSON OBJECT
@@ -67,24 +64,8 @@ public class SelectedRouteListingFragment extends Fragment {
                 ft.commit();
             }
         });
-        btnchangestartaddress.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                onModifyStartAddress(v);
-            }
-        });
 
-        btnchangeendaddress.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                onModifyEndAddress(v);
-            }
-        });
-        deleteRoute.setOnClickListener(new View.OnClickListener()
+        btndeleteRoute.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -92,10 +73,22 @@ public class SelectedRouteListingFragment extends Fragment {
                 onDeleteRoute(v);
             }
         });
+        btnmodifyroute.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                modifyRoute(v);
+            }
+        });
+
 
 
         loadRouteInfo();
         return selectedRouteListingView;
+    }
+
+    private void modifyRoute(View v) {
     }
 
     private void onDeleteRoute(View v) {
@@ -103,25 +96,7 @@ public class SelectedRouteListingFragment extends Fragment {
         //deleeeete
     }
 
-
-    private void onModifyStartAddress(View v) {
-        if ("".equals(txtnewstartaddess) ){
-            error.setText("Please enter New Start Address");
-            error.setVisibility(View.VISIBLE);
-            Toast.makeText(((MainActivity)getActivity()), "Please enter New Start Address", Toast.LENGTH_LONG).show();
-
-        }
-    }
-    private void onModifyEndAddress(View v) {
-        if ("".equals(txtnewendaddess) ){
-            error.setText("Please enter New End Address");
-            error.setVisibility(View.VISIBLE);
-            Toast.makeText(((MainActivity)getActivity()), "Please enter New End Address", Toast.LENGTH_LONG).show();
-
-        }
-    }
-
-
+    
     private void loadRouteInfo() {
 
 

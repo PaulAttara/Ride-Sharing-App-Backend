@@ -31,27 +31,35 @@
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:hint="@string/prompt_newstartaddress"/>
-        <Button
-            android:id="@+id/btnchangestartaddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/action_modifystart" />
 
         <TextView
-            android:id="@+id/txtselectedendaddess"
+            android:id="@+id/txtselecteddate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="24sp"
-            android:text="End Address"/>
+            android:text="Date"/>
 
         <EditText
-            android:id="@+id/txtnewendaddess"
+            android:id="@+id/txtnewdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="24sp"
-            android:hint="@string/prompt_newendaddress"/>
+            android:hint="@string/prompt_newdate"/>
+        <TextView
+            android:id="@+id/txtselectedtime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:text="Time"/>
+
+        <EditText
+            android:id="@+id/txtnewtime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:hint="@string/prompt_newtime"/>
         <Button
-            android:id="@+id/btnchangeendaddress"
+            android:id="@+id/btnmodifyroute"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/action_modifystart" />
@@ -65,7 +73,8 @@
             android:id="@+id/btndeleteroute"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/action_deleteroute" />
+            android:text="@string/action_deleteroute"
+            android:background="@color/colorPrimaryDark"/>
     </LinearLayout>
 
 </FrameLayout>
