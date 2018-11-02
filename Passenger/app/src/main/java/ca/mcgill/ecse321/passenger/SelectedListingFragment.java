@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.app.Activity;
 import android.content.Intent;
@@ -44,7 +45,10 @@ public class SelectedListingFragment extends Fragment {
 
 
     //ArrayList<RouteTemplate> dataModels;
-    public static String ID;
+    //public static String ID;
+    ArrayList<SearchTemplate> dataModels;
+    ListView listView;
+    private static SearchAdapter adapter;
     String error = "";
     String passedVar = null;
     TextView txtStartAddress;
@@ -87,12 +91,13 @@ public class SelectedListingFragment extends Fragment {
     }
 
     private void populateSelectedListingPage() {
+        dataModels = new ArrayList<>();
 
         //String pathUrl = "api/route/getStops" + "/" + ID;
         //This is where the get method for routes goes for the user.
         // HttpUtils.get(pathUrl, new RequestParams(), new JsonHttpResponseHandler() {
         //final String ID = txtStartAddress.getText().toString();
-        String pathURL = "api/location/getLocationsForPassenger/" + ID;
+        String pathURL = "api/location/getLocationsForPassenger/" + passedVar + "/";
         //HttpUtils.get(pathURL, new RequestParams(), new JsonHttpResponseHandler() {
         HttpUtils.get(pathURL, new RequestParams(), new JsonHttpResponseHandler() {
 
@@ -105,8 +110,8 @@ public class SelectedListingFragment extends Fragment {
             public void onSuccess (int statusCode, Header[] headers, JSONArray response) {
 
                 try {
-                    int len = response.length();
 
+                    int len = response.length();
                     ArrayList<JSONObject> arrays = new ArrayList<JSONObject>();
                     ArrayList<ca.mcgill.ecse321.driver.LocationTemplate> locations = new ArrayList<ca.mcgill.ecse321.driver.LocationTemplate>();
 
@@ -117,7 +122,8 @@ public class SelectedListingFragment extends Fragment {
                         int numSeats = (int) route.get(2);
                         int carId = (int) route.get(3);
                         //locations = getRouteLocations(routeId);
-                       // dataModels.add(new SearchTemplate(date, routeId, numSeats));
+                        //dataModels.add(new RouteTemplate(locations, date, routeId, numSeats, carId));
+                        dataModels.add(new SearchTemplate(date, routeId, numSeats));
                     }
                     // arrays now is an array list of strings
 
