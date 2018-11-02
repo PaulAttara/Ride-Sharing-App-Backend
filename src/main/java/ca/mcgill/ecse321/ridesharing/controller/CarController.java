@@ -26,7 +26,7 @@ public class CarController {
 		}
 	}
 	
-	@RequestMapping("/assignCar/{username}/{id}")
+	@RequestMapping("/assignCar/{username}/{id}/")
 	@ResponseBody
 	public String assignUserToCar(@PathVariable("username") String username, @PathVariable("id") String id) {
 		System.out.println("in assignusertocar");
@@ -38,8 +38,13 @@ public class CarController {
 			return "Could not assign " +username + " to car id: " + id +". Please make sure the fields are correct.";
 		}
 	}
+	
+	@RequestMapping(value = "/getIdFromUsername/{username}/", method = RequestMethod.GET)
+	public int getVehicleByUser(@PathVariable("username") String username) {
+		return repository.getByUsername(username);
+	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}/", method = RequestMethod.GET)
 	public Car getVehicle(@PathVariable("id") int id) {
 		return repository.getVehicle(id);
 	}

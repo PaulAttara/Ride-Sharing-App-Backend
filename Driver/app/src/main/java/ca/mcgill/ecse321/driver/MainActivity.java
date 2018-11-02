@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private String error = null;
     static String username;
+    static String routeId;
 
     public static String getUsername() {
         return username;

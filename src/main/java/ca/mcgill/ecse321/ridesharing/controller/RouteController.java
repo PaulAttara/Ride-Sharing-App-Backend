@@ -30,7 +30,7 @@ public class RouteController {
 		}
 	}
 	
-	@RequestMapping(value = "/remove/{id}")
+	@RequestMapping(value = "/remove/{id}/")
 	@ResponseBody
 	public boolean removeRoute(@PathVariable("id") int id) {
 		boolean result = repository.removeRoute(id);
@@ -41,7 +41,7 @@ public class RouteController {
 		}
 	}
 	
-	@RequestMapping(value = "/update/{id}")
+	@RequestMapping(value = "/update/{id}/")
 	@ResponseBody
 	public boolean updateRoute(@PathVariable("id") int id,
 				   	 		   @RequestParam("date") String date,
@@ -54,14 +54,21 @@ public class RouteController {
 		}
 	}
 	
-	@RequestMapping(value = "/getRoutes/{username}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getRoutes/{username}/", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Route> getRoutes(@PathVariable("username") String username){
 		return repository.getRoutesForDriver(username);
 	}
 	
-	@RequestMapping(value = "/getRoute/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getRoute/{id}/", method = RequestMethod.GET)
 	public Route getRoute(@PathVariable("id") int id) {
 		return repository.getRoute(id);
+	}
+	
+	@RequestMapping(value = "/getStops/{id}/", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Location> getStops(@PathVariable("id") int id) {
+		return repository.getStops(id);
+		
 	}
 }

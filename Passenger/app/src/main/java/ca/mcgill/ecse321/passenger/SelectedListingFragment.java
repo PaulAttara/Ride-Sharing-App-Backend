@@ -9,6 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+<<<<<<< HEAD
+=======
+import android.app.Activity;
+import android.content.Intent;
+import android.view.View.OnClickListener;
+
+import static android.content.Intent.getIntent;
+>>>>>>> 97ee12ed8f7f81651af91a3522fa44bb0bf8f952
 
 
 /**
@@ -25,7 +33,12 @@ public class SelectedListingFragment extends Fragment {
     //use this ID to know which listing selected
     //populate the fields of the page using it
 
+<<<<<<< HEAD
     public static String ID;
+=======
+   // public static String ID_EXTRA;
+    String passedVar = null;
+>>>>>>> 97ee12ed8f7f81651af91a3522fa44bb0bf8f952
     TextView txtStartAddress;
     TextView txtEndAddress;
     Button btnBackResults;
@@ -66,11 +79,27 @@ public class SelectedListingFragment extends Fragment {
     }
 
     private void populateSelectedListingPage() {
+<<<<<<< HEAD
         //set the fields with values using ID
+=======
+>>>>>>> 97ee12ed8f7f81651af91a3522fa44bb0bf8f952
 
+        //set the fields with values using ID
+        passedVar=getActivity().getIntent().getStringExtra(SearchListingsFragment.ID_EXTRA);
         //example
+<<<<<<< HEAD
         txtStartAddress.setText("CANADA");
         txtEndAddress.setText("USA");
+=======
+        TextView txtStartAddress = (TextView)getView().findViewById(R.id.txtselectedstartaddess);
+        TextView txtEndAddress = (TextView)getView().findViewById(R.id.txtselectedendaddess);
+        //txtStartAddress=(TextView)findViewById(R.id.txtselectedstartaddess);
+        //txtEndAddress=(TextView)findViewById(R.id.txtselectedendaddess);
+        //txtStartAddress.setText("CANADA");
+        //txtEndAddress.setText("USA");
+        txtStartAddress.setText("You selected start address ID" +passedVar);
+        txtEndAddress.setText("You selected start address ID" +passedVar);
+>>>>>>> 97ee12ed8f7f81651af91a3522fa44bb0bf8f952
     }
 
 }

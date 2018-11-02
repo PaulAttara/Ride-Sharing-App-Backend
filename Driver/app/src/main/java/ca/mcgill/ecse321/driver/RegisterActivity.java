@@ -215,7 +215,7 @@ public class RegisterActivity extends AppCompatActivity {
             // ONSUCCESS: For some reason it always fails, but the value we're looking for is stored in errorResponse
             @Override
             public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
-                Toast.makeText(RegisterActivity.this, errorResponse, Toast.LENGTH_LONG).show();
+                Toast.makeText(RegisterActivity.this, "New User Created!" + "\n" + errorResponse, Toast.LENGTH_LONG).show();
             }
 
             @Override

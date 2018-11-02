@@ -18,8 +18,8 @@ public class CarRepository {
 		aCar.setBrand(brand);
 		aCar.setModel(model);
 		aCar.setLicensePlate(licensePlate);
-		//aCar.setRoute(null);
-		//aCar.setDriver(null);
+		aCar.setRoute(null);
+		aCar.setDriver(null);
 		em.persist(aCar);
 		return aCar;
 	}
@@ -41,5 +41,12 @@ public class CarRepository {
 		em.persist(car);
 		//em.persist(driver);
 		return true;
+	}
+
+	@Transactional
+	public int getByUsername(String username) {
+		Query query = em.createNativeQuery("select * from cars where driver_username = '"+username+"';");
+		Car car = (Car) query.getSingleResult();
+		return car.getVehicleId();
 	}
 }

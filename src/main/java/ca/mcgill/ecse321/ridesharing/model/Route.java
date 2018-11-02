@@ -2,6 +2,8 @@ package ca.mcgill.ecse321.ridesharing.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.sql.Timestamp;
 import java.util.Set;
@@ -35,6 +37,17 @@ public class Route{
 		return this.seatsAvailable;
 	}
 	
+	private String startLocation;
+	
+	public void setStartLocation(String value) {
+		this.startLocation = value;
+	}
+	
+	@Column
+	public String getStartLocation() {
+		return this.startLocation;
+	}
+	
 	private Timestamp date;
 	
 	public void setDate(Timestamp date) {
@@ -49,6 +62,7 @@ public class Route{
 	private Car car;
 
 	@ManyToOne(optional=false)
+	@JsonManagedReference
 	public Car getCar() {
 		return this.car;
 	}

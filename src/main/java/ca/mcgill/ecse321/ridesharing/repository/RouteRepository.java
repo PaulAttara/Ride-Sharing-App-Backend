@@ -70,5 +70,13 @@ public class RouteRepository {
 		
 		return false;
 	}
+	
+	@Transactional
+	public List<Location> getStops(int id) {
+		Query query_stops = em.createNativeQuery("select * from locations where route_routeid = '"+id+"';");
+		@SuppressWarnings("unchecked")
+		List<Location> stops = (List<Location>) query_stops.getResultList();
+		return stops;
+	}
 
 }
