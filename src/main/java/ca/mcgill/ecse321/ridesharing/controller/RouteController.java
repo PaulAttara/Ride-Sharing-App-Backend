@@ -30,6 +30,30 @@ public class RouteController {
 		}
 	}
 	
+	@RequestMapping(value = "/remove/{id}")
+	@ResponseBody
+	public boolean removeRoute(@PathVariable("id") int id) {
+		boolean result = repository.removeRoute(id);
+		if(result) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	@RequestMapping(value = "/update/{id}")
+	@ResponseBody
+	public boolean updateRoute(@PathVariable("id") int id,
+				   	 		   @RequestParam("date") String date,
+							   @RequestParam("time") String time) {
+		boolean result = repository.updateRoute(id, date, time);
+		if(result) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 	@RequestMapping(value = "/getRoutes/{username}", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Route> getRoutes(@PathVariable("username") String username){

@@ -18,8 +18,8 @@ public class CarRepository {
 		aCar.setBrand(brand);
 		aCar.setModel(model);
 		aCar.setLicensePlate(licensePlate);
-		aCar.setRoute(null);
-		aCar.setDriver(null);
+		//aCar.setRoute(null);
+		//aCar.setDriver(null);
 		em.persist(aCar);
 		return aCar;
 	}
@@ -36,10 +36,10 @@ public class CarRepository {
 		if(driver == null || car == null) {
 			return false;
 		}
-		driver.setCar(car);
+		//driver.setCar(car);
 		car.setDriver(driver);
 		em.persist(car);
-		em.persist(driver);
+		//em.persist(driver);
 		return true;
 	}
 }

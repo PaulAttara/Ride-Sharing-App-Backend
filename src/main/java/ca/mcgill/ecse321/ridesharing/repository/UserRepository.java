@@ -56,8 +56,8 @@ public class UserRepository {
 		user.setAddress(address);
 		user.setRole(role);
 		user.setRatings(null);
-		user.setAvgRating(0);
-		user.setNumTrips(0);
+		//user.setAvgRating(0);
+		//user.setNumTrips(0);
 		em.persist(user);
 		return user;
 	}

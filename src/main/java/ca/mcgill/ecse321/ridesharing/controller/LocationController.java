@@ -1,5 +1,7 @@
 package ca.mcgill.ecse321.ridesharing.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,15 +48,21 @@ public class LocationController {
 		}
 	}
 	
-	@RequestMapping(value="/assignLocations/{routeId}", method = RequestMethod.POST)
+	@RequestMapping(value="/assignLocations/{locationId}/{routeId}", method = RequestMethod.POST)
 	@ResponseBody
-	public String setLocationsToRoute(@PathVariable("routeId") int routeId) {
-		boolean result = repository.assignToRoute(routeId);
+	public String setLocationsToRoute(@PathVariable("locationId") int locationId, @PathVariable("routeId") int routeId) {
+		boolean result = repository.assignToRoute(locationId,routeId);
 		if(result) {
 			return "Stops assigned.";
 		}else {
 			return "Could not assign stops";
 		}
+	}
+	
+	@RequestMapping(value="/getLocationsForPassenger/{routeId}", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Location> getLocationsForPassenger(@PathVariable("routeId") int routeId){
+		return repository.getStops(routeId);
 	}
 	
 	@RequestMapping(value = "/getLocation/{id}", method = RequestMethod.GET)
