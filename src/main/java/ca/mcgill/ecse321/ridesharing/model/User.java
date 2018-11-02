@@ -2,6 +2,9 @@ package ca.mcgill.ecse321.ridesharing.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 import java.util.Set;
 
@@ -136,6 +139,7 @@ public class User{
 	private Car car;
 
 	@OneToOne(mappedBy="driver", optional=true)
+	@JsonBackReference
 	public Car getCar() {
 		return this.car;
 	}
