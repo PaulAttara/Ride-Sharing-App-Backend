@@ -45,12 +45,14 @@ public class SelectedListingFragment extends Fragment {
 
 
     //ArrayList<RouteTemplate> dataModels;
-    //public static String ID;
+    public static String routeID;
     ArrayList<SearchTemplate> dataModels;
-    ListView listView;
+    //ListView listView;
     private static SearchAdapter adapter;
     String error = "";
-    String passedVar = null;
+    //String passedVar = null;
+    TextView txtselectedstartaddess;
+    TextView txtselectedendaddess;
     TextView txtStartAddress;
     TextView txtEndAddress;
     Button btnBackResults;
@@ -69,6 +71,8 @@ public class SelectedListingFragment extends Fragment {
                 backToSearchResults(v);
             }
         });
+
+        TextView textview = (TextView) selectedListingView.findViewById(R.id.txtselectedstartaddess);
 
         populateSelectedListingPage();
         return selectedListingView;
@@ -97,71 +101,52 @@ public class SelectedListingFragment extends Fragment {
         //This is where the get method for routes goes for the user.
         // HttpUtils.get(pathUrl, new RequestParams(), new JsonHttpResponseHandler() {
         //final String ID = txtStartAddress.getText().toString();
-        String pathURL = "api/location/getLocationsForPassenger/" + passedVar + "/";
+
         //HttpUtils.get(pathURL, new RequestParams(), new JsonHttpResponseHandler() {
-        HttpUtils.get(pathURL, new RequestParams(), new JsonHttpResponseHandler() {
+        //HttpUtils.get(pathURL, rp, new JsonHttpResponseHandler() {
 
-            @Override
-            public void onFinish() {
-                System.out.println("FINISHED");
-            }
+            String pathURL = "api/route/getRoute/" + routeID + "/";
+            RequestParams rp = new RequestParams();
+            HttpUtils.get(pathURL,  rp, new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                    try {
+                        int routeId = response.getJSONObject(0).getInt("routeId");
+                        String startAddress = response.getJSONObject(0).getString("startLocation");
+                        String endAddress = response.getJSONObject(0).getString("startLocation");
+                        txtselectedendaddess.setText(endAddress);
+                        txtselectedstartaddess.setText(startAddress);
+                    } catch (Exception e){
 
-            @Override
-            public void onSuccess (int statusCode, Header[] headers, JSONArray response) {
-
-                try {
-
-                    int len = response.length();
-                    ArrayList<JSONObject> arrays = new ArrayList<JSONObject>();
-                    ArrayList<ca.mcgill.ecse321.driver.LocationTemplate> locations = new ArrayList<ca.mcgill.ecse321.driver.LocationTemplate>();
-
-                    for (int  i = 0; i < len; i++) {
-                        JSONArray route = response.getJSONArray(i);
-                        int routeId = (int) route.get(0);
-                        String date = (String) route.get(1);
-                        int numSeats = (int) route.get(2);
-                        int carId = (int) route.get(3);
-                        //locations = getRouteLocations(routeId);
-                        //dataModels.add(new RouteTemplate(locations, date, routeId, numSeats, carId));
-                        dataModels.add(new SearchTemplate(date, routeId, numSeats));
                     }
-                    // arrays now is an array list of strings
 
-                }   catch (Exception e) {
-                    error += e.getMessage();
                 }
 
 
+                // For some reason it always fails, but the value we're looking for is stored in errorResponse
+                @Override
+                public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
 
-            }
+                }
 
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse){
-                System.out.print("FAILED");
-            }
-            // ONSUCCESS: For some reason it always fails, but the value we're looking for is stored in errorResponse
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
-                System.out.print("FAILED");
-            }
+                //This one catches the error, not the one above
+                @Override
+                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
 
-            @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                System.out.print("FAILED");
-            }
-        });
+                }
+            });
 
         //set the fields with values using ID
         //passedVar=getActivity().getIntent().getStringExtra(SearchListingsFragment.ID_EXTRA);
         //example
-        TextView txtStartAddress = (TextView)getView().findViewById(R.id.txtselectedstartaddess);
-        TextView txtEndAddress = (TextView)getView().findViewById(R.id.txtselectedendaddess);
+        //TextView txtStartAddress = (TextView)getView().findViewById(R.id.txtselectedstartaddess);
+        //TextView txtEndAddress = (TextView)getView().findViewById(R.id.txtselectedendaddess);
         //txtStartAddress=(TextView)findViewById(R.id.txtselectedstartaddess);
         //txtEndAddress=(TextView)findViewById(R.id.txtselectedendaddess);
         //txtStartAddress.setText("CANADA");
         //txtEndAddress.setText("USA");
-        txtStartAddress.setText("You selected start address ID" +passedVar);
-        txtEndAddress.setText("You selected start address ID" +passedVar);
+        txtStartAddress.setText("You selected start address ID" +routeID);
+        txtEndAddress.setText("You selected start address ID" +routeID);
     }
 
 }
