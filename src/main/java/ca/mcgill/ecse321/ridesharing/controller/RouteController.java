@@ -20,13 +20,14 @@ public class RouteController {
 	public String createRoute(@RequestParam("seats") String seats,
 							  @RequestParam("car") int carId,
 							  @RequestParam("date") String date,
+							  @RequestParam("startLocation") String startLocation,
 							  @RequestParam("time") String time) {
 		int seatsAvailable = Integer.parseInt(seats);
-		Route result = repository.createRoute(seatsAvailable, carId, date, time);
+		Route result = repository.createRoute(seatsAvailable, carId, date, startLocation, time);
 		if (result != null) {
-			return "Route #" + result.getRouteId() + " created!";
+			return result.getRouteId() + "";
 		} else {
-			return "Route could not be created.";
+			return "-1";
 		}
 	}
 	

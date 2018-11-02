@@ -30,9 +30,9 @@ public class LocationController {
 								 @RequestParam("routeId") int routeId) {
 		Location location = repository.createLocation(city,street,price,routeId);
 		if(location != null) {
-			return "Location #" + location.getLocationId() + " created.";
+			return location.getLocationId()  + "";
 		}else {
-			return "Could not create location";
+			return "-1";
 		}
 	}
 	

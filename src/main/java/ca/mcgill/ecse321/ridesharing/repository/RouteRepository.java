@@ -20,7 +20,7 @@ public class RouteRepository {
 	EntityManager em;
 
 	@Transactional
-	public Route createRoute(int seatsAvailable, int carId, String date, String time) {
+	public Route createRoute(int seatsAvailable, int carId, String date, String startLocation, String time) {
 		Route route = new Route();
 		route.setSeatsAvailable(seatsAvailable);
 		Car car = em.find(Car.class, carId);
@@ -29,6 +29,7 @@ public class RouteRepository {
 		//date must be in format yyyy-mm-dd hh:mm
 		Timestamp anyDate = Timestamp.valueOf(date + " " + time + ":00");
 		route.setDate(anyDate);
+		route.setStartLocation(startLocation);
 		em.persist(route);
 //		Set<Route> routes = car.getRoute();
 //		routes.add(route);

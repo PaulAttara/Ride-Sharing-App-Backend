@@ -29,7 +29,6 @@ public class CarController {
 	@RequestMapping("/assignCar/{username}/{id}/")
 	@ResponseBody
 	public String assignUserToCar(@PathVariable("username") String username, @PathVariable("id") String id) {
-		System.out.println("in assignusertocar");
 		int carId = Integer.parseInt(id);
 		boolean result = repository.assignUserToCar(username, carId);
 		if(result) {

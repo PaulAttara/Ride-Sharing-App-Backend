@@ -39,7 +39,7 @@ public class CarRepository {
 			return false;
 		}
 		int numCarsAssigned = 0;
-		Query query = em.createNativeQuery("select * from cars where driver_username = '"+username+"';");
+		TypedQuery<Car> query = em.createQuery("select e from Car e where driver_username = '"+username+"'", Car.class);
 		@SuppressWarnings("unchecked")
 		List<Car> cars = (List<Car>) query.getResultList();
 		for(Car thisCar : cars) {

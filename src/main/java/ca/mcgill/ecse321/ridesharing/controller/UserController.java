@@ -25,9 +25,9 @@ public class UserController {
 								@RequestParam("role") String role) {
 		User user = repository.createUser(username, password, firstname, lastname, phonenumber, city, address, role);
 		if (user != null) {
-			return "User Created.";
+			return username;
 		} else {
-			return "error";
+			return "-1";
 		}
 	}
 	
