@@ -29,7 +29,7 @@ public class CreateRouteFragment extends Fragment {
     private EditText numSeats;
     private EditText routeDate;
     private EditText routeTime;
-
+    private String username = MainActivity.username;
 
     public CreateRouteFragment() {
         // Required empty public constructor
@@ -43,7 +43,7 @@ public class CreateRouteFragment extends Fragment {
     private EditText newLocationPrice;
     private EditText newLocationStreet;
 
-
+    private int carId = -1;
     private int routeId = -1;
 
     @Override
@@ -131,15 +131,42 @@ public class CreateRouteFragment extends Fragment {
         String time = numSeats.getText().toString();
 
         // send post to get car id
+        String pathURL = "api/vehicle/getIdFromUsername/" + username + "/";
+
+        HttpUtils.get(pathURL,  new RequestParams(), new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String response) {
+                //Route was successfully created
+                Toast.makeText(null, response, Toast.LENGTH_LONG).show();
+                carId = Integer.parseInt(response);
+                if (carId == -1) {
+                    Toast.makeText(null, "The current driver doesn't have a car!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+            }
+
+            // For some reason it always fails, but the value we're looking for is stored in errorResponse
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
+
+            }
+
+            //This one catches the error, not the one above
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+
+            }
+        });
 
         rp.add("seats", seats);
         rp.add("role", date);
         rp.add("time", time);
-        rp.add("car" , "20");
+        rp.add("car" , "" + carId);
 
 
         //send post to create route
-        String pathURL = "api/route/create";
+        pathURL = "api/route/create";
 
         HttpUtils.get(pathURL, rp, new JsonHttpResponseHandler() {
             @Override
@@ -149,7 +176,6 @@ public class CreateRouteFragment extends Fragment {
                 routeId = Integer.parseInt(response);
                 if (routeId != -1) {
                     Toast.makeText(null, "Route was successfully created", Toast.LENGTH_LONG).show();
-
                     createLocations();
                 }
 
@@ -168,7 +194,6 @@ public class CreateRouteFragment extends Fragment {
             }
         });
 
-        //send post to create location
 
     }
 
