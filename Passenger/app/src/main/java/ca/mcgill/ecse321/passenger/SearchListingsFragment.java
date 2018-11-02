@@ -16,11 +16,16 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
+import android.content.Intent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import cz.msebera.android.httpclient.Header;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,6 +70,60 @@ public class SearchListingsFragment extends Fragment {
 
     private void getSearchListings(View v) {
         dataModels = new ArrayList<>();
+
+        final String dropOff = txtsearchLocation.getText().toString();
+        String pathURL = "api/route/getRoutes/" + dropOff ;
+        HttpUtils.get(pathURL, new RequestParams(), new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess (int statusCode, Header[] headers, JSONArray response) {
+
+                try {
+                    int count = response.length();
+                    for (int i = 0;)
+                }   catch (Exception e) {
+                    error += e.getMessage();
+                }
+
+
+                if (loginSuccess){
+                    Intent MainIntent = new Intent(SearchListingsFragment.this, MainActivity.class);
+                    startActivity(MainIntent);
+                    finish();
+                    MainActivity.username = username;
+                    Toast.makeText(SearchListingsFragment.this,  " you are succesfully signed in", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(SearchListingsFragment.this,  " Incorrect Username or Password", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
+                loginSuccess = errorResponse.equals("true");
+                Toast.makeText(SearchListingsFragment.this, error, Toast.LENGTH_LONG).show();
+
+                if (loginSuccess) {
+                    Intent MainIntent = new Intent(SearchListingsFragment.this, MainActivity.class);
+                    startActivity(MainIntent);
+                    finish();
+                    MainActivity.username = username;
+                    Toast.makeText(SearchListingsFragment.this, " you are succesfully signed in", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(SearchListingsFragment.this, " Incorrect Username or Password", Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                /* try {
+                   error += errorResponse.get("message").toString();
+
+                 } catch (JSONException e) {
+                     error += e.getMessage();
+                 }
+ */
+            }
+        });
+
+
 
         dataModels.add(new SearchTemplate("Sauvignon", "McGill"));
         dataModels.add(new SearchTemplate("Canada", "Egypt"));
@@ -122,7 +181,6 @@ public class SearchListingsFragment extends Fragment {
     private void loadSpinner() {
         final List<String> list = new ArrayList<String>();
         list.add("Price");
-        list.add("Location");
         list.add("Car Type");
         list.add("Date");
         list.add("Time");
