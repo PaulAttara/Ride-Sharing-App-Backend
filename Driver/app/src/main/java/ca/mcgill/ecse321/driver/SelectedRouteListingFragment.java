@@ -12,6 +12,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.apache.http.protocol.RequestExpectContinue;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +38,8 @@ public class SelectedRouteListingFragment extends Fragment {
     //populate the fields of the page using it
 
     public static int routeID;
+    private String date = null;
+    private String time = null;
     TextView txtselectedstartaddess;
     TextView txtselectedendaddess;
     Button btnBackResults;
@@ -88,15 +99,93 @@ public class SelectedRouteListingFragment extends Fragment {
     }
 
     private void modifyRoute(View v) {
+        String pathURL = "api/route/update/";
+        RequestParams rp = new RequestParams();
+
+        rp.add("date", date);
+        rp.add("time", time);
+
+        HttpUtils.get(pathURL,  rp, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String response) {
+                //Route was successfully updated
+                Toast.makeText(null, response, Toast.LENGTH_LONG).show();
+                }
+
+
+            //This one catches the error, not the one above
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                Toast.makeText(null, errorResponse.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        //refresh route info
+        loadRouteInfo();
     }
 
     private void onDeleteRoute(View v) {
+        String pathURL = "api/route/delete/" + routeID + "/";
+        RequestParams rp = new RequestParams();
+        HttpUtils.get(pathURL,  rp, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String response) {
 
-        //deleeeete
+                Toast.makeText(null, response, Toast.LENGTH_LONG).show();
+
+            }
+
+
+        // For some reason it always fails, but the value we're looking for is stored in errorResponse
+        @Override
+        public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
+
+        }
+
+        //This one catches the error, not the one above
+        @Override
+        public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+
+        }
+    });
+
+        //refresh route info
+        loadRouteInfo();
     }
 
     
     private void loadRouteInfo() {
+        String pathURL = "api/route/getRoute/" + routeID + "/";
+        RequestParams rp = new RequestParams();
+        HttpUtils.get(pathURL,  rp, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                try {
+                     int routeId = response.getJSONObject(0).getInt("routeId");
+                     String startAddress = response.getJSONObject(0).getString("startLocation");
+                     String endAddress = response.getJSONObject(0).getString("startLocation");
+                     txtselectedendaddess.setText(endAddress);
+                     txtselectedstartaddess.setText(startAddress);
+                } catch (Exception e){
+
+                }
+
+            }
+
+
+            // For some reason it always fails, but the value we're looking for is stored in errorResponse
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
+
+            }
+
+            //This one catches the error, not the one above
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+
+            }
+        });
+
 
 
     }
