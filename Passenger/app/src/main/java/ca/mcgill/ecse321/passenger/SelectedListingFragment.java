@@ -101,8 +101,7 @@ public class SelectedListingFragment extends Fragment {
         //This is where the get method for routes goes for the user.
         // HttpUtils.get(pathUrl, new RequestParams(), new JsonHttpResponseHandler() {
         //final String ID = txtStartAddress.getText().toString();
-        String pathURL = "api/location/getLocationsForPassenger/" + routeID + "/";
-        RequestParams rp = new RequestParams();
+
         //HttpUtils.get(pathURL, new RequestParams(), new JsonHttpResponseHandler() {
         //HttpUtils.get(pathURL, rp, new JsonHttpResponseHandler() {
 
