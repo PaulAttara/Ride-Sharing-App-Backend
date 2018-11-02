@@ -79,16 +79,14 @@ public class LocationRepository {
 
 	@Transactional
 	public List<Location> getStops(int routeId) {
-		Query query_stops = em.createNativeQuery("select * from locations where route_routeid = '"+routeId+"';");
-		@SuppressWarnings("unchecked")
-		List<Location> stops = (List<Location>) query_stops.getResultList();
+		TypedQuery<Location> query = em.createQuery("select e from Location e where route_routeid = '"+routeId+"'", Location.class);
+		List<Location> stops = query.getResultList();
 		return stops;
 	}
 
 	@Transactional
 	public List<Route> getRoutesForPassenger(String destination) {
 		TypedQuery<Location> query = em.createQuery("select e from Location e where city = '"+destination+"'", Location.class);
-		@SuppressWarnings("unchecked")
 		List<Location> destinations = (List<Location>) query.getResultList();
 		List<Route> routesPassingBy = new ArrayList<Route>();
 		for(Location thisDest : destinations) {

@@ -63,9 +63,8 @@ public class UserRepository {
 	}
 
 	public boolean validateUsername(String username) {
-		Query query = em.createNativeQuery("select username from users;");
-		@SuppressWarnings("unchecked")
-		List<String> usernames = (List<String>) query.getResultList();
+		TypedQuery<String> query = em.createQuery("select e.username from User e", String.class);
+		List<String> usernames = query.getResultList();
 		for (String thisUsername : usernames) {
 			if(username.equals(thisUsername)) {
 				return false;
@@ -76,9 +75,8 @@ public class UserRepository {
 	}
 
 	public boolean login(String username, String password) {
-		Query query_user = em.createNativeQuery("select username from users;");
-		@SuppressWarnings("unchecked")
-		List<String> usernames = (List<String>) query_user.getResultList();
+		TypedQuery<String> query = em.createQuery("select e.username from User e", String.class);
+		List<String> usernames = query.getResultList();
 
 		for (String thisUsername : usernames) {
 			if(username.equals(thisUsername)) {

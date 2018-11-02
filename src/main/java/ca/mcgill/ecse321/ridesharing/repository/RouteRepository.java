@@ -45,11 +45,10 @@ public class RouteRepository {
 
 	@Transactional
 	public List<Route> getRoutesForDriver(String username) {
-		User driver = em.find(User.class, username);
-		int carId = driver.getCar().getVehicleId();
-		Query query_routes = em.createNativeQuery("select * from routes where car_vehicleid = '"+carId+"';");
-		@SuppressWarnings("unchecked")
-		List<Route> routes = (List<Route>) query_routes.getResultList();
+		Car car = em.createQuery("select e from Car e where driver_username = '"+username+"'", Car.class).getSingleResult();
+		int carId = car.getVehicleId();
+		TypedQuery<Route> query = em.createQuery("select e from Route e where car_vehicleid = '"+carId+"'", Route.class);
+		List<Route> routes = query.getResultList();
 		return routes;
 	}
 
@@ -74,9 +73,8 @@ public class RouteRepository {
 	
 	@Transactional
 	public List<Location> getStops(int id) {
-		Query query_stops = em.createNativeQuery("select * from locations where route_routeid = '"+id+"';");
-		@SuppressWarnings("unchecked")
-		List<Location> stops = (List<Location>) query_stops.getResultList();
+		TypedQuery<Location> query = em.createQuery("select e from Location e where route_routeid = '"+id+"'", Location.class);
+		List<Location> stops = query.getResultList();
 		return stops;
 	}
 
