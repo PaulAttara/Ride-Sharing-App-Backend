@@ -100,22 +100,26 @@ public class SearchListingsFragment extends Fragment {
             public void onSuccess (int statusCode, Header[] headers, JSONArray response) {
 
                 try {
-                    
-                    int len = response.length();
 
-                    ArrayList<JSONObject> arrays = new ArrayList<JSONObject>();
-                    ArrayList<ca.mcgill.ecse321.driver.LocationTemplate> locations = new ArrayList<ca.mcgill.ecse321.driver.LocationTemplate>();
+                    int routeId=response.getJSONObject(0).getInt("routeId");
+                    int numSeats = response.getJSONObject(1).getInt("numSeats");
+                    String date = response.getJSONObject(3).getString("date");
 
-                    for (int  i = 0; i < len; i++) {
-                        JSONArray route = response.getJSONArray(i);
-                        int routeId = (int) route.get(0);
-                        String date = (String) route.get(1);
-                        int numSeats = (int) route.get(2);
-                        int carId = (int) route.get(3);
-                        //locations = getRouteLocations(routeId);
-                        dataModels.add(new SearchTemplate(date, routeId, numSeats));
+//                    int len = response.length();
+//
+//                    ArrayList<JSONObject> arrays = new ArrayList<JSONObject>();
+//                    ArrayList<ca.mcgill.ecse321.driver.LocationTemplate> locations = new ArrayList<ca.mcgill.ecse321.driver.LocationTemplate>();
+//
+//                    for (int  i = 0; i < len; i++) {
+//                        JSONArray route = response.getJSONArray(i);
+//                        //int routeId = (int) route.get(0);
+//                       // String date = (String) route.get(1);
+//                       // int numSeats = (int) route.get(2);
+//                        int carId = (int) route.get(3);
+//                        //locations = getRouteLocations(routeId);
+                    dataModels.add(new SearchTemplate(date, routeId, numSeats));
 
-                    }
+
                         // arrays now is an array list of strings
 
                 }   catch (Exception e) {
@@ -141,15 +145,7 @@ public class SearchListingsFragment extends Fragment {
                 System.out.print("FAILED");
             }
         });
-    // this will work with a route type
-//        ArrayList<Route> routes = null;
-//
-//        for(Route route : routes){
-//            Car car= route.getCar();
-//            dataModels.add(new SearchTemplate(car.getDriver(), route.getDate(), route.getRouteId() ));
-//        }
 
-        //drivers Username and Route ID, date
 
 //
 
