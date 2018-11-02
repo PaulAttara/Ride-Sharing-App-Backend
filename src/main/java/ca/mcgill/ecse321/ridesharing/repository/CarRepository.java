@@ -42,4 +42,11 @@ public class CarRepository {
 		//em.persist(driver);
 		return true;
 	}
+
+	@Transactional
+	public int getByUsername(String username) {
+		Query query = em.createNativeQuery("select * from cars where driver_username = '"+username+"';");
+		Car car = (Car) query.getSingleResult();
+		return car.getVehicleId();
+	}
 }

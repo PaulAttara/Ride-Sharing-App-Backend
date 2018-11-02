@@ -38,6 +38,11 @@ public class CarController {
 			return "Could not assign " +username + " to car id: " + id +". Please make sure the fields are correct.";
 		}
 	}
+	
+	@RequestMapping(value = "/getIdFromUsername/{username}/", method = RequestMethod.GET)
+	public int getVehicleByUser(@PathVariable("username") String username) {
+		return repository.getByUsername(username);
+	}
 
 	@RequestMapping(value = "/{id}/", method = RequestMethod.GET)
 	public Car getVehicle(@PathVariable("id") int id) {
