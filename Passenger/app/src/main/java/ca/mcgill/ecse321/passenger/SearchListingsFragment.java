@@ -49,7 +49,7 @@ public class SearchListingsFragment extends Fragment {
     ArrayList<SearchTemplate> dataModels;
     ListView listView;
     private static SearchAdapter adapter;
-    public final static String ID_EXTRA = "ca.mcgill.ecse321.passenger._ID";
+    //public final static String ID_EXTRA = "ca.mcgill.ecse321.passenger._ID";
 
     public class Result {
         public boolean error;
@@ -61,7 +61,7 @@ public class SearchListingsFragment extends Fragment {
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).setActionBarTitle("Search Listings");
+       ((MainActivity) getActivity()).setActionBarTitle("Search Listings");
         final View searchListingsView = inflater.inflate(R.layout.fragment_search_listings, null);
         searchTypeSpinner = searchListingsView.findViewById(R.id.searchtypespinner);
         txtsearchLocation = searchListingsView.findViewById(R.id.txtsearch);
@@ -218,9 +218,9 @@ public class SearchListingsFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
 
-                Intent i = new Intent(SearchListingsFragment.this.getActivity(),SelectedListingFragment.class);
-                i.putExtra(ID_EXTRA, String.valueOf(id));
-                startActivity(i);
+                //Intent i = new Intent(SearchListingsFragment.this.getActivity(),SelectedListingFragment.class);
+                //i.putExtra(ID_EXTRA, String.valueOf(id));
+                //startActivity(i);
                 // TODO Auto-generated method stub
                 Toast.makeText( ((MainActivity) getActivity()), list.get(position), Toast.LENGTH_SHORT).show();
             }
