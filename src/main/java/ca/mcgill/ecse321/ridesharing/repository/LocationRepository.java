@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -86,9 +87,9 @@ public class LocationRepository {
 
 	@Transactional
 	public List<Route> getRoutesForPassenger(String destination) {
-		Query query_stops = em.createNativeQuery("select * from locations where city = '"+destination+"';");
+		TypedQuery<Location> query = em.createQuery("select e from Location e where city = '"+destination+"'", Location.class);
 		@SuppressWarnings("unchecked")
-		List<Location> destinations = (List<Location>) query_stops.getResultList();
+		List<Location> destinations = (List<Location>) query.getResultList();
 		List<Route> routesPassingBy = new ArrayList<Route>();
 		for(Location thisDest : destinations) {
 			int routeId = thisDest.getRoute().getRouteId();
