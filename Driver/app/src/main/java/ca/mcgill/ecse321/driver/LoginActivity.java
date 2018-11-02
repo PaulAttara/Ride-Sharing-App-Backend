@@ -97,14 +97,7 @@ public class LoginActivity extends AppCompatActivity {
         //System.out.println("this is my path: " + pathURL);
         HttpUtils.get(pathURL, new RequestParams(), new JsonHttpResponseHandler() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-
-                try {
-                    loginSuccess = response.getBoolean(0);
-                } catch (Exception e) {
-                    error += e.getMessage();
-                }
-                //refreshErrorMessage();
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
 
                 if (loginSuccess) {
                     Intent MainIntent = new Intent(LoginActivity.this, MainActivity.class);

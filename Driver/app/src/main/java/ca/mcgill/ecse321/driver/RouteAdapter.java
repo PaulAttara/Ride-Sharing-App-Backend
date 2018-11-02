@@ -53,7 +53,7 @@ public class RouteAdapter extends ArrayAdapter<RouteTemplate> implements View.On
 
             case R.id.item_info:
 
-                Snackbar.make(v, "Start Address " +dataModel.getStartAddress(), Snackbar.LENGTH_LONG)
+                Snackbar.make(v, "Start Address " +dataModel.getStartLocation().toString(), Snackbar.LENGTH_LONG)
                         .setAction("No action", null).show();
 
                 break;
@@ -96,8 +96,8 @@ public class RouteAdapter extends ArrayAdapter<RouteTemplate> implements View.On
         lastPosition = position;
 
 
-        viewHolder.txtStartAddress.setText(routeTemplate.getStartAddress());
-        viewHolder.txtEndAddress.setText(routeTemplate.getEndAddress());
+        viewHolder.txtStartAddress.setText(routeTemplate.getStartLocation().toString());
+        viewHolder.txtEndAddress.setText(routeTemplate.getEndLocation().toString());
         viewHolder.info.setOnClickListener(this);
         viewHolder.info.setTag(position);
         // Return the completed view to render on screen

@@ -64,4 +64,11 @@ public class RouteController {
 	public Route getRoute(@PathVariable("id") int id) {
 		return repository.getRoute(id);
 	}
+	
+	@RequestMapping(value = "/getStops/{id}/", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Location> getStops(@PathVariable("id") int id) {
+		return repository.getStops(id);
+		
+	}
 }

@@ -1,22 +1,39 @@
 package ca.mcgill.ecse321.driver;
 
+import java.sql.Timestamp;
+import java.util.List;
+
 public class RouteTemplate {
-    String startAddress;
-    String endAddress;
+    List<LocationTemplate> locations;
+    String date;
+    int id;
+    int numseats;
+    int carid;
 
-
-    public RouteTemplate(String startAddress, String endAddress) {
-        this.startAddress = startAddress;
-        this.endAddress = endAddress;
+    public RouteTemplate(List<LocationTemplate> locations, String date, int id, int numseats, int carid) {
+        this.locations = locations;
+        this.date = date;
+        this.id = id;
+        this.numseats = numseats;
+        this.carid = carid;
     }
 
-    public String getStartAddress() {
-        return startAddress;
+    public int getId() {
+        return id;
     }
 
+    public LocationTemplate getStartLocation (){
+        if (!locations.isEmpty()) {
+            return locations.get(0);
+        }
+        return null;
+    }
 
-    public String getEndAddress() {
-        return endAddress;
+    public LocationTemplate getEndLocation (){
+        if (!locations.isEmpty()) {
+            return locations.get(locations.size()-1);
+        }
+        return null;
     }
 
 }
