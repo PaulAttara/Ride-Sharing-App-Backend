@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.mcgill.ecse321.ridesharing.model.Location;
+import ca.mcgill.ecse321.ridesharing.model.Route;
 import ca.mcgill.ecse321.ridesharing.repository.InvalidInputException;
 import ca.mcgill.ecse321.ridesharing.repository.LocationRepository;
 
@@ -35,7 +36,7 @@ public class LocationController {
 		}
 	}
 	
-	@RequestMapping(value="/addPassenger/{username}/{routeId}/{locationId}", method = RequestMethod.POST)
+	@RequestMapping(value="/addPassenger/{username}/{routeId}/{locationId}/", method = RequestMethod.POST)
 	@ResponseBody
 	public String registerUserToLocation(@PathVariable("username") String username, 
 										 @PathVariable("routeId") int routeId,
@@ -48,7 +49,7 @@ public class LocationController {
 		}
 	}
 	
-	@RequestMapping(value="/assignLocations/{locationId}/{routeId}", method = RequestMethod.POST)
+	@RequestMapping(value="/assignLocations/{locationId}/{routeId}/", method = RequestMethod.POST)
 	@ResponseBody
 	public String setLocationsToRoute(@PathVariable("locationId") int locationId, @PathVariable("routeId") int routeId) {
 		boolean result = repository.assignToRoute(locationId,routeId);
@@ -59,13 +60,30 @@ public class LocationController {
 		}
 	}
 	
-	@RequestMapping(value="/getLocationsForPassenger/{routeId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getRoutesForPass/{destination}/", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Route> getRoutes(@PathVariable("destination") String destination){
+		return repository.getRoutesForPassenger(destination);
+	}
+	
+	@RequestMapping(value = "/getDestination/{routeId}/", method = RequestMethod.GET)
+	@ResponseBody
+	public Location getFinalDest(@PathVariable("routeId") int routeId){
+		List<Location> locations = repository.getStops(routeId);
+		Location lastStop = null;
+		for(Location thisStop: locations) {
+			lastStop = thisStop;
+		}
+		return lastStop;
+	}
+	
+	@RequestMapping(value="/getLocationsForPassenger/{routeId}/", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Location> getLocationsForPassenger(@PathVariable("routeId") int routeId){
 		return repository.getStops(routeId);
 	}
 	
-	@RequestMapping(value = "/getLocation/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getLocation/{id}/", method = RequestMethod.GET)
 	public Location getLocation(@PathVariable("id") int id) {
 		return repository.getLocation(id);
 	}

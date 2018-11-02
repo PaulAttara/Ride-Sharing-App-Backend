@@ -4,6 +4,10 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "cars")
 @NamedQueries({
@@ -56,6 +60,7 @@ public class Car{
 	private User driver;
 
 	@OneToOne(optional=true)
+	@JsonManagedReference
 	public User getDriver() {
 		return this.driver;
 	}
@@ -67,6 +72,7 @@ public class Car{
 	private Set<Route> route;
 
 	@OneToMany(mappedBy="car")
+	@JsonBackReference
 	public Set<Route> getRoute() {
 		return this.route;
 	}

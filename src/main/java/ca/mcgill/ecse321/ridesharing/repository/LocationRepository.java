@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.ridesharing.repository;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -81,5 +82,18 @@ public class LocationRepository {
 		@SuppressWarnings("unchecked")
 		List<Location> stops = (List<Location>) query_stops.getResultList();
 		return stops;
+	}
+
+	@Transactional
+	public List<Route> getRoutesForPassenger(String destination) {
+		Query query_stops = em.createNativeQuery("select * from locations where city = '"+destination+"';");
+		@SuppressWarnings("unchecked")
+		List<Location> destinations = (List<Location>) query_stops.getResultList();
+		List<Route> routesPassingBy = new ArrayList<Route>();
+		for(Location thisDest : destinations) {
+			int routeId = thisDest.getRoute().getRouteId();
+			routesPassingBy.add(em.find(Route.class, routeId));
+		}
+		return routesPassingBy;
 	}
 }

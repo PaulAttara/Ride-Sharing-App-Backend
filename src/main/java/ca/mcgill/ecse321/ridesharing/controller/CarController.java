@@ -26,7 +26,7 @@ public class CarController {
 		}
 	}
 	
-	@RequestMapping("/assignCar/{username}/{id}")
+	@RequestMapping("/assignCar/{username}/{id}/")
 	@ResponseBody
 	public String assignUserToCar(@PathVariable("username") String username, @PathVariable("id") String id) {
 		System.out.println("in assignusertocar");
@@ -39,7 +39,7 @@ public class CarController {
 		}
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}/", method = RequestMethod.GET)
 	public Car getVehicle(@PathVariable("id") int id) {
 		return repository.getVehicle(id);
 	}

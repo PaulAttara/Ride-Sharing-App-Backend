@@ -31,14 +31,14 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(value = "/addRating/{username}/{rating}", method = RequestMethod.GET)
+	@RequestMapping(value = "/addRating/{username}/{rating}/", method = RequestMethod.GET)
 	public String addRating(@PathVariable("username") String username, @PathVariable("rating") String rating) {
 		double newRating = Double.parseDouble(rating);
 		double avgRating = repository.addToRatings(username, newRating);
 		return rating + " was added. " + username + " has an average rating of " + avgRating;
 	}
 	
-	@RequestMapping(value = "/login/{username}/{password}", method = RequestMethod.GET)
+	@RequestMapping(value = "/login/{username}/{password}/", method = RequestMethod.GET)
 	public boolean login(@PathVariable("username") String username, @PathVariable("password") String password) {
 		boolean result = repository.login(username, password);
 		if(result) {
@@ -48,7 +48,7 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(value = "/getUser/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getUser/{id}/", method = RequestMethod.GET)
 	public User getId(@PathVariable("id") String id) {
 		return repository.getUser(id);
 	}
