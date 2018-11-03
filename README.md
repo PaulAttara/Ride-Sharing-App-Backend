@@ -2,7 +2,7 @@
 
 ## Spring 2 comments (for TA)
 
-Our team went through a lot of problems concerning HTTP requests for the development of the UI. Most of the HttpUtils.get() and HttpUtils.post() calls that we sent would give onFailure() callbacks, or no callback at all. Many sleepless nights were spent trying to debug this issue, to no avail. (This was espectially irritating because all of the HTTP requests were thoroughly tested and worked perfectly when run through Postman).
+Our team went through a lot of problems concerning HTTP requests for the development of the UI. Most of the HttpUtils.get() and HttpUtils.post() calls that we sent would give onFailure() callbacks, or no callback at all. Many sleepless nights were spent trying to debug this issue to no avail. (This was especially irritating because all of the HTTP requests were thoroughly tested and worked perfectly when run through Postman).
 
 For example, if you examine the Login HTTP request response in the driver page (inside of LoginActivity.java of Driver), the method always callbacks onFailure (Even though the appropriate response is returned through the failure response!).
 
