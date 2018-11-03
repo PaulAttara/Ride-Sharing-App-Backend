@@ -1,6 +1,6 @@
 # ShareFare
 
-## Spring 2 comments (for TA)
+## Sprint 2 comments (for TA)
 
 Our team went through a lot of problems concerning HTTP requests for the development of the UI. Most of the HttpUtils.get() and HttpUtils.post() calls that we sent would give onFailure() callbacks, or no callback at all. Many sleepless nights were spent trying to debug this issue to no avail. (This was especially irritating because all of the HTTP requests were thoroughly tested and worked perfectly when sent through Postman).
 
