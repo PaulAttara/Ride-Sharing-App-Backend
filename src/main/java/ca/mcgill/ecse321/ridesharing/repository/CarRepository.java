@@ -20,7 +20,7 @@ public class CarRepository {
 		aCar.setBrand(brand);
 		aCar.setModel(model);
 		aCar.setLicensePlate(licensePlate);
-		aCar.setRoute(null);
+		//aCar.setRoute(null);
 		aCar.setDriver(null);
 		em.persist(aCar);
 		return aCar;

@@ -60,7 +60,7 @@ public class Car{
 	private User driver;
 
 	@OneToOne(optional=true)
-	@JsonManagedReference
+//	@JsonManagedReference
 	public User getDriver() {
 		return this.driver;
 	}
@@ -71,8 +71,9 @@ public class Car{
 
 	private Set<Route> route;
 
-	@OneToMany(mappedBy="car")
-	@JsonBackReference
+//	@OneToMany(mappedBy="car")
+//	@JsonBackReference
+	@Transient
 	public Set<Route> getRoute() {
 		return this.route;
 	}

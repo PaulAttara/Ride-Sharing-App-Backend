@@ -62,7 +62,7 @@ public class Route{
 	private Car car;
 
 	@ManyToOne(optional=false)
-	@JsonManagedReference
+//	@JsonManagedReference
 	public Car getCar() {
 		return this.car;
 	}
@@ -73,7 +73,8 @@ public class Route{
 
 	private Set<Location> stops;
 
-	@OneToMany(mappedBy="route")
+//	@OneToMany(mappedBy="route")
+	@Transient
 	public Set<Location> getStops() {
 		return this.stops;
 	}

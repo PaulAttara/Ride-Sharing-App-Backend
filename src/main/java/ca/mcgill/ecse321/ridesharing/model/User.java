@@ -138,8 +138,9 @@ public class User{
 	}
 	private Car car;
 
-	@OneToOne(mappedBy="driver", optional=true)
-	@JsonBackReference
+//	@OneToOne(mappedBy="driver", optional=true)
+//	@JsonBackReference
+	@Transient
 	public Car getCar() {
 		return this.car;
 	}
@@ -150,7 +151,8 @@ public class User{
 
 	private Location request;
 
-	@OneToOne(mappedBy="passenger", optional=true)
+//	@OneToOne(mappedBy="passenger", optional=true)
+	@Transient
 	public Location getRequest() {
 		return this.request;
 	}

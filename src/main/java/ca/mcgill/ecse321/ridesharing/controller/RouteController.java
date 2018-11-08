@@ -2,8 +2,13 @@ package ca.mcgill.ecse321.ridesharing.controller;
 
 import ca.mcgill.ecse321.ridesharing.model.*;
 import ca.mcgill.ecse321.ridesharing.repository.RouteRepository;
+import ca.mcgill.ecse321.ridesharing.DTO.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -57,19 +62,31 @@ public class RouteController {
 	
 	@RequestMapping(value = "/getRoutes/{username}/", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Route> getRoutes(@PathVariable("username") String username){
-		return repository.getRoutesForDriver(username);
+	public List<RouteDTO> getRoutes(@PathVariable("username") String username){
+		List<Route> routesForDriver = repository.getRoutesForDriver(username);
+//		return routesForDriver.stream().map(r -> r.getRouteId()).collect(Collectors.toList());
+		List<RouteDTO> routeDTOs = new ArrayList<RouteDTO>();
+		for(Route route : routesForDriver) {
+			routeDTOs.add(new RouteDTO(route.getRouteId(), route.getSeatsAvailable(), route.getStartLocation(), route.getDate(), route.getCar(), route.getStops()));
+		}
+		return routeDTOs;
 	}
 	
 	@RequestMapping(value = "/getRoute/{id}/", method = RequestMethod.GET)
-	public Route getRoute(@PathVariable("id") int id) {
-		return repository.getRoute(id);
+	public RouteDTO getRoute(@PathVariable("id") int id) {
+		Route route = repository.getRoute(id);
+		RouteDTO routeDTO = new RouteDTO(route.getRouteId(), route.getSeatsAvailable(), route.getStartLocation(), route.getDate(), route.getCar(), route.getStops());
+		return routeDTO;
 	}
 	
 	@RequestMapping(value = "/getStops/{id}/", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Location> getStops(@PathVariable("id") int id) {
-		return repository.getStops(id);
-		
+	public List<LocationDTO> getStops(@PathVariable("id") int id) {
+		List<Location> locations = repository.getStops(id);
+		List<LocationDTO> locationDTOs = new ArrayList<LocationDTO>();
+		for(Location location : locations) {
+			locationDTOs.add(new LocationDTO(location.getLocationId(), location.getCity(), location.getStreet(), location.getPassenger(), location.getRoute(), location.getPrice()));
+		}
+		return locationDTOs;
 	}
 }
