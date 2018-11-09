@@ -67,6 +67,9 @@ public class CreateRouteFragment extends Fragment {
         removeRowBtn = (Button) createRouteView.findViewById(R.id.btnremovelocation);
         parentLinearLayout = (LinearLayout) createRouteView.findViewById(R.id.parent_linear_layout);
         createRouteBtn = (Button) createRouteView.findViewById(R.id.btncreateroute);
+        numSeats = (EditText) createRouteView.findViewById(R.id.txtnumberofseats);
+        routeDate = (EditText) createRouteView.findViewById(R.id.txtroutedate);
+        routeTime = (EditText) createRouteView.findViewById(R.id.txtroutetime);
 
         //button listeners
         addRowBtn.setOnClickListener(new View.OnClickListener()
@@ -123,9 +126,6 @@ public class CreateRouteFragment extends Fragment {
     public void onCreateRoute(View v) {
 
         RequestParams rp = new RequestParams();
-        numSeats = (EditText) v.findViewById(R.id.txtnumberofseats);
-        routeDate = (EditText) v.findViewById(R.id.txtroutedate);
-        routeTime = (EditText) v.findViewById(R.id.txtroutetime);
         String seats = numSeats.getText().toString();
         String date = numSeats.getText().toString();
         String time = numSeats.getText().toString();
