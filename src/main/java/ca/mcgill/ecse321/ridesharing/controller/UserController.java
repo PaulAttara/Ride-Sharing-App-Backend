@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.ridesharing.controller;
 
 import ca.mcgill.ecse321.ridesharing.model.*;
+import ca.mcgill.ecse321.ridesharing.DTO.*;
 import ca.mcgill.ecse321.ridesharing.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,10 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/getUser/{id}/", method = RequestMethod.GET)
-	public User getId(@PathVariable("id") String id) {
-		return repository.getUser(id);
+	public UserDTO getId(@PathVariable("id") String id) {
+		User user = repository.getUser(id);
+		return new UserDTO(user.getRatings(),user.getUsername(),user.getPassword(),user.getFirstName(),
+							user.getLastName(),user.getPhoneNumber(),user.getCity(),user.getAddress(),
+							user.getRole(),user.getAvgRating(),user.getNumTrips());
 	}
 }

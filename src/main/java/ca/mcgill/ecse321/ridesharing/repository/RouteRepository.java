@@ -54,8 +54,9 @@ public class RouteRepository {
 
 	@Transactional
 	public boolean removeRoute(int id) {
-		int rowsDeleted = em.createQuery("delete from routes where routeid = '" + id + "';").executeUpdate();
-		if(rowsDeleted == 1) {
+		int dependancy = em.createQuery("delete from Location e where route_routeid = '" + id + "'").executeUpdate();
+		int rowsDeleted = em.createQuery("delete from Route e where routeid = '" + id + "'").executeUpdate();
+		if(rowsDeleted == 1 && dependancy >=0) {
 			return true;
 		}
 		return false;
@@ -68,7 +69,7 @@ public class RouteRepository {
 		route.setDate(anyDate);
 		em.persist(route);
 		
-		return false;
+		return true;
 	}
 	
 	@Transactional
