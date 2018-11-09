@@ -8,12 +8,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center">
 
 
         <TextView
             android:id="@+id/txtmyprofileusername"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/prompt_username"
             android:paddingLeft="10dp"
@@ -21,19 +22,21 @@
 
         <Button
             android:id="@+id/btnchangeusername"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="left|center_vertical"
             android:text="@string/action_changeusername" />
 
         <Button
             android:id="@+id/btnchangepassword"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="left|center_vertical"
             android:text="@string/action_changepassword" />
 
         <TextView
             android:id="@+id/txtaddress"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/prompt_address"
             android:paddingLeft="10dp"
@@ -41,13 +44,15 @@
 
         <Button
             android:id="@+id/btnchangeaddress"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="left|center_vertical"
             android:text="@string/action_changeaddress" />
         <Button
             android:id="@+id/btndeleteaccount"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="left|center_vertical"
             android:text="@string/action_deleteaccount" />
         <LinearLayout
             android:layout_width="match_parent"

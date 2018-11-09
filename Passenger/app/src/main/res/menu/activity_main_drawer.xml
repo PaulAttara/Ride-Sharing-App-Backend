@@ -9,10 +9,10 @@
             android:id="@+id/nav_search_listings"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Search Listings" />
-        <item
-            android:id="@+id/nav_create_route"
-            android:icon="@drawable/ic_menu_share"
-            android:title="UNSURE" />
+        <!--<item-->
+            <!--android:id="@+id/nav_create_route"-->
+            <!--android:icon="@drawable/ic_menu_share"-->
+            <!--android:title="UNSURE" />-->
         <item
             android:id="@+id/nav_my_profile"
             android:icon="@drawable/ic_menu_manage"
