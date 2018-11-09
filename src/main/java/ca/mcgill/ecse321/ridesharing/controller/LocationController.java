@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.ridesharing.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import ca.mcgill.ecse321.ridesharing.DTO.LocationDTO;
+import ca.mcgill.ecse321.ridesharing.DTO.RouteDTO;
 import ca.mcgill.ecse321.ridesharing.model.Location;
 import ca.mcgill.ecse321.ridesharing.model.Route;
 import ca.mcgill.ecse321.ridesharing.repository.InvalidInputException;
@@ -30,7 +33,9 @@ public class LocationController {
 								 @RequestParam("routeId") int routeId) {
 		Location location = repository.createLocation(city,street,price,routeId);
 		if(location != null) {
-			return location.getLocationId()  + "";
+			LocationDTO locationDTO = new LocationDTO();
+			locationDTO.setLocationId(location.getLocationId());
+			return locationDTO.getLocationId()  + "";
 		}else {
 			return "-1";
 		}
@@ -62,29 +67,41 @@ public class LocationController {
 	
 	@RequestMapping(value = "/getRoutesForPass/{destination}/", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Route> getRoutes(@PathVariable("destination") String destination){
-		return repository.getRoutesForPassenger(destination);
+	public List<RouteDTO> getRoutes(@PathVariable("destination") String destination){
+		List<Route> routes = repository.getRoutesForPassenger(destination);
+		List<RouteDTO> routeDTOs = new ArrayList<RouteDTO>();
+		for(Route route : routes) {
+			routeDTOs.add(new RouteDTO(route.getRouteId(),route.getSeatsAvailable(),route.getStartLocation(),route.getDate(),route.getCar(),route.getStops()));
+		}
+		return routeDTOs;
 	}
 	
 	@RequestMapping(value = "/getDestination/{routeId}/", method = RequestMethod.GET)
 	@ResponseBody
-	public Location getFinalDest(@PathVariable("routeId") int routeId){
+	public LocationDTO getFinalDest(@PathVariable("routeId") int routeId){
 		List<Location> locations = repository.getStops(routeId);
 		Location lastStop = null;
 		for(Location thisStop: locations) {
 			lastStop = thisStop;
 		}
-		return lastStop;
+		LocationDTO locationDTO = new LocationDTO(lastStop.getLocationId(),lastStop.getCity(),lastStop.getStreet(),lastStop.getPassenger(),lastStop.getRoute(),lastStop.getPrice());
+		return locationDTO;
 	}
 	
 	@RequestMapping(value="/getLocationsForPassenger/{routeId}/", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Location> getLocationsForPassenger(@PathVariable("routeId") int routeId){
-		return repository.getStops(routeId);
+	public List<LocationDTO> getLocationsForPassenger(@PathVariable("routeId") int routeId){
+		List<Location> locations =  repository.getStops(routeId);
+		List<LocationDTO> locationDTOs = new ArrayList<LocationDTO>();
+		for(Location location : locations) {
+			locationDTOs.add(new LocationDTO(location.getLocationId(), location.getCity(), location.getStreet(), location.getPassenger(), location.getRoute(), location.getPrice()));
+		}
+		return locationDTOs;
 	}
 	
 	@RequestMapping(value = "/getLocation/{id}/", method = RequestMethod.GET)
-	public Location getLocation(@PathVariable("id") int id) {
-		return repository.getLocation(id);
+	public LocationDTO getLocation(@PathVariable("id") int id) {
+		Location location = repository.getLocation(id);
+		return new LocationDTO(location.getLocationId(), location.getCity(), location.getStreet(), location.getPassenger(), location.getRoute(), location.getPrice());
 	}
 }

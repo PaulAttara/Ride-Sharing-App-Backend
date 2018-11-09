@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.ridesharing.controller;
 
 import ca.mcgill.ecse321.ridesharing.model.*;
+import ca.mcgill.ecse321.ridesharing.DTO.*;
 import ca.mcgill.ecse321.ridesharing.repository.CarRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,9 @@ public class CarController {
 							 @RequestParam("plate") String plate) {
 		Car result = repository.createVehicle(brand, model, plate);
 		if (result != null) {
-			return String.valueOf(result.getVehicleId());
+			CarDTO carDTO= new CarDTO();
+			carDTO.setVehicleId(result.getVehicleId());
+			return String.valueOf(carDTO.getVehicleId());
 		} else {
 			return "-1";
 		}
@@ -44,7 +47,9 @@ public class CarController {
 	}
 
 	@RequestMapping(value = "/{id}/", method = RequestMethod.GET)
-	public Car getVehicle(@PathVariable("id") int id) {
-		return repository.getVehicle(id);
+	public CarDTO getVehicle(@PathVariable("id") int id) {
+		Car car = repository.getVehicle(id);
+		CarDTO carDTO = new CarDTO(car.getVehicleId(),car.getBrand(),car.getModel(),car.getLicensePlate(),car.getDriver());
+		return carDTO;
 	}
 }
