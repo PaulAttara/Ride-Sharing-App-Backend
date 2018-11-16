@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.ridesharing.controller;
 
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/")
 public class MainController {
