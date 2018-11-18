@@ -62,6 +62,18 @@ public class RouteController {
 			return false;
 		}
 	}
+	
+	@RequestMapping(value = "/getAllRoutes/", method = RequestMethod.GET)
+	@ResponseBody
+	public List<RouteDTO> getAllRoutes(){
+		List<Route> allRoutesForDriver = repository.getAllRoutes();
+		//		return routesForDriver.stream().map(r -> r.getRouteId()).collect(Collectors.toList());
+		List<RouteDTO> routeDTOs = new ArrayList<RouteDTO>();
+		for(Route route : allRoutesForDriver) {
+			routeDTOs.add(new RouteDTO(route.getRouteId(), route.getSeatsAvailable(), route.getStartLocation(), route.getDate(), route.getCar(), route.getStops()));
+		}
+		return routeDTOs;
+	}
 
 	@RequestMapping(value = "/getRoutes/{username}/", method = RequestMethod.GET)
 	@ResponseBody

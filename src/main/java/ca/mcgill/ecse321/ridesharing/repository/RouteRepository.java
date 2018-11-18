@@ -79,4 +79,11 @@ public class RouteRepository {
 		return stops;
 	}
 
+	@Transactional
+	public List<Route> getAllRoutes() {
+		TypedQuery<Route> query = em.createQuery("select e from Route e", Route.class);
+		List<Route> routes = query.getResultList();
+		return routes;
+	}
+
 }
