@@ -70,7 +70,19 @@ public class Route{
 	public void setCar(Car car) {
 		this.car = car;
 	}
+	
+	private Status status;
+	
+	@Enumerated(EnumType.STRING)
+	@Column
+	public Status getStatus() {
+		return this.status;
+	}
 
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	
 	private Set<Location> stops;
 
 //	@OneToMany(mappedBy="route")
