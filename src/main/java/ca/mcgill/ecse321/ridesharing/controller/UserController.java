@@ -4,6 +4,9 @@ import ca.mcgill.ecse321.ridesharing.model.*;
 import ca.mcgill.ecse321.ridesharing.DTO.*;
 import ca.mcgill.ecse321.ridesharing.repository.UserRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +41,20 @@ public class UserController {
 		double newRating = Double.parseDouble(rating);
 		double avgRating = repository.addToRatings(username, newRating);
 		return rating + " was added. " + username + " has an average rating of " + avgRating;
+	}
+	
+	@RequestMapping(value = "/getAllUsers/{role}", method = RequestMethod.GET)
+	@ResponseBody
+	public List<UserDTO> getAllRoutes(@PathVariable("role") String role){
+		List<User> allUsers = repository.getAllUsers(role);
+		//		return routesForDriver.stream().map(r -> r.getRouteId()).collect(Collectors.toList());
+		List<UserDTO> userDTOs = new ArrayList<UserDTO>();
+		for(User user : allUsers) {
+			userDTOs.add(new UserDTO(user.getRatings(),user.getUsername(),user.getPassword(),user.getFirstName(),
+					user.getLastName(),user.getPhoneNumber(),user.getCity(),user.getAddress(),
+					user.getRole(),user.getAvgRating(),user.getNumTrips()));
+		}
+		return userDTOs;
 	}
 	
 	@RequestMapping(value = "/login/{username}/{password}/", method = RequestMethod.GET)

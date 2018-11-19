@@ -99,4 +99,21 @@ public class UserRepository {
 		return em.find(User.class, id);
 	}
 
+	public List<User> getAllUsers(String role) {
+		String thisRole = role.toLowerCase();
+		if(thisRole.equals("driver")) {
+			TypedQuery<User> query = em.createQuery("select e from User e where role = '"+thisRole+"'", User.class);
+			List<User> drivers = query.getResultList();
+			return drivers;
+		}else if(thisRole.equals("passenger")) {
+			TypedQuery<User> query = em.createQuery("select e from User e where role = '"+thisRole+"'", User.class);
+			List<User> pass = query.getResultList();
+			return pass;
+		}else {
+			TypedQuery<User> query = em.createQuery("select e from User e", User.class);
+			List<User> all = query.getResultList();
+			return all;
+		}
+	}
+
 }
