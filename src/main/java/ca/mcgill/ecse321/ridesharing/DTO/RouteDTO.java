@@ -11,17 +11,19 @@ public class RouteDTO {
 	private Timestamp date;
 	private Car car;
 	private Set<Location> locations;
+	private Status status;
 	
 	public RouteDTO() {}
 	
 	public RouteDTO(int routeId, int seatsAvailable, String startLocation, Timestamp date, Car car,
-			Set<Location> locations) {
+			Set<Location> locations, Status status) {
 		this.routeId = routeId;
 		this.seatsAvailable = seatsAvailable;
 		this.startLocation = startLocation;
 		this.date = date;
 		this.car = car;
 		this.locations = locations;
+		this.status = status;
 	}
 	
 	public int getRouteId() {
@@ -39,11 +41,17 @@ public class RouteDTO {
 	public Car getCar() {
 		return car;
 	}
+	public Status getStatus() {
+		return status;
+	}
 	public Set<Location> getLocations() {
 		return locations;
 	}
 	public void setRouteId(int routeId) {
 		this.routeId = routeId;
+	}
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 	public void setSeatsAvailable(int seatsAvailable) {
 		this.seatsAvailable = seatsAvailable;

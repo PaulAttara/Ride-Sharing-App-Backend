@@ -73,7 +73,7 @@ public class LocationController {
 		List<Route> routes = repository.getRoutesForPassenger(destination);
 		List<RouteDTO> routeDTOs = new ArrayList<RouteDTO>();
 		for(Route route : routes) {
-			routeDTOs.add(new RouteDTO(route.getRouteId(),route.getSeatsAvailable(),route.getStartLocation(),route.getDate(),route.getCar(),route.getStops()));
+			routeDTOs.add(new RouteDTO(route.getRouteId(),route.getSeatsAvailable(),route.getStartLocation(),route.getDate(),route.getCar(),route.getStops(), route.getStatus()));
 		}
 		return routeDTOs;
 	}

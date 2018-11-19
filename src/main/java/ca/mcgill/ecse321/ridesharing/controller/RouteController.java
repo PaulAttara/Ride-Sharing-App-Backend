@@ -70,7 +70,7 @@ public class RouteController {
 		//		return routesForDriver.stream().map(r -> r.getRouteId()).collect(Collectors.toList());
 		List<RouteDTO> routeDTOs = new ArrayList<RouteDTO>();
 		for(Route route : allRoutesForDriver) {
-			routeDTOs.add(new RouteDTO(route.getRouteId(), route.getSeatsAvailable(), route.getStartLocation(), route.getDate(), route.getCar(), route.getStops()));
+			routeDTOs.add(new RouteDTO(route.getRouteId(), route.getSeatsAvailable(), route.getStartLocation(), route.getDate(), route.getCar(), route.getStops(),route.getStatus()));
 		}
 		return routeDTOs;
 	}
@@ -82,7 +82,7 @@ public class RouteController {
 		//		return routesForDriver.stream().map(r -> r.getRouteId()).collect(Collectors.toList());
 		List<RouteDTO> routeDTOs = new ArrayList<RouteDTO>();
 		for(Route route : routesForDriver) {
-			routeDTOs.add(new RouteDTO(route.getRouteId(), route.getSeatsAvailable(), route.getStartLocation(), route.getDate(), route.getCar(), route.getStops()));
+			routeDTOs.add(new RouteDTO(route.getRouteId(), route.getSeatsAvailable(), route.getStartLocation(), route.getDate(), route.getCar(), route.getStops(),route.getStatus()));
 		}
 		return routeDTOs;
 	}
@@ -90,7 +90,7 @@ public class RouteController {
 	@RequestMapping(value = "/getRoute/{id}/", method = RequestMethod.GET)
 	public RouteDTO getRoute(@PathVariable("id") int id) {
 		Route route = repository.getRoute(id);
-		RouteDTO routeDTO = new RouteDTO(route.getRouteId(), route.getSeatsAvailable(), route.getStartLocation(), route.getDate(), route.getCar(), route.getStops());
+		RouteDTO routeDTO = new RouteDTO(route.getRouteId(), route.getSeatsAvailable(), route.getStartLocation(), route.getDate(), route.getCar(), route.getStops(),route.getStatus());
 		return routeDTO;
 	}
 
