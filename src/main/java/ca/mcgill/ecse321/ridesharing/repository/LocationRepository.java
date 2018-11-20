@@ -79,7 +79,7 @@ public class LocationRepository {
 
 	@Transactional
 	public List<Location> getStops(int routeId) {
-		TypedQuery<Location> query = em.createQuery("select e from Location e where route_routeid = '"+routeId+"'", Location.class);
+		TypedQuery<Location> query = em.createQuery("select e from Location e where route_routeid = '"+routeId+"' order by locationid asc", Location.class);
 		List<Location> stops = query.getResultList();
 		return stops;
 	}
