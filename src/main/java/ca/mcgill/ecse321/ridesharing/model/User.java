@@ -149,15 +149,15 @@ public class User{
 		this.car = car;
 	}
 
-	private Location request;
+	private Set<Location> request;
 
 //	@OneToOne(mappedBy="passenger", optional=true)
 	@Transient
-	public Location getRequest() {
+	public Set<Location> getRequest() {
 		return this.request;
 	}
 
-	public void setRequest(Location request) {
+	public void setRequest(Set<Location> request) {
 		this.request = request;
 	}
 

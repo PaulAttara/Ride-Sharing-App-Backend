@@ -53,7 +53,7 @@ public class Location{
 
 	private User passenger;
     //@JoinColumn(name = "username", nullable = true)
-	@OneToOne(optional = true)
+	@ManyToOne(optional = true)
 	public User getPassenger() {
 		return this.passenger;
 	}
