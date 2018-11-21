@@ -36,7 +36,7 @@ public class LocationRepository {
 	@Transactional
 	public boolean addPassenger(String username, int routeId, int locationId){
 		User passenger = em.find(User.class, username);
-		if(passenger == null) {
+		if(passenger == null || passenger.getStatus().equals(UserStatus.Inactive)) {
 			return false;
 		}
 		Location location = getLocation(locationId);
@@ -94,5 +94,11 @@ public class LocationRepository {
 			routesPassingBy.add(em.find(Route.class, routeId));
 		}
 		return routesPassingBy;
+	}
+
+	public List<User> getPassengersByDate(String startDate, String endDate) {
+		TypedQuery<User> query = em.createQuery("select e from User e where username in (select a.passenger_username from Location a where route_routeid in (select b.routeid from Route b where date(date) between '" + startDate +"' and '"+endDate+"'))", User.class);
+		List<User> passengers = query.getResultList();
+		return passengers;
 	}
 }

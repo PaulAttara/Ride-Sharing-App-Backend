@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ca.mcgill.ecse321.ridesharing.DTO.LocationDTO;
 import ca.mcgill.ecse321.ridesharing.DTO.RouteDTO;
+import ca.mcgill.ecse321.ridesharing.DTO.UserDTO;
 import ca.mcgill.ecse321.ridesharing.model.Location;
 import ca.mcgill.ecse321.ridesharing.model.Route;
+import ca.mcgill.ecse321.ridesharing.model.User;
 import ca.mcgill.ecse321.ridesharing.repository.InvalidInputException;
 import ca.mcgill.ecse321.ridesharing.repository.LocationRepository;
 
@@ -99,6 +101,19 @@ public class LocationController {
 			locationDTOs.add(new LocationDTO(location.getLocationId(), location.getCity(), location.getStreet(), location.getPassenger(), location.getRoute(), location.getPrice()));
 		}
 		return locationDTOs;
+	}
+	
+	@RequestMapping(value="/getPassengersByDate/{start}/{end}/", method = RequestMethod.GET)
+	@ResponseBody
+	public List<UserDTO> getPassengersByDate(@PathVariable("start") String startDate, @PathVariable("end") String endDate){
+		List<User> passengers =  repository.getPassengersByDate(startDate, endDate);
+		List<UserDTO> userDTOs = new ArrayList<UserDTO>();
+		for(User passenger : passengers) {
+			userDTOs.add(new UserDTO(passenger.getRatings(),passenger.getUsername(),passenger.getPassword(),passenger.getFirstName(),
+					passenger.getLastName(),passenger.getPhoneNumber(),passenger.getCity(),passenger.getAddress(),
+					passenger.getRole(),passenger.getAvgRating(),passenger.getNumTrips(), passenger.getStatus()));
+		}
+		return userDTOs;
 	}
 	
 	@RequestMapping(value = "/getLocation/{id}/", method = RequestMethod.GET)
