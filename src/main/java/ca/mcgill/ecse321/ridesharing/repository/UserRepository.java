@@ -56,6 +56,7 @@ public class UserRepository {
 		user.setAddress(address);
 		user.setRole(role);
 		user.setRatings(null);
+		user.setStatus(UserStatus.Active);
 		//user.setAvgRating(0);
 		//user.setNumTrips(0);
 		em.persist(user);

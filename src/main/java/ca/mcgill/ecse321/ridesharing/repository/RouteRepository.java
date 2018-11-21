@@ -30,7 +30,7 @@ public class RouteRepository {
 		Timestamp anyDate = Timestamp.valueOf(date + " " + time + ":00");
 		route.setDate(anyDate);
 		route.setStartLocation(startLocation);
-		route.setStatus(Status.Scheduled);
+		route.setStatus(RouteStatus.Scheduled);
 		em.persist(route);
 //		Set<Route> routes = car.getRoute();
 //		routes.add(route);

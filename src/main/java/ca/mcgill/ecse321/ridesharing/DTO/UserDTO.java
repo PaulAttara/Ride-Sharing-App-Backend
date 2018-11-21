@@ -2,16 +2,19 @@ package ca.mcgill.ecse321.ridesharing.DTO;
 
 import java.util.List;
 
+import ca.mcgill.ecse321.ridesharing.model.UserStatus;
+
 public class UserDTO {
 	private List<Double> ratings;
 	private String username, password, firstName, lastName, phoneNumber, city, address, role;
 	private double avgRating;
 	private int numTrips;
+	private UserStatus userStatus;
 	
 	public UserDTO() {}
 	
 	public UserDTO(List<Double> ratings, String username, String password, String firstName, String lastName,
-			String phoneNumber, String city, String address, String role, double avgRating, int numTrips) {
+			String phoneNumber, String city, String address, String role, double avgRating, int numTrips, UserStatus userStatus) {
 		this.ratings = ratings;
 		this.username = username;
 		this.password = password;
@@ -23,6 +26,7 @@ public class UserDTO {
 		this.role = role;
 		this.avgRating = avgRating;
 		this.numTrips = numTrips;
+		this.userStatus = userStatus;
 	}
 
 	public List<Double> getRatings() {
@@ -68,6 +72,10 @@ public class UserDTO {
 	public int getNumTrips() {
 		return numTrips;
 	}
+	
+	public UserStatus getUserStatus() {
+		return userStatus;
+	}
 
 	public void setRatings(List<Double> ratings) {
 		this.ratings = ratings;
@@ -111,6 +119,10 @@ public class UserDTO {
 
 	public void setNumTrips(int numTrips) {
 		this.numTrips = numTrips;
+	}
+	
+	public void setUserStatus(UserStatus userStatus) {
+		this.userStatus = userStatus;
 	}
 	
 	

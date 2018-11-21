@@ -71,15 +71,15 @@ public class Route{
 		this.car = car;
 	}
 	
-	private Status status;
+	private RouteStatus status;
 	
 	@Enumerated(EnumType.STRING)
 	@Column
-	public Status getStatus() {
+	public RouteStatus getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(RouteStatus status) {
 		this.status = status;
 	}
 	

@@ -148,6 +148,18 @@ public class User{
 	public void setCar(Car car) {
 		this.car = car;
 	}
+	
+	private UserStatus status;
+	
+	@Enumerated(EnumType.STRING)
+	@Column
+	public UserStatus getStatus() {
+		return this.status;
+	}
+	
+	public void setStatus(UserStatus status) {
+		this.status = status;
+	}
 
 	private Set<Location> request;
 

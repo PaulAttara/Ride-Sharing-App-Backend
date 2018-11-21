@@ -1,6 +1,6 @@
 package ca.mcgill.ecse321.ridesharing.model;
 
 
-public enum Status {
+public enum RouteStatus {
 	EnRoute, Ended, Scheduled;
 }

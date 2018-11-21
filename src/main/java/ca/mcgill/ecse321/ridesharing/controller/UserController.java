@@ -52,7 +52,7 @@ public class UserController {
 		for(User user : allUsers) {
 			userDTOs.add(new UserDTO(user.getRatings(),user.getUsername(),user.getPassword(),user.getFirstName(),
 					user.getLastName(),user.getPhoneNumber(),user.getCity(),user.getAddress(),
-					user.getRole(),user.getAvgRating(),user.getNumTrips()));
+					user.getRole(),user.getAvgRating(),user.getNumTrips(), user.getStatus()));
 		}
 		return userDTOs;
 	}
@@ -72,6 +72,6 @@ public class UserController {
 		User user = repository.getUser(id);
 		return new UserDTO(user.getRatings(),user.getUsername(),user.getPassword(),user.getFirstName(),
 							user.getLastName(),user.getPhoneNumber(),user.getCity(),user.getAddress(),
-							user.getRole(),user.getAvgRating(),user.getNumTrips());
+							user.getRole(),user.getAvgRating(),user.getNumTrips(), user.getStatus());
 	}
 }
