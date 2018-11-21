@@ -96,6 +96,7 @@ public class LocationRepository {
 		return routesPassingBy;
 	}
 
+	@Transactional
 	public List<User> getPassengersByDate(String startDate, String endDate) {
 		TypedQuery<User> query = em.createQuery("select e from User e where username in (select a.passenger from Location a where route_routeid in (select b.routeid from Route b where date(date) between '" + startDate +"' and '"+endDate+"'))", User.class);
 		List<User> passengers = query.getResultList();
