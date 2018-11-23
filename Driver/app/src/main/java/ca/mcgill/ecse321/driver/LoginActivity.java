@@ -1,27 +1,48 @@
 package ca.mcgill.ecse321.driver;
 
-
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
 import android.content.Intent;
-
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.app.LoaderManager.LoaderCallbacks;
 
+import android.content.CursorLoader;
+import android.content.Loader;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.AsyncTask;
+
+import android.os.Build;
 import android.os.Bundle;
-
+import android.provider.ContactsContract;
+import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
-
+import android.view.View.OnClickListener;
+import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
-
+import java.util.ArrayList;
+import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import cz.msebera.android.httpclient.Header;
+import android.util.Log;
+
+
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -29,9 +50,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final int REQUEST_READ_CONTACTS = 0;
 
-    // Http request
-    private RequestQueue mRequestQueue;
-    private StringRequest mStringRequest;
 
     // UI references.
     private EditText mUsername;
@@ -76,33 +94,50 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        //Http GET request to login starts here
-        String pathURL = "https://sharefare.herokuapp.com/api/user/login/" + username + "/" + password+"/";
-
-        //RequestQueue initialized
-        mRequestQueue = Volley.newRequestQueue(this);
-
-        //String Request initialized
-        mStringRequest = new StringRequest(Request.Method.GET, pathURL, new Response.Listener<String>() {
+        String pathURL = "api/user/login/" + username + "/" + password+"/";
+        //System.out.println("this is my path: " + pathURL);
+        HttpUtils.get(pathURL, new RequestParams(), new JsonHttpResponseHandler() {
             @Override
-            public void onResponse(String response) {
-                if(response.equals("true")){
-                    openRouteListings(username);
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+
+                if (loginSuccess) {
+                    Intent MainIntent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(MainIntent);
+                    finish();
+                    MainActivity.username = username;
                     Toast.makeText(LoginActivity.this, "You are successfully signed in", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(LoginActivity.this, "Incorrect Username or Password", Toast.LENGTH_LONG).show();
                 }
-
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(getApplicationContext(),"Error:" + error.toString(), Toast.LENGTH_LONG).show();//display the response on screen
+            // For some reason it always fails, but the value we're looking for is stored in errorResponse
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
+                loginSuccess = errorResponse.equals("true");
+                Toast.makeText(LoginActivity.this, error, Toast.LENGTH_LONG).show();
+                if (loginSuccess) {
+                    Intent MainIntent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(MainIntent);
+                    finish();
+                    MainActivity.username = username;
+                    Toast.makeText(LoginActivity.this, "You are successfully signed in", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Incorrect Username or Password", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            //This one catches the error, not the one above
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                //refreshErrorMessage();
             }
         });
-
-        mRequestQueue.add(mStringRequest);
     }
 
     public void openRegisterPage(View view){
@@ -111,12 +146,17 @@ public class LoginActivity extends AppCompatActivity {
         finish();
     }
 
-    public void openRouteListings(String username) {
-        Intent MainIntent = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(MainIntent);
-        finish();
-        MainActivity.username = username;
-    }
+    private void refreshErrorMessage() {
+        // set the error message
+        TextView tvError = (TextView) findViewById(R.id.error);
+        tvError.setText(error);
 
+        if (error == null || error.length() == 0) {
+            tvError.setVisibility(View.GONE);
+        } else {
+            tvError.setVisibility(View.VISIBLE);
+        }
+
+    }
 
 }

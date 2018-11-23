@@ -18,14 +18,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -47,13 +39,9 @@ public class RouteListingsFragment extends Fragment {
         // Required empty public constructor
     }
 
-    // Http request
-    private RequestQueue mRequestQueue;
-    private StringRequest mStringRequest;
-
     private LinearLayout parentLinearLayout;
-    ArrayList<RouteTemplate> routes; //for UI when logging in with valid user
-    ArrayList<RouteTemplate> routesTEST; //for UI when logging in with admin user(AS A TEST), in case httputil doesnt pass
+    ArrayList<RouteTemplate> dataModels; //for UI when logging in with valid user
+    ArrayList<RouteTemplate> dataModelsTEST; //for UI when logging in with admin user(AS A TEST), in case httputil doesnt pass
     ArrayList<LocationTemplate> locationsTEST;
 
 
@@ -71,9 +59,28 @@ public class RouteListingsFragment extends Fragment {
 
         listView = (ListView) routeListingsView.findViewById(R.id.routelistingslistview);
         locationsTEST = new ArrayList<LocationTemplate>();
-        routesTEST = new ArrayList<RouteTemplate>();
+        dataModelsTEST = new ArrayList<RouteTemplate>();
 
         getRouteListings();
+
+
+        //Swipe to refresh locations list: works but unable to remove the reloading wheel, so currently disabled
+
+//        SwipeRefreshLayout swipe = routeListingsView.findViewById(R.id.swiperefresh);
+//        swipe.setRefreshing(false);
+//
+//        swipe.setOnRefreshListener(
+//                new SwipeRefreshLayout.OnRefreshListener() {
+//                    @Override
+//                    public void onRefresh() {
+//                        getRouteListings();
+//                        // This method performs the actual data-refresh operation.
+//                        // The method calls setRefreshing(false) when it's finished.
+//                        //myUpdateOperation();
+//                    }
+//                }
+//        );
+//        swipe.setRefreshing(false);
 
         return routeListingsView; // You need to return the view in which the changed text exists
     }
@@ -87,10 +94,9 @@ public class RouteListingsFragment extends Fragment {
             locationsTEST.add(new LocationTemplate("DDO", "Mozart", "", 0));
             locationsTEST.add(new LocationTemplate("Montreal", "Mansfield", "", 200));
 
-            routesTEST.add(new RouteTemplate(locationsTEST, "2018-11-15",1234, 5, 1234 ));
-            routesTEST.add(new RouteTemplate(locationsTEST, "2018-11-15",1234, 5, 1234 ));
+            dataModelsTEST.add(new RouteTemplate(locationsTEST, "2018-11-15",1234, 5, 1234 ));
 
-            adapter = new RouteAdapter(routesTEST, ((MainActivity)getActivity()).getApplicationContext());
+            adapter = new RouteAdapter(dataModelsTEST, ((MainActivity)getActivity()).getApplicationContext());
 
 
             listView.setAdapter(adapter);
@@ -99,7 +105,7 @@ public class RouteListingsFragment extends Fragment {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                     //dataModel is the selected item
-                    RouteTemplate dataModel = routesTEST.get(position);
+                    RouteTemplate dataModel = dataModelsTEST.get(position);
 
                     //Display message
                     Snackbar.make(view, dataModel.getStartLocation().toString()+"\n"+dataModel.getEndLocation().toString(), Snackbar.LENGTH_LONG)
@@ -120,48 +126,65 @@ public class RouteListingsFragment extends Fragment {
             return;
         }
 
-        routes = new ArrayList<RouteTemplate>();
 
-        mRequestQueue = Volley.newRequestQueue(((MainActivity)getActivity()).getApplicationContext());
 
-        //Http GET request to login starts here
-        String baseURL = "https://sharefare.herokuapp.com/api";
-        String pathURL = baseURL + "/route/getRoutes" + "/" + username + "/";
+        dataModels = new ArrayList<>();
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, pathURL, null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        try {
-                            for (int  i = 0; i < response.length(); i++) {
+        String pathUrl = "api/route/getRoutes" + "/" + username + "/";
+        //This is where the get method for routes goes for the user.
+        HttpUtils.get(pathUrl, new RequestParams(), new JsonHttpResponseHandler() {
+            @Override
+            public void onFinish() {
+                System.out.println("FINISHED");
+            }
 
-                                JSONObject route = response.getJSONObject(i);
-                                int routeId = route.getInt("routeId");
-                                String date = route.getString("date");
-                                int numSeats = route.getInt("seatsAvailable");
-                                int carId = route.getJSONObject("car").getInt("vehicleId");
-                                getRouteLocations(routeId, date, numSeats,carId);
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                try {
+                    int len = response.length();
 
-                                //delay to allow server response
-                                Thread.sleep(150);
+                    ArrayList<JSONObject> arrays = new ArrayList<JSONObject>();
+                    ArrayList<LocationTemplate> locations = new ArrayList<LocationTemplate>();
 
-                            }
-                    } catch (Exception e) {
-                            Toast.makeText(((MainActivity)getActivity()).getApplicationContext(),"Error: " + e.toString(), Toast.LENGTH_LONG).show();
+                    for (int  i = 0; i < len; i++) {
+                        JSONArray route = response.getJSONArray(i);
+                        int routeId = (int) route.get(0);
+                        String date = (String) route.get(1);
+                        int numSeats = (int) route.get(2);
+                        int carId = (int) route.get(3);
+                        locations = getRouteLocations(routeId);
+                        dataModels.add(new RouteTemplate(locations, date, routeId, numSeats, carId));
                     }
-                    }
-                },
-                new Response.ErrorListener(){
-                    @Override
-                    public void onErrorResponse(VolleyError error){
-                        Toast.makeText(((MainActivity)getActivity()).getApplicationContext(),"Request Error: " + error.toString(), Toast.LENGTH_LONG).show();
-                    }
+                } catch (Exception e) {
+                    String message =e.getMessage();
+                    String message2 =e.getMessage();
                 }
-        );
 
-        mRequestQueue.add(jsonArrayRequest);
 
-        adapter = new RouteAdapter(routes, ((MainActivity)getActivity()).getApplicationContext());
+                System.out.print("SUCCESS");
+                //refreshErrorMessage();
+
+
+            }
+
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse){
+                System.out.print("FAILED");
+            }
+            // ONSUCCESS: For some reason it always fails, but the value we're looking for is stored in errorResponse
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
+                System.out.print("FAILED");
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                System.out.print("FAILED");
+            }
+        });
+
+        //dataModels.add(new RouteTemplate("Sauvignon", "McGill"));
+
+        adapter = new RouteAdapter(dataModels, ((MainActivity)getActivity()).getApplicationContext());
 
 
         listView.setAdapter(adapter);
@@ -170,10 +193,10 @@ public class RouteListingsFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 //dataModel is the selected item
-                RouteTemplate route = routes.get(position);
+                RouteTemplate dataModel = dataModels.get(position);
 
                 //Display message
-                Snackbar.make(view, route.getStartLocation().toString()+"\n"+route.getEndLocation().toString(), Snackbar.LENGTH_LONG)
+                Snackbar.make(view, dataModel.getStartLocation().toString()+"\n"+dataModel.getEndLocation().toString(), Snackbar.LENGTH_LONG)
                         .setAction("No action", null).show();
 
                 //set the ID of the selected item so that the fields on the selected listing page can be populated
@@ -183,59 +206,76 @@ public class RouteListingsFragment extends Fragment {
                 FragmentTransaction ft = ((MainActivity) getActivity()).getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.fMain, new SelectedRouteListingFragment());
                 ft.commit();
-
-                //set routeID in selected route page
-                //SelectedRouteListingFragment.routeID = 1;
             }
         });
     }
 
-    private void getRouteLocations(final int routeId, final String date, final int numSeats, final int carId) throws InterruptedException{
+    private ArrayList<LocationTemplate> getRouteLocations(int routeId) throws InterruptedException{
+        String pathUrl = "api/route/getStops" + "/" + routeId + "/";
+        final ArrayList<LocationTemplate> locations = new ArrayList<LocationTemplate>();
 
-        mRequestQueue = Volley.newRequestQueue(((MainActivity)getActivity()).getApplicationContext());
+        HttpUtils.get(pathUrl, new RequestParams(), new JsonHttpResponseHandler() {
+            @Override
+            public void onFinish() {
+                System.out.println("FINISHED");
+            }
 
-        //Http GET request to login starts here
-        String baseURL = "http://sharefare.herokuapp.com/api";
-        String pathURL = baseURL + "/route/getStops" + "/" + routeId + "/";
+            @Override
+            public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, java.lang.String responseString){
+                System.out.println("SUCCESS");
+            }
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                super.onSuccess(statusCode,headers, response);
+                try {
+                    int len = response.length();
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, pathURL, null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        try {
+                    ArrayList<JSONObject> arrays = new ArrayList<JSONObject>();
 
-                            ArrayList<LocationTemplate> locations = new ArrayList<LocationTemplate>();
-                            for (int  i = 0; i < response.length(); i++) {
+                    for (int i = 0; i < len; i++) {
+                        JSONArray route = response.getJSONArray(i);
+                        int locationId = (int) route.get(0);
+                        String city = (String) route.get(1);
+                        double price = (double) route.get(2);
+                        String street = (String) route.get(3);
+                        //TODO add passengers to location;
+                        String passenger = "";
+                        locations.add(new LocationTemplate(city, street, passenger, price));
 
-                                JSONObject location = response.getJSONObject(i);
-                                int locationId  = location.getInt("locationId");
-                                String city = location.getString("city");
-                                double price = location.getInt("price");
-                                String street = location.getString("street");
-                                //TODO add passengers to location;
-                                String passenger = "";
-
-                                locations.add(new LocationTemplate(city, street, passenger, price));
-
-
-                            }
-
-                            routes.add(new RouteTemplate(locations, date, routeId, numSeats, carId));
-
-                        } catch (Exception e) {
-                            Toast.makeText(((MainActivity)getActivity()).getApplicationContext(),"Error: " + e.toString(), Toast.LENGTH_LONG).show();
-                        }
                     }
-                },
-                new Response.ErrorListener(){
-                    @Override
-                    public void onErrorResponse(VolleyError error){
-                        Toast.makeText(((MainActivity)getActivity()).getApplicationContext(),"Request Error:" + error.toString(), Toast.LENGTH_LONG).show();
-                    }
+                } catch (Exception e) {
+                    String message = e.getMessage();
                 }
-        );
 
-        mRequestQueue.add(jsonArrayRequest);
+
+                System.out.print("SUCCESS");
+                //refreshErrorMessage();
+
+
+            }
+
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                System.out.print("FAILED");
+            }
+
+            // ONSUCCESS: For some reason it always fails, but the value we're looking for is stored in errorResponse
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
+                System.out.print("FAILED");
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                System.out.print("FAILED");
+            }
+        });
+
+        //FOR SOME REASON, THESE WERE NEEDED HERE TO MAKE THE ABOVE GET REQUEST WORK
+        locations.add(new LocationTemplate("DDO", "Mozart", "", 0));
+        locations.add(new LocationTemplate("Montreal", "Mansfield", "", 200));
+        //FOR SOME REASON, THESE WERE NEEDED HERE TO MAKE THE ABOVE GET REQUEST WORK
+
+        return locations;
     }
 }
 

@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public class RouteTemplate {
-
     List<LocationTemplate> locations;
     String date;
     int id;
@@ -21,10 +20,6 @@ public class RouteTemplate {
 
     public int getId() {
         return id;
-    }
-
-    public void setLocations(List<LocationTemplate> locations) {
-        this.locations = locations;
     }
 
     public LocationTemplate getStartLocation (){

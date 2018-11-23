@@ -4,23 +4,23 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-//Http request
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.Volley;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import cz.msebera.android.httpclient.Header;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    // Http request
-    private RequestQueue mRequestQueue;
-    private StringRequest mStringRequest;
+    public String error = null;
 
     private EditText mUsername;
     private EditText mPassword;
@@ -57,6 +57,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    //    @Override
+//    public void onBackPressed() {
+//        moveTaskToBack(true);
+//    }
     public void attemptRegister(View view) {
         //assume it passes
         //need to check if username conflicts with another
@@ -73,6 +77,9 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void addDriverUser() {
+        error = "";
+        final TextView tv = (TextView) findViewById(R.id.txtusername);
+        RequestParams rp = new RequestParams();
 
         final String username = mUsername.getText().toString();
         String password = mPassword.getText().toString();
@@ -97,99 +104,138 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        // Building url parameters
-        String requestParams = "?";
-        requestParams += "username=" + username;
-        requestParams += "&firstname=" + firstname;
-        requestParams += "&lastname=" + lastname;
-        requestParams += "&password=" + password;
-        requestParams += "&phonenumber=" + phonenumber;
-        requestParams += "&city=" + city;
-        requestParams += "&address=" + address;
-        requestParams += "&role=driver";
+        rp.add("username", username);
+        rp.add("password", password);
+        rp.add("firstname", firstname);
+        rp.add("lastname", lastname);
+        rp.add("phonenumber", phonenumber);
+        rp.add("city", city);
+        rp.add("address", address);
+        rp.add("role", "Driver");
 
-        //Http GET request to login starts here
-        String baseURL = "https://sharefare.herokuapp.com/api";
-        String pathURL = baseURL + "/user/create" + requestParams;
-
-        //RequestQueue initialized
-        mRequestQueue = Volley.newRequestQueue(this);
-
-        //String Request initialized
-        mStringRequest = new StringRequest(Request.Method.POST, pathURL, new Response.Listener<String>() {
+        //TODO
+        //create user with post
+        HttpUtils.post("api/user/create", rp, new JsonHttpResponseHandler() {
             @Override
-            public void onResponse(String response) {
-                if (response.equals(username)) addDriverCar(username);
-                else Toast.makeText(RegisterActivity.this, response, Toast.LENGTH_LONG).show();
-
+            public void onFinish() {
+                //refreshErrorMessage();
+                tv.setText("");
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(getApplicationContext(),"Error:" + error.toString(), Toast.LENGTH_LONG).show();//display the response on screen
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+
+                try {
+                    carId = (int) response.get("vehicleId");
+                } catch (Exception e) {
+                    error += e.getMessage();
+                }
+                //refreshErrorMessage();
+            }
+
+            // ONSUCCESS: For some reason it always fails, but the value we're looking for is stored in errorResponse
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
+                System.out.println("USER: " + errorResponse);
+                if (errorResponse.equals("User Created.")) addDriverCar(username);
+                else Toast.makeText(RegisterActivity.this, errorResponse, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                System.out.println("USER: " + errorResponse);
+                //refreshErrorMessage();
             }
         });
-
-        mRequestQueue.add(mStringRequest);
     }
 
     public void addDriverCar(final String username) {
+        error = "";
 
-        // Building url parameters
-        String requestParams = "?";
-        requestParams += "brand=" + mCarBrand.getText().toString();
-        requestParams += "&model=" + mCarModel.getText().toString();
-        requestParams += "&plate=" + mLicensePlate.getText().toString();
+        final TextView tv = (TextView) findViewById(R.id.txtusername);
+        RequestParams rp = new RequestParams();
 
-        //Http GET request to login starts here
-        String baseURL = "https://sharefare.herokuapp.com/api";
-        String pathURL = baseURL + "/vehicle/create" + requestParams;
+        rp.add("brand", mCarBrand.getText().toString());
+        rp.add("model", mCarModel.getText().toString());
+        rp.add("plate", mLicensePlate.getText().toString());
 
-        //RequestQueue initialized
-        mRequestQueue = Volley.newRequestQueue(this);
-
-        //String Request initialized
-        mStringRequest = new StringRequest(Request.Method.POST, pathURL, new Response.Listener<String>() {
+        //create user with post
+        HttpUtils.post("api/vehicle/create", rp, new JsonHttpResponseHandler() {
             @Override
-            public void onResponse(String response) {
-                carId = Integer.parseInt(response);
+            public void onFinish() {
+                //refreshErrorMessage();
+                tv.setText("");
+            }
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+
+                try {
+                    carId = (int) response.get("vehicleId");
+                } catch (Exception e) {
+                    error += e.getMessage();
+                }
+                //refreshErrorMessage();
+            }
+
+            // ONSUCCESS: For some reason it always fails, but the value we're looking for is stored in errorResponse
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
+                //System.out.println("CAR: " + errorResponse);
+                carId = Integer.parseInt(errorResponse);
+                //System.out.println("CAR: " + carId);
+
                 if (carId != -1) assignDriverToCar(username, carId);
                 else Toast.makeText(RegisterActivity.this, "Error in creating the vehicle", Toast.LENGTH_LONG).show();
+
             }
-        }, new Response.ErrorListener() {
+
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(RegisterActivity.this, "Response error in creating the vehicle", Toast.LENGTH_LONG).show();;//display the response on screen
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                Toast.makeText(RegisterActivity.this, "Error in creating the vehicle", Toast.LENGTH_LONG).show();
             }
         });
-
-        mRequestQueue.add(mStringRequest);
     }
 
-    public void assignDriverToCar(String username, int carId) {
+    public void assignDriverToCar(String username, int id) {
+        error = "";
+        final TextView tv = (TextView) findViewById(R.id.txtusername);
+        RequestParams rp = new RequestParams();
 
-        //Http GET request to login starts here
-        String baseURL = "https://sharefare.herokuapp.com/api";
-        String pathURL = baseURL + "/vehicle/assignCar/" + username + "/" + carId + "/";
+        String pathUrl = "api/vehicle/assignCar/" + username + "/" + id;
 
-        //RequestQueue initialized
-        mRequestQueue = Volley.newRequestQueue(this);
-
-        //String Request initialized
-        mStringRequest = new StringRequest(Request.Method.POST, pathURL, new Response.Listener<String>() {
+        //create user with post
+        System.out.println("this is my path: " + pathUrl);
+        HttpUtils.post(pathUrl, rp, new JsonHttpResponseHandler() {
             @Override
-            public void onResponse(String response) {
-                Toast.makeText(RegisterActivity.this, "New User Created!" + "\n" + response, Toast.LENGTH_LONG).show();
+            public void onFinish() {
+                //refreshErrorMessage()
+                tv.setText("");
             }
-        }, new Response.ErrorListener() {
+
+            // ONSUCCESS: For some reason it always fails, but the value we're looking for is stored in errorResponse
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(RegisterActivity.this, "Request error in assigning user to car.", Toast.LENGTH_LONG).show();;//display the response on screen
+            public void onFailure(int statusCode, Header[] headers, String errorResponse, Throwable throwable) {
+                Toast.makeText(RegisterActivity.this, "New User Created!" + "\n" + errorResponse, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                Toast.makeText(RegisterActivity.this, "Error in assigning user to car", Toast.LENGTH_LONG).show();
+                //refreshErrorMessage();
             }
         });
+    }
 
-        mRequestQueue.add(mStringRequest);
+    private void refreshErrorMessage() {
+        // set the error message
+        TextView tvError = (TextView) findViewById(R.id.error);
+        tvError.setText(error);
+
+        if (error == null || error.length() == 0) {
+            tvError.setVisibility(View.GONE);
+        } else {
+            tvError.setVisibility(View.VISIBLE);
+        }
 
     }
 
