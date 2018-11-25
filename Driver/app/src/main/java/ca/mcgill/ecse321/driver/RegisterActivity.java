@@ -111,7 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
         rp.add("phonenumber", phonenumber);
         rp.add("city", city);
         rp.add("address", address);
-        rp.add("role", "Driver");
+        rp.add("role", "driver");
 
         //TODO
         //create user with post

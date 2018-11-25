@@ -73,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
         rp.add("phonenumber",mPhoneNumber.getText().toString());
         rp.add("city",mCity.getText().toString());
         rp.add("address",mAddress.getText().toString());
-        rp.add("role", "Passenger");
+        rp.add("role", "passenger");
 
         // question
         HttpUtils.post("api/user/create", rp, new JsonHttpResponseHandler() {
