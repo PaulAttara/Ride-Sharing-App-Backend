@@ -145,8 +145,8 @@ public class SelectedListingFragment extends Fragment {
         //txtEndAddress=(TextView)findViewById(R.id.txtselectedendaddess);
         //txtStartAddress.setText("CANADA");
         //txtEndAddress.setText("USA");
-        txtStartAddress.setText("You selected start address ID" +routeID);
-        txtEndAddress.setText("You selected start address ID" +routeID);
+        txtStartAddress.setText("You selected start address ID" + routeID);
+        txtEndAddress.setText("You selected start address ID" + routeID);
     }
 
 }

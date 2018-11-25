@@ -45,9 +45,11 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundColor" value="00a708" />
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="backgroundColor" value="000000" />
                                       <entry key="iconShape" value="CIRCLE" />
-                                      <entry key="outputName" value="action_done" />
+                                      <entry key="imageAsset" value="$PROJECT_DIR$/app/src/main/media/web_hi_res_512.png" />
+                                      <entry key="outputName" value="launcher_icon" />
                                     </map>
                                   </option>
                                 </PersistentState>

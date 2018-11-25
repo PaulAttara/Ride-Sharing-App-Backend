@@ -84,6 +84,8 @@ public class SearchListingsFragment extends Fragment {
 
     private void getSearchListings(View v) {
         dataModels = new ArrayList<>();
+        //test
+        dataModels.add(new SearchTemplate("2018-12-01", "123", "5"));
 
         final String dropOff = txtsearchLocation.getText().toString();
 
@@ -101,8 +103,8 @@ public class SearchListingsFragment extends Fragment {
 
                 try {
 
-                    int routeId=response.getJSONObject(0).getInt("routeId");
-                    int numSeats = response.getJSONObject(1).getInt("numSeats");
+                    String routeId=response.getJSONObject(0).getString("routeId");
+                    String numSeats = response.getJSONObject(1).getString("numSeats");
                     String date = response.getJSONObject(3).getString("date");
 
 //                    int len = response.length();
@@ -179,6 +181,9 @@ public class SearchListingsFragment extends Fragment {
 
                 //set the ID of the selected item so that the fields on the selected listing page can be populated
                 //SelectedListingFragment.ID = ...;
+                MainActivity.startAddress = "Montreal";
+                MainActivity.endAddress = "Toronto";
+
 
                 //navigate to selected listing page
                 FragmentTransaction ft = ((MainActivity) getActivity()).getSupportFragmentManager().beginTransaction();

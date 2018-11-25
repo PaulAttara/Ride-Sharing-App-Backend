@@ -14,7 +14,7 @@
         android:text="Date"
         android:textColor="@android:color/black" />
     <TextView
-        android:id="@+id/txtrouteId"
+        android:id="@+id/txtRouteId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtDate"
@@ -26,7 +26,7 @@
         android:id="@+id/txtNumSeats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtrouteId"
+        android:layout_below="@+id/txtRouteId"
         android:layout_marginTop="5dp"
         android:text="numSeats"
         android:textColor="@android:color/black" />

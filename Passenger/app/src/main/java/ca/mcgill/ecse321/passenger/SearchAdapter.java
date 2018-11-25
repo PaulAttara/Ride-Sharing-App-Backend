@@ -48,6 +48,7 @@ public class SearchAdapter extends ArrayAdapter<SearchTemplate> implements View.
 
 
 
+
 //        switch (v.getId())
 //        {
 //
@@ -82,7 +83,7 @@ public class SearchAdapter extends ArrayAdapter<SearchTemplate> implements View.
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.searchlistingrow, parent, false);
             viewHolder.txtDate = (TextView) convertView.findViewById(R.id.txtDate);
-            viewHolder.txtRouteId = (TextView) convertView.findViewById(R.id.txtrouteId);
+            viewHolder.txtRouteId = (TextView) convertView.findViewById(R.id.txtRouteId);
             viewHolder.txtNumSeats = (TextView) convertView.findViewById(R.id.txtNumSeats);
             viewHolder.info = (ImageView) convertView.findViewById(R.id.item_info);
 
@@ -96,9 +97,8 @@ public class SearchAdapter extends ArrayAdapter<SearchTemplate> implements View.
 
         lastPosition = position;
 
-
         viewHolder.txtDate.setText(SearchTemplate.getDate());
-        viewHolder.txtRouteId.setText(SearchTemplate.getrouteID());
+        viewHolder.txtRouteId.setText(SearchTemplate.getRouteID());
         viewHolder.txtNumSeats.setText(SearchTemplate.getNumSeats());
         viewHolder.info.setOnClickListener(this);
         viewHolder.info.setTag(position);
