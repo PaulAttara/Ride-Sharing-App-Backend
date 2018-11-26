@@ -22,6 +22,8 @@ public class RouteAdapter extends ArrayAdapter<RouteTemplate> implements View.On
     private static class ViewHolder {
         TextView txtStartAddress;
         TextView txtEndAddress;
+        TextView date;
+        TextView time;
         //Button modifyRoute;
         //Button deleteRoute;
         ImageView info;
@@ -83,6 +85,8 @@ public class RouteAdapter extends ArrayAdapter<RouteTemplate> implements View.On
             convertView = inflater.inflate(R.layout.routelistingrow, parent, false);
             viewHolder.txtStartAddress = (TextView) convertView.findViewById(R.id.txtstartaddress);
             viewHolder.txtEndAddress = (TextView) convertView.findViewById(R.id.txtendaddress);
+            viewHolder.date = (TextView) convertView.findViewById(R.id.txtdate);
+            viewHolder.time = (TextView) convertView.findViewById(R.id.txttime);
             viewHolder.info = (ImageView) convertView.findViewById(R.id.item_info);
 
             result=convertView;
@@ -98,6 +102,8 @@ public class RouteAdapter extends ArrayAdapter<RouteTemplate> implements View.On
 
         viewHolder.txtStartAddress.setText(routeTemplate.getStartLocation().toString());
         viewHolder.txtEndAddress.setText(routeTemplate.getEndLocation().toString());
+        viewHolder.date.setText("Date: " + routeTemplate.getDate().substring(0,10));
+        viewHolder.time.setText("Time: " + routeTemplate.getDate().substring(11, 19));
         viewHolder.info.setOnClickListener(this);
         viewHolder.info.setTag(position);
         // Return the completed view to render on screen
